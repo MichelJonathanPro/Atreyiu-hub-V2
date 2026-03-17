@@ -1,6 +1,6 @@
 import os
 import requests
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -8,6 +8,13 @@ from django.utils import timezone
 
 @receiver(post_save, sender=User)
 def export_user_to_obsidian(sender, instance, created, **kwargs):
+    _sync_user_to_obsidian(instance, status_override=None)
+
+@receiver(post_delete, sender=User)
+def mark_user_deleted_in_obsidian(sender, instance, **kwargs):
+    _sync_user_to_obsidian(instance, status_override="Supprimé")
+
+def _sync_user_to_obsidian(instance, status_override=None):
     api_url = getattr(settings, 'OBSIDIAN_REST_API_URL', 'http://127.0.0.1:27124')
     api_token = getattr(settings, 'OBSIDIAN_REST_API_TOKEN', None)
     vault_path = getattr(settings, 'OBSIDIAN_VAULT_PATH', None)
@@ -17,7 +24,12 @@ def export_user_to_obsidian(sender, instance, created, **kwargs):
     email = instance.email
     date_joined = instance.date_joined.strftime('%Y-%m-%d %H:%M:%S')
     last_login = instance.last_login.strftime('%Y-%m-%d %H:%M:%S') if instance.last_login else "Jamais"
-    is_active = "Actif" if instance.is_active else "En attente d'activation"
+    
+    if status_override:
+        is_active = status_override
+    else:
+        is_active = "Actif" if instance.is_active else "En attente d'activation"
+        
     is_staff = "Admin" if instance.is_staff else "Utilisateur"
     sync_date = timezone.now().strftime('%Y-%m-%d %H:%M:%S')
 
