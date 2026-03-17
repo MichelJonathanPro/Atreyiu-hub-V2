@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activez votre compte</title>
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f8fafc;
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .header {
+            background-color: #8b3dff;
+            padding: 32px;
+            text-align: center;
+        }
+        .header img {
+            width: 48px;
+            height: 48px;
+        }
+        .content {
+            padding: 40px;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+        .content h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: #0f172a;
+        }
+        .content p {
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+        .button-container {
+            text-align: center;
+            margin: 32px 0;
+        }
+        .button {
+            background-color: #8b3dff;
+            color: #ffffff !important;
+            padding: 16px 32px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            display: inline-block;
+        }
+        .footer {
+            background-color: #f1f5f9;
+            padding: 24px;
+            text-align: center;
+            font-size: 14px;
+            color: #64748b;
+        }
+        .footer a {
+            color: #8b3dff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <!-- Note: Static assets in emails usually need a full absolute URL to a live server. 
+                 For local testing, we'll keep it simple or use a placeholder. -->
+            <h2 style="color: #ffffff; margin: 0;">Atreyiu Hub</h2>
+        </div>
+        <div class="content">
+            <h1>Bienvenue, {{ user.username }} !</h1>
+            <p>Merci de vous être inscrit sur <strong>Atreyiu Hub V2</strong>. Nous sommes ravis de vous compter parmi nous.</p>
+            <p>Pour finaliser votre inscription et activer votre compte, veuillez cliquer sur le bouton ci-dessous :</p>
+            <div class="button-container">
+                <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}" class="button">Activer mon compte</a>
+            </div>
+            <p>Si le bouton ne fonctionne pas, vous pouvez copier et coller ce lien dans votre navigateur :</p>
+            <p style="word-break: break-all; font-size: 14px; color: #8b3dff;">http://{{ domain }}{% url 'activate' uidb64=uid token=token %}</p>
+            <p>À très bientôt,<br>L'équipe Atreyiu Hub.</p>
+        </div>
+        <div class="footer">
+            <p>Vous recevez cet e-mail car vous avez créé un compte sur Atreyiu Hub.<br>Si vous n'en êtes pas l'auteur, vous pouvez ignorer cet e-mail.</p>
+            <p>&copy; 2026 Atreyiu Hub. Tous droits réservés.</p>
+        </div>
+    </div>
+</body>
+</html>

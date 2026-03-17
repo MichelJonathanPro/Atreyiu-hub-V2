@@ -1,0 +1,74 @@
+RAPPORT DE TRAVAUX : AUTHENTIFICATION & SYNCHRONISATION OBSIDIAN
+================================================================
+
+Date : 17 Mars 2026
+Projet : Atreyiu Hub V2
+Statut : Opérationnel & Sécurisé
+
+----------------------------------------------------------------
+1. SYSTÈME D'AUTHENTIFICATION (DJANGO ACCOUNTS)
+----------------------------------------------------------------
+
+A. Inscription & Activation :
+   - Mise en place d'un flux d'inscription complet.
+   - Les comptes sont créés inactifs par défaut (is_active=False).
+   - Envoi automatique d'un e-mail d'activation HTML haute qualité.
+   - Lien d'activation sécurisé avec jeton unique à usage unique.
+
+B. Design des E-mails (Sexy Email System) :
+   - Création de templates HTML premium pour :
+     * Activation de compte
+     * Réinitialisation de mot de passe
+   - Design moderne : Palette #8B3DFF, responsive (mobile/desktop), typographie Inter.
+
+C. Interface Utilisateur :
+   - Intégration dynamique sur la Homepage :
+     * Déconnecté : Boutons "Se connecter" / "S'inscrire".
+     * Connecté : Affiche "Connecté en tant que [Pseudo]" + Bouton "Se déconnecter".
+   - Système de messages (Django Messages) pour les confirmations et erreurs.
+
+----------------------------------------------------------------
+2. SÉCURITÉ & ROBUSTESSE (HARDENING)
+----------------------------------------------------------------
+
+A. Protection Anti-Bot :
+   - Honeypot (Pot de miel) : Ajout d'un champ invisible dans le formulaire d'inscription pour piéger les robots.
+   - Rate Limiting : Limitation à 1 tentative par minute par IP pour l'inscription et la connexion.
+
+B. Sécurité des Données :
+   - Isolation des données sensibles (SMTP, SECRET_KEY, API Tokens) dans le fichier .env.
+   - Nouvelle SECRET_KEY générée aléatoirement (50+ caractères).
+
+C. Politiques & Headers :
+   - AUTH_PASSWORD_VALIDATORS : Force un mot de passe de 8 caractères minimum et interdit les suites trop simples.
+   - Session & CSRF Security : Cookies configurés en HttpOnly.
+   - Production-ready : Configuration automatique du HTTPS/HSTS/SSL Redirect dès que DEBUG est False.
+   - Protection contre les injections SQL, XSS et CSRF (natif Django + bonnes pratiques).
+
+----------------------------------------------------------------
+3. SYNCHRONISATION OBSIDIAN (MODE HYBRIDE)
+----------------------------------------------------------------
+
+A. Technologie utilisée :
+   - Django Signals : Déclenchement automatique de l'export à chaque sauvegarde d'un utilisateur.
+   - Obsidian Local REST API : Communication via HTTPS (Port 27124) avec jeton d'authentification.
+   - Fallback Système de fichiers : Écriture directe en .md si l'API est injoignable ou en production.
+
+B. Contenu des Notes Utilisateurs :
+   - Format Markdown avec Frontmatter YAML.
+   - Informations : Pseudo, Email, Date d'inscription, Statut, Rôle.
+   - Section Analyse & Légale : ID Base de données, Consentement RGPD, Timestamp de synchronisation.
+
+C. Outil d'administration :
+   - Commande de gestion : `python3 manage.py sync_obsidian` pour synchroniser tout le parc utilisateur d'un coup.
+
+----------------------------------------------------------------
+ENVIRONNEMENT TECHNIQUE
+----------------------------------------------------------------
+- Framework : Django
+- Stockage : PostgreSQL
+- Intégration : Obsidian Local REST API (HTTPS)
+- Sécurité : python-dotenv, Rate-limiting (Cache)
+
+================================================================
+Note générée par Antigravity pour Atreyiu-Admin.

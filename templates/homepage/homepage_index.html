@@ -10,4 +10,25 @@
 {% block content %}
     <h1>Bienvenue sur Atreyiu Hub V2</h1>
     <p>Le terrain est prêt, à vous de jouer pour le design !</p>
+    
+    <div style="margin-top: 20px;">
+        <h3>Tests Authentification :</h3>
+        <ul style="list-style: none; padding: 0;">
+            {% if user.is_authenticated %}
+                <li style="margin-bottom: 10px;">
+                    <p>Connecté en tant que : <strong>{{ user.username }}</strong></p>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}" style="display: inline-block; padding: 10px 20px; background-color: #dc3545; color: white; text-decoration: none; border-radius: 5px;">Se déconnecter</a>
+                </li>
+            {% else %}
+                <li style="margin-bottom: 10px;">
+                    <a href="{% url 'login' %}" style="display: inline-block; padding: 10px 20px; background-color: #8b3dff; color: white; text-decoration: none; border-radius: 5px;">Se connecter</a>
+                </li>
+                <li>
+                    <a href="{% url 'signup' %}" style="display: inline-block; padding: 10px 20px; background-color: #f3f4f6; color: #1f2937; text-decoration: none; border-radius: 5px; border: 1px solid #d1d5db;">Créer un compte</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
 {% endblock %}
