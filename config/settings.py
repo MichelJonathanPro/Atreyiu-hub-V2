@@ -187,6 +187,7 @@ SOCIALACCOUNT_PROVIDERS = {
 SOCIALACCOUNT_LOGIN_ON_GET = True # Skip the intermediary page
 SOCIALACCOUNT_AUTO_SIGNUP = False # Force the signup form for new social users (allows username choice)
 SOCIALACCOUNT_EMAIL_AUTHENTICATION = True # Link social accounts to existing ones if emails match
+ACCOUNT_LOGOUT_ON_GET = True # Direct logout without confirmation page
 
 # Session settings for "Remember Me"
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True # Default behavior
