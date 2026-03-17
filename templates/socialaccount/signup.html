@@ -1,31 +1,64 @@
-{% extends "homepage/index.html" %}
-{% load i18n %}
 {% load static %}
+{% load i18n %}
+<!doctype html>
+<html lang="fr" data-bs-theme="light">
+   <head>
+      <!-- Required meta tags -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+ <!-- Favicon icon-->
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/images/favicon/apple-touch-icon.png' %}" />
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/images/favicon/favicon-32x32.png' %}" />
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/images/favicon/favicon-16x16.png' %}" />
+<link rel="manifest" href="{% static 'assets/images/favicon/site.webmanifest' %}" />
+<link rel="mask-icon" href="{% static 'assets/images/favicon/block-safari-pinned-tab.svg' %}" color="#8b3dff" />
+<link rel="shortcut icon" href="{% static 'assets/images/favicon/favicon.ico' %}" />
+<meta name="msapplication-TileColor" content="#8b3dff" />
+<meta name="msapplication-config" content="{% static 'assets/images/favicon/tile.xml' %}" />
 
-{% block content %}
-<main class="position-relative">
-    <div class="pattern-square"></div>
-    <!--Pageheader start-->
-    <section class="py-5 py-lg-8">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-4 offset-xl-4 col-md-12 col-12">
-                    <div class="text-center">
-                        <img src="{% static 'assets/images/logo/brand-icon.svg' %}" alt="brand" class="mb-3" />
+<!-- Color modes -->
+<script src="{% static 'assets/js/vendors/color-modes.js' %}"></script>
+
+<!-- Libs CSS -->
+<link href="{% static 'assets/libs/simplebar/dist/simplebar.min.css' %}" rel="stylesheet" />
+<link href="{% static 'assets/libs/bootstrap-icons/font/bootstrap-icons.min.css' %}" rel="stylesheet" />
+
+<!-- Scroll Cue -->
+<link rel="stylesheet" href="{% static 'assets/libs/scrollcue/scrollCue.css' %}" />
+
+<!-- Box icons -->
+<link rel="stylesheet" href="{% static 'assets/fonts/css/boxicons.min.css' %}" />
+
+<!-- Theme CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+
+      <title>Finaliser l'inscription - Atreyiu Hub V2</title>
+   </head>
+
+   <body>
+      <main class="position-relative">
+         <div class="pattern-square"></div>
+         <!--Pageheader start-->
+         <section class="py-5 py-lg-8">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-4 offset-xl-4 col-md-12 col-12">
+                     <div class="text-center">
+                        <a href="{% url 'homepage:index' %}"><img src="{% static 'assets/images/logo/brand-icon.svg' %}" alt="brand" class="mb-3" /></a>
                         <h1 class="mb-1">Presque fini !</h1>
                         <p class="mb-0">Veuillez choisir votre nom d'utilisateur pour finaliser votre inscription avec Google.</p>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </section>
-    <!--Pageheader end-->
-    <!--Sign up start-->
-    <section>
-        <div class="container">
-            <div class="row justify-content-center mb-6">
-                <div class="col-xl-5 col-lg-6 col-md-8 col-12">
-                    <div class="card shadow-sm mb-3">
+         </section>
+         <!--Pageheader end-->
+         <!--Sign up start-->
+         <section>
+            <div class="container">
+               <div class="row justify-content-center mb-6">
+                  <div class="col-xl-5 col-lg-6 col-md-8 col-12">
+                     <div class="card shadow-sm mb-3">
                         <div class="card-body">
                             <form class="signup" id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
                                 {% csrf_token %}
@@ -60,13 +93,64 @@
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <div class="text-center mt-3">
+                     </div>
+                     <div class="text-center mt-3">
                         <p class="small">En continuant, vous recevrez un e-mail de validation pour activer votre compte.</p>
-                    </div>
-                </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-12">
+                     <div class="text-center">
+                        <div class="small mb-3 mb-lg-0 text-body-tertiary">
+                           Copyright ©
+                           <span class="text-primary"><a href="#">Atreyiu Hub</a></span>
+                           | Designed by
+                           <span class="text-primary"><a href="#">CodesCandy</a></span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </section>
-</main>
-{% endblock %}
+         </section>
+         <!--Sign up end-->
+         
+         <div class="position-absolute end-0 bottom-0 m-4">
+            <div class="dropdown">
+               <button class="btn btn-light btn-icon rounded-circle d-flex align-items-center" type="button" aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
+                  <i class="bi theme-icon-active"></i>
+                  <span class="visually-hidden bs-theme-text">Toggle theme</span>
+               </button>
+               <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bs-theme-text">
+                  <li>
+                     <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
+                        <i class="bi theme-icon bi-sun-fill"></i>
+                        <span class="ms-2">Clair</span>
+                     </button>
+                  </li>
+                  <li>
+                     <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
+                        <i class="bi theme-icon bi-moon-stars-fill"></i>
+                        <span class="ms-2">Sombre</span>
+                     </button>
+                  </li>
+                  <li>
+                     <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
+                        <i class="bi theme-icon bi-circle-half"></i>
+                        <span class="ms-2">Auto</span>
+                     </button>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </main>
+
+      <!-- Libs JS -->
+<script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/libs/simplebar/dist/simplebar.min.js' %}"></script>
+<script src="{% static 'assets/libs/headhesive/dist/headhesive.min.js' %}"></script>
+
+<!-- Theme JS -->
+<script src="{% static 'assets/js/theme.min.js' %}"></script>
+   </body>
+</html>

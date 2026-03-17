@@ -163,6 +163,7 @@ AUTHENTICATION_BACKENDS = [
 # Allauth settings
 ACCOUNT_EMAIL_VERIFICATION = 'none' # We already have our own custom activation
 ACCOUNT_LOGIN_METHODS = {'email', 'username'}
+ACCOUNT_ADAPTER = 'Apps.Accounts.adapters.CustomAccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'Apps.Accounts.adapters.CustomSocialAccountAdapter'
 SOCIALACCOUNT_PROVIDERS = {
     'google': {

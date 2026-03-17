@@ -1,5 +1,7 @@
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
+from allauth.account.adapter import DefaultAccountAdapter
 from django.contrib import messages
+from django.shortcuts import redirect
 from .utils import send_activation_email
 
 class CustomSocialAccountAdapter(DefaultSocialAccountAdapter):
@@ -22,3 +24,10 @@ class CustomSocialAccountAdapter(DefaultSocialAccountAdapter):
             messages.error(request, f"Erreur lors de l'envoi de l'e-mail d'activation : {str(e)}")
             
         return user
+
+class CustomAccountAdapter(DefaultAccountAdapter):
+    def respond_user_inactive(self, request, user):
+        """
+        Redirect to login instead of the default inactive page.
+        """
+        return redirect('login')
