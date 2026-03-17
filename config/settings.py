@@ -44,7 +44,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Apps.Homepage',
     'Apps.Accounts',
+    
+    # Allauth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,6 +63,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    # Allauth middleware
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -139,6 +151,36 @@ MEDIA_ROOT = BASE_DIR / 'media'
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'homepage:index'
 LOGOUT_REDIRECT_URL = 'login'
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# Allauth settings
+ACCOUNT_EMAIL_VERIFICATION = 'none' # We already have our own custom activation
+ACCOUNT_LOGIN_METHODS = {'email', 'username'}
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        },
+        'OAUTH_PKCE_ENABLED': True,
+    }
+}
+SOCIALACCOUNT_LOGIN_ON_GET = True # Skip the intermediary page
+SOCIALACCOUNT_AUTO_SIGNUP = True # Create user automatically from social account
+
+# Session settings for "Remember Me"
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True # Default behavior
+SESSION_COOKIE_AGE = 1209600 # 2 weeks (used when Remember Me is checked)
 
 # Email Configuration (SMTP)
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -8,6 +8,7 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from django.contrib import messages
 from django.core.mail import EmailMessage
+from django.conf import settings
 from .tokens import account_activation_token
 from .forms import SignupForm
 
@@ -86,6 +87,15 @@ def login_view(request):
             user = form.get_user()
             if user.is_active:
                 login(request, user)
+                
+                # Handle "Remember Me"
+                if request.POST.get('remember_me'):
+                    # Session expires in 2 weeks (set in settings.SESSION_COOKIE_AGE)
+                    request.session.set_expiry(settings.SESSION_COOKIE_AGE)
+                else:
+                    # Session expires when browser closes
+                    request.session.set_expiry(0)
+                
                 # Clear lock on successful login
                 cache.delete(cache_key)
                 return redirect('homepage:index')
