@@ -1,0 +1,23 @@
+    @media (min-width: 992px) {
+        .navbar-nav-centered {
+            position: absolute !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            margin: 0 !important;
+        }
+    }
+
+    header ul,
+    header li {
+        list-style: none !important;
+    }
+
+    /* Sticky navbar fix */
+    .navbar-clone.navbar-stick {
+        display: flex !important;
+    }
+
+    /* Theme switcher adjustment */
+    .theme-switcher-nav .dropdown-toggle::after {
+        display: none;
+    }

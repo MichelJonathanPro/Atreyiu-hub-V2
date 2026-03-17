@@ -1,30 +1,71 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- title -->
     <title>{% block title %}Atreyiu Hub V2{% endblock %}</title>
+    <!-- Favicon icon-->
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/images/favicon/apple-touch-icon.png' %}" />
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'assets/images/favicon/favicon-32x32.png' %}" />
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets/images/favicon/favicon-16x16.png' %}" />
+    <link rel="manifest" href="{% static 'assets/images/favicon/site.webmanifest' %}" />
+    <link rel="mask-icon" href="{% static 'assets/images/favicon/block-safari-pinned-tab.svg' %}" color="#8b3dff" />
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon/favicon.ico' %}" />
+    <link rel="stylesheet" href="{% static 'assets/libs/swiper/swiper-bundle.min.css' %}" />
+    <meta name="msapplication-TileColor" content="#8b3dff" />
+    <meta name="msapplication-config" content="{% static 'assets/images/favicon/tile.xml' %}" />
+
+    <!-- Color modes -->
+    <script src="{% static 'assets/js/vendors/color-modes.js' %}"></script>
+
+    <!-- Libs CSS -->
+    <link href="{% static 'assets/libs/simplebar/dist/simplebar.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/libs/bootstrap-icons/font/bootstrap-icons.min.css' %}" rel="stylesheet" />
+
     <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
-    {% block extra_css %}{% endblock %}
+
+
+    <!-- Scroll Cue -->
+    <link rel="stylesheet" href="{% static 'assets/libs/scrollcue/scrollCue.css' %}" />
+
+    <!-- Box icons -->
+    <link rel="stylesheet" href="{% static 'assets/fonts/css/boxicons.min.css' %}" />
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
+
+    <title>Langing Blog - Responsive Website Template | Block</title>
+
+    <!-- Components -->
+    <link rel="stylesheet" href="{% static 'Header/Header.css' %}">
+
+
 </head>
+
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="/">Accueil</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+    {% block content %}{% endblock %}
 
-    <footer>
-        <p>&copy; 2026 Atreyiu Hub V2</p>
-    </footer>
 
-    {% block extra_js %}{% endblock %}
+
+    <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/libs/simplebar/dist/simplebar.min.js' %}"></script>
+    <script src="{% static 'assets/libs/headhesive/dist/headhesive.min.js' %}"></script>
+
+    <!-- Theme JS -->
+    <script src="{% static 'assets/js/theme.min.js' %}"></script>
+
+    <script src="{% static 'assets/libs/swiper/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendors/swiper.js' %}"></script>
+    <script src="{% static 'assets/libs/scrollcue/scrollCue.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendors/scrollcue.js' %}"></script>
 </body>
+
 </html>
