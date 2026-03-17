@@ -25,9 +25,17 @@ class CustomSocialAccountAdapter(DefaultSocialAccountAdapter):
             
         return user
 
+    def get_signup_redirect_url(self, request):
+        """
+        Redirect social signups to their own logic (which makes them inactive).
+        After save_user, Allauth might try to redirect based on this.
+        """
+        return redirect('login')
+
 class CustomAccountAdapter(DefaultAccountAdapter):
     def respond_user_inactive(self, request, user):
         """
         Redirect to login instead of the default inactive page.
         """
+        messages.info(request, "Votre compte n'est pas encore activé. Veuillez vérifier vos e-mails.")
         return redirect('login')
