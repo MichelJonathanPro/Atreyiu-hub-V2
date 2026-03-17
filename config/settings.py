@@ -165,6 +165,13 @@ ACCOUNT_EMAIL_VERIFICATION = 'none' # We already have our own custom activation
 ACCOUNT_LOGIN_METHODS = {'email', 'username'}
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
+        'APPS': [
+            {
+                'client_id': os.getenv('GOOGLE_CLIENT_ID', ''),
+                'secret': os.getenv('GOOGLE_CLIENT_SECRET', ''),
+                'key': ''
+            },
+        ],
         'SCOPE': [
             'profile',
             'email',
