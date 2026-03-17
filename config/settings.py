@@ -137,7 +137,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # Authentication settings
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'homepage:index'
 LOGOUT_REDIRECT_URL = 'login'
 
 # Email Configuration (SMTP)
@@ -152,7 +152,7 @@ DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
 # Obsidian Integration
 OBSIDIAN_VAULT_PATH = os.getenv('OBSIDIAN_VAULT_PATH', '')
 OBSIDIAN_REST_API_TOKEN = os.getenv('OBSIDIAN_REST_API_TOKEN', '')
-OBSIDIAN_REST_API_URL = os.getenv('OBSIDIAN_REST_API_URL', 'http://127.0.0.1:27124')
+OBSIDIAN_REST_API_URL = os.getenv('OBSIDIAN_REST_API_URL', 'https://127.0.0.1:27124')
 
 # Security Settings for Production
 if not DEBUG:
