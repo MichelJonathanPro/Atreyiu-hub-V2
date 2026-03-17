@@ -1,0 +1,72 @@
+{% extends "homepage/index.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<main class="position-relative">
+    <div class="pattern-square"></div>
+    <!--Pageheader start-->
+    <section class="py-5 py-lg-8">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 offset-xl-4 col-md-12 col-12">
+                    <div class="text-center">
+                        <img src="{% static 'assets/images/logo/brand-icon.svg' %}" alt="brand" class="mb-3" />
+                        <h1 class="mb-1">Presque fini !</h1>
+                        <p class="mb-0">Veuillez choisir votre nom d'utilisateur pour finaliser votre inscription avec Google.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Pageheader end-->
+    <!--Sign up start-->
+    <section>
+        <div class="container">
+            <div class="row justify-content-center mb-6">
+                <div class="col-xl-5 col-lg-6 col-md-8 col-12">
+                    <div class="card shadow-sm mb-3">
+                        <div class="card-body">
+                            <form class="signup" id="signup_form" method="post" action="{% url 'socialaccount_signup' %}">
+                                {% csrf_token %}
+                                
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags }}">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+
+                                <div class="mb-3">
+                                    <label for="id_username" class="form-label">Nom d'utilisateur souhaité</label>
+                                    <input type="text" name="username" class="form-control" id="id_username" required placeholder="Votre pseudo" value="{{ form.username.value|default:'' }}" />
+                                    {% if form.username.errors %}
+                                        <div class="text-danger small">{{ form.username.errors }}</div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="id_email" class="form-label">Email (via Google)</label>
+                                    <input type="email" name="email" class="form-control" id="id_email" readonly value="{{ form.email.value|default:'' }}" />
+                                </div>
+
+                                {% if redirect_field_value %}
+                                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                                {% endif %}
+
+                                <div class="d-grid mt-4">
+                                    <button class="btn btn-primary" type="submit">Finaliser mon inscription</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <p class="small">En continuant, vous recevrez un e-mail de validation pour activer votre compte.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

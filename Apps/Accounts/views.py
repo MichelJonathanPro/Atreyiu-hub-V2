@@ -11,6 +11,7 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from .tokens import account_activation_token
 from .forms import SignupForm
+from .utils import send_activation_email
 
 import time
 from django.core.cache import cache
@@ -33,24 +34,10 @@ def signup_view(request):
             # Set lock for 60 seconds
             cache.set(cache_key, True, 60)
             
-            current_site = get_current_site(request)
-            mail_subject = 'Activez votre compte Atreyiu Hub'
-            message = render_to_string('accounts/activation_email.html', {
-                'user': user,
-                'domain': current_site.domain,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                'token': account_activation_token.make_token(user),
-            })
-            to_email = form.cleaned_data.get('email')
-            if to_email:
-                try:
-                    email = EmailMessage(mail_subject, message, to=[to_email])
-                    email.content_subtype = 'html'  # Enable HTML rendering
-                    email.send(fail_silently=False)
-                    messages.success(request, 'Un lien d\'activation a été envoyé à votre adresse e-mail.')
-                except Exception as e:
-                    messages.error(request, f"Erreur lors de l'envoi de l'email : {str(e)}")
-                    # Optionally delete user or keep it as inactive for periodic cleanup
+            if send_activation_email(request, user):
+                messages.success(request, 'Un lien d\'activation a été envoyé à votre adresse e-mail.')
+            else:
+                messages.error(request, "Erreur : adresse e-mail non valide.")
             
             return redirect('login')
     else:

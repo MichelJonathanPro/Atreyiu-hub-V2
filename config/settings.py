@@ -163,6 +163,7 @@ AUTHENTICATION_BACKENDS = [
 # Allauth settings
 ACCOUNT_EMAIL_VERIFICATION = 'none' # We already have our own custom activation
 ACCOUNT_LOGIN_METHODS = {'email', 'username'}
+SOCIALACCOUNT_ADAPTER = 'Apps.Accounts.adapters.CustomSocialAccountAdapter'
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APPS': [
@@ -183,7 +184,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 SOCIALACCOUNT_LOGIN_ON_GET = True # Skip the intermediary page
-SOCIALACCOUNT_AUTO_SIGNUP = True # Create user automatically from social account
+SOCIALACCOUNT_AUTO_SIGNUP = False # Force the signup form for new social users (allows username choice)
 
 # Session settings for "Remember Me"
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True # Default behavior
