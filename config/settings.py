@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Apps.Homepage',
     'Apps.Accounts',
+    'Apps.RoadMap',
+    'Apps.Website_Updates',
     
     # Allauth
     'django.contrib.sites',

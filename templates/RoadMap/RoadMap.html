@@ -1,0 +1,80 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Roadmap | Atreyiu Hub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'RoadMap/css/RoadMap.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'Components/Header/Header.html' %}
+
+<div class="pattern-square"></div>
+
+<!--Pageheader start-->
+<section class="py-lg-8 py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 col-md-12 col-12">
+                <h1 class="mb-1 text-dark">Roadmap du Développement</h1>
+                <p class="mb-0 text-muted">Suivez les prochaines étapes et l'évolution du projet Atreyiu-Hub.</p>
+            </div>
+            {% if user.is_superuser %}
+            <div class="col-lg-4 col-md-12 col-12 text-lg-end mt-3 mt-lg-0">
+                <a href="/admin/Homepage/roadmapitem/add/" class="btn btn-primary btn-sm">
+                    <i class="fe fe-plus me-1"></i> Ajouter une étape
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+<!--Pageheader end-->
+
+<!--Roadmap start-->
+<section class="pb-8">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="roadmap-timeline">
+
+                    {% for item in items %}
+                    <div class="roadmap-item">
+                        <div class="roadmap-dot"></div>
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h2 class="h5 mb-0">{{ item.title }}</h2>
+                                    <div class="status-badge status-{{ item.status }}">
+                                        {% if item.status == 'planned' %}Prévu
+                                        {% elif item.status == 'in_progress' %}En cours
+                                        {% elif item.status == 'completed' %}Terminé
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="text-muted small mb-3">
+                                    {{ item.description|linebreaksbr }}
+                                </div>
+                                <div class="small text-muted opacity-50">
+                                    <i class="fe fe-calendar me-1"></i> Mis à jour le {{ item.updated_at|date:"d/m/Y" }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="text-center py-5">
+                        <p class="text-muted">Aucune étape n'est encore affichée.</p>
+                    </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Roadmap end-->
+
+{% include 'Components/Footer/Footer.html' %}
+
+{% endblock %}
