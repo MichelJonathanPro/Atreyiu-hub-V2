@@ -30,7 +30,8 @@
     <link href="{% static 'assets/libs/bootstrap-icons/font/bootstrap-icons.min.css' %}" rel="stylesheet" />
 
     <link rel="stylesheet" href="{% static 'base/css/base.css' %}">
-
+    <link rel="stylesheet" href="{% static 'assets/libs/swiper/swiper-bundle.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/libs/intl-tel-input/build/css/intlTelInput.min.css' %}" />
 
     <!-- Scroll Cue -->
     <link rel="stylesheet" href="{% static 'assets/libs/scrollcue/scrollCue.css' %}" />
@@ -41,19 +42,25 @@
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{% static 'assets/css/theme.min.css' %}">
 
-    <title>Langing Blog - Responsive Website Template | Block</title>
-
     <!-- Components -->
     <link rel="stylesheet" href="{% static 'Header/Header.css' %}">
+    <link rel="stylesheet" href="{% static 'Footer/Footer.css' %}">
 
+    <!-- Pages -->
+    <link rel="stylesheet" href="{% static 'homepage/css/homepage.css' %}">
+
+    {% block extra_css %}{% endblock %}
 
 </head>
 
 <body>
+    {% include 'Components/Header/Header.html' %}
 
-    {% block content %}{% endblock %}
+    {% block content %}
+    {% endblock %}
 
-
+    {% include 'Components/Footer/Footer.html' %}
+    {% include 'Components/Back-to-top/Back-to-top.html' %}
 
     <script src="{% static 'assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'assets/libs/simplebar/dist/simplebar.min.js' %}"></script>
@@ -66,6 +73,12 @@
     <script src="{% static 'assets/js/vendors/swiper.js' %}"></script>
     <script src="{% static 'assets/libs/scrollcue/scrollCue.min.js' %}"></script>
     <script src="{% static 'assets/js/vendors/scrollcue.js' %}"></script>
+    <script src="{% static 'assets/libs/intl-tel-input/build/js/intlTelInput.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendors/intl-tel.js' %}"></script>
+    <script src="{% static 'assets/libs/jarallax/dist/jarallax.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendors/jarallax.js' %}"></script>
+    <script src="{% static 'assets/libs/parallax-js/dist/parallax.min.js' %}"></script>
+    <script src="{% static 'assets/js/vendors/parallax.js' %}"></script>
 </body>
 
 </html>

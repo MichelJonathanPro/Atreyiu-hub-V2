@@ -26,5 +26,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
 ]
 
+handler404 = 'Apps.Homepage.views.error_404'
+
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

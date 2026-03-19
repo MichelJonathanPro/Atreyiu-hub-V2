@@ -1,6 +1,7 @@
 {% load static %}
 
 {% block footer %}
+
 <footer class="pt-7">
     <div class="container">
         <!-- Footer 4 column -->
@@ -10,7 +11,7 @@
                     <div class="col-lg-3 col-12">
                         <div class="position-relative">
                             <div class="mb-3 pb-2 d-flex justify-content-between border-bottom border-bottom-lg-0">
-                                <h4>Service</h4>
+                                <h4>Pages</h4>
                                 <a class="d-block d-lg-none stretched-link text-body" data-bs-toggle="collapse"
                                     href="#collapseLanding" role="button" aria-expanded="true"
                                     aria-controls="collapseLanding">
@@ -21,20 +22,25 @@
                                 style="">
                                 <ul class="list-unstyled mb-0 py-3 py-lg-0">
                                     <li class="mb-2">
-                                        <a href="./index.html" class="text-decoration-none text-reset">Web App
-                                            Development</a>
+                                        <a href="./index.html" class="text-decoration-none text-reset">Accueil</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">Front End Development</a>
+                                        <a href="#!" class="text-decoration-none text-reset">Articles</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">MVP Development</a>
+                                        <a href="#!" class="text-decoration-none text-reset">Portfolios</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">Digital Marketing</a>
+                                        <a href="#!" class="text-decoration-none text-reset">Applications</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">Content Writing</a>
+                                        <a href="#!" class="text-decoration-none text-reset">Tutoriels</a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#!" class="text-decoration-none text-reset">Jeux</a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="#!" class="text-decoration-none text-reset">Boutique</a>
                                     </li>
                                 </ul>
                             </div>
@@ -44,7 +50,7 @@
                         <div>
                             <div
                                 class="mb-3 pb-2 d-flex justify-content-between border-bottom border-bottom-lg-0 position-relative">
-                                <h4>About us</h4>
+                                <h4>Informations</h4>
                                 <a class="d-block d-lg-none stretched-link text-body collapsed"
                                     data-bs-toggle="collapse" href="#collapseAccounts" role="button"
                                     aria-expanded="false" aria-controls="collapseAccounts">
@@ -54,19 +60,19 @@
                             <div class="collapse d-lg-block" id="collapseAccounts" data-bs-parent="#ft-links">
                                 <ul class="list-unstyled mb-0 py-3 py-lg-0">
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">Case Studies</a>
+                                        <a href="#!" class="text-decoration-none text-reset">A propos</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">Blog</a>
+                                        <a href="{% url 'homepage:contact' %}" class="text-decoration-none text-reset">Contact</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">Services</a>
+                                        <a href="#!" class="text-decoration-none text-reset">RoadMap</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">About</a>
+                                        <a href="#!" class="text-decoration-none text-reset">CGU</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">Career</a>
+                                        <a href="#!" class="text-decoration-none text-reset">Cookies</a>
                                     </li>
                                 </ul>
                             </div>
@@ -75,7 +81,7 @@
                     <div class="col-lg-3 col-12">
                         <div
                             class="mb-3 pb-2 d-flex justify-content-between border-bottom border-bottom-lg-0 position-relative">
-                            <h4>Technology</h4>
+                            <h4>Contenus</h4>
                             <a class="d-block d-lg-none stretched-link text-body collapsed" data-bs-toggle="collapse"
                                 href="#collapseResources" role="button" aria-expanded="false"
                                 aria-controls="collapseResources">
@@ -105,7 +111,7 @@
                     <div class="col-lg-3 col-12">
                         <div
                             class="mb-3 pb-2 d-flex justify-content-between border-bottom border-bottom-lg-0 position-relative">
-                            <h4>Locations</h4>
+                            <h4>Newsletter</h4>
                             <a class="d-block d-lg-none stretched-link text-body collapsed" data-bs-toggle="collapse"
                                 href="#collapseLocations" role="button" aria-expanded="false"
                                 aria-controls="collapseLocations">
@@ -133,7 +139,7 @@
             </div>
             <div class="col-lg-3 col-12">
                 <div class="me-7">
-                    <h4 class="mb-4">Headquarters</h4>
+                    <h4 class="mb-4">Devenir Auteur/Autrice</h4>
                     <p class="text-body-secondary">Codescandy, 412, Residency Rd, Shanthala Nagar, Ashok Nagar,
                         Bengaluru,
                         Karnataka, India 560025</p>
@@ -149,9 +155,9 @@
             </div>
             <div class="col-md-9 col-lg-6">
                 <div class="small mb-3 mb-lg-0 text-lg-center">
-                    Copyright © 2024
+                    Copyright © 2026
 
-                    <span class="text-primary"><a href="#">Atreyiu-Hub</a></span>
+                    <span class="text-primary"><a href="/">Atreyiu-Hub.com</a></span>
 
                 </div>
             </div>
@@ -188,7 +194,7 @@
                         </ul>
                     </div>
                     <div class="ms-3 d-flex gap-2">
-                        <a href="#!" class="btn btn-instagram btn-light btn-icon">
+                        <a href="#!" class="btn btn-instagram btn-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-instagram" viewBox="0 0 16 16">
                                 <path
@@ -210,6 +216,20 @@
                                 <path
                                     d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z">
                                 </path>
+                            </svg>
+                        </a>
+                        <a href="#!" class="btn btn-youtube btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-youtube" viewBox="0 0 16 16">
+                                <path
+                                    d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z" />
+                            </svg>
+                        </a>
+                        <a href="#!" class="btn btn-tiktok btn-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-tiktok" viewBox="0 0 16 16">
+                                <path
+                                    d="M9 0h1.98c.144.715.54 1.617 1.235 2.512C12.895 3.389 13.797 4 15 4v2c-1.753 0-3.07-.814-4-1.829V11a5 5 0 1 1-5-5v2a3 3 0 1 0 3 3z" />
                             </svg>
                         </a>
                     </div>

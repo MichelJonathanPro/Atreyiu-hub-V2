@@ -1,0 +1,161 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Contact | Atreyiu Hub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'Contact/css/Contact.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'Components/Header/Header.html' %}
+
+
+
+<div class="pattern-square"></div>
+<!--Pageheader start-->
+<section class="py-5 py-lg-8">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 offset-lg-1 col-md-12 col-12">
+                <h1 class="mb-3">Contactez-nous</h1>
+                <p class="mb-0 lead">N'hésitez pas à nous contacter si vous avez des questions ou pour toute
+                    demande.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Pageheader end-->
+<!--Contact us start-->
+<section class="mb-xl-9 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
+                <div class="row g-xl-7 gy-5">
+                    <div class="col-md-7 col-12">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                {% if messages %}
+                                <div class="mb-4">
+                                    {% for message in messages %}
+                                    <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+
+                                <form class="row g-3 needs-validation" method="POST" novalidate>
+                                    {% csrf_token %}
+                                    {% if user.is_authenticated %}
+                                    <div class="col-lg-6 col-md-12">
+                                        <label for="contactUsernameInput" class="form-label">Nom d'utilisateur</label>
+                                        <input type="text" class="form-control" id="contactUsernameInput"
+                                            value="{{ user.username }}" readonly />
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <label for="contactEmailInput" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="contactEmailInput"
+                                            value="{{ user.email }}" readonly />
+                                    </div>
+                                    {% else %}
+                                    <div class="col-lg-6 col-md-12">
+                                        <label for="contactFirstNameInput" class="form-label">
+                                            Prénom
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="contactFirstNameInput" name="first_name" required />
+                                        <div class="invalid-feedback">Veuillez entrer votre prénom.</div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12">
+                                        <label for="contactLastNameInput" class="form-label">
+                                            Nom
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control" id="contactLastNameInput" name="last_name" required />
+                                        <div class="invalid-feedback">Veuillez entrer votre nom.</div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="contactEmailInput" class="form-label">
+                                            Email
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="email" class="form-control" id="contactEmailInput" name="email" required />
+                                        <div class="invalid-feedback">Veuillez entrer votre email.</div>
+                                    </div>
+                                    {% endif %}
+                                    <div class="col-md-12">
+                                        <label for="contactSubjectSelect" class="form-label">Sujet</label>
+                                        <select class="form-select" id="contactSubjectSelect" name="subject" required>
+                                            <option selected disabled value="">Choisissez un sujet...</option>
+                                            <option value="bug">Signaler un bug</option>
+                                            <option value="feedback">Félicitations, le site est top !</option>
+                                            <option value="display">Dysfonctionnements d'affichage sur le site</option>
+                                            <option value="feature">Suggestion de fonctionnalité</option>
+                                            <option value="general">Question générale</option>
+                                            <option value="other">Autre</option>
+                                        </select>
+                                        <div class="invalid-feedback">Veuillez choisir un sujet.</div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="contactTextarea" class="form-label">Message</label>
+                                        <textarea class="form-control" id="contactTextarea" name="message" placeholder="Écrivez-nous"
+                                            rows="4" required></textarea>
+                                        <div class="invalid-feedback">Veuillez entrer un message.</div>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button class="btn btn-primary" type="submit">Envoyer</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-12">
+                        <div class="mb-7">
+                            <div class="icon-shape bg-primary bg-opacity-10 rounded icon-md mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-headset text-primary" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 1a5 5 0 0 0-5 5v1h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a6 6 0 1 1 12 0v6a2.5 2.5 0 0 1-2.5 2.5H9.366a1 1 0 0 1-.866.5h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 .866.5H11.5A1.5 1.5 0 0 0 13 12h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V6a5 5 0 0 0-5-5z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Support technique</h4>
+                                <p class="mb-0">
+                                    Vous avez trouvé un bug persistant ou besoin d'aide ? Vous n'arrivez pas à
+                                    utiliser une fonctionnalité ? L'affichage ne fonctionne pas comme prévu ?
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mb-7">
+                            <div class="icon-shape bg-primary bg-opacity-10 rounded icon-md mb-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-newspaper text-primary" viewBox="0 0 16 16">
+                                    <path
+                                        d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5v-11zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5H12z" />
+                                    <path
+                                        d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h4>Centre d'aide</h4>
+                                <p class="mb-0">
+                                    Vous voulez partager votre avis sur une fonctionnalité, en suggérer une nouvelle ou
+                                    même postuler pour devenir Auteur/Autrice ?
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Contact us end-->
+
+
+{% include 'Components/Footer/Footer.html' %}
+
+{% endblock %}

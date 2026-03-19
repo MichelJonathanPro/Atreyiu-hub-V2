@@ -1,0 +1,135 @@
+/* 
+ * Header is IN-FLOW (not fixed), so no padding-top needed to clear it.
+ * Section fills the viewport with a small elegant gap above.
+ * height = 100vh - header_height(~72px) - gap(16px)
+ */
+main.homepage-content {
+    padding-top: 0;
+}
+
+/* Hero Section: fills viewport minus header and a small gap */
+.hero-section-v2 {
+    /* Mobile/tablet: header wraps in flow, total ~72px, + 16px gap */
+    height: calc(100vh - 100px);
+    margin-top: 16px;
+    display: flex;
+    align-items: stretch;
+    overflow: hidden;
+}
+
+@media (min-width: 992px) {
+    .hero-section-v2 {
+        /* Desktop: nav sits at 24px-100px (mt-lg-4=24px + nav=76px height)
+         * Section must start at 100px + 16px = 116px from top 
+         * height = 100vh - 116px to ensure perfect isolation */
+        margin-top: 150px;
+        height: calc(100vh - 180px);
+    }
+}
+
+/* Banner fills 100% of the section — the section itself controls the size */
+.hero-banner-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.2rem;
+}
+
+@media (min-width: 768px) {
+    .hero-banner-container {
+        padding: 2.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .hero-banner-container {
+        padding: 3rem;
+    }
+}
+
+.hero-content-card {
+    background: rgba(139, 61, 255, 0.08);
+    /* Very subtle brand tint */
+    border: 2px solid #8B3DFF;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 1.5rem;
+    padding: 1.2rem;
+    /* Compact for mobile */
+    max-width: 100%;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .hero-content-card {
+        padding: 2.5rem;
+    }
+}
+
+.hero-content-card:hover {
+    background: rgba(139, 61, 255, 0.12);
+    border-color: #A366FF;
+}
+
+.hero-section-v2>.container {
+    width: 100%;
+    height: 100%;
+    /* Propagate height to banner */
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+}
+
+/* Anchor wraps the banner — must also stretch */
+.hero-section-v2>.container>a {
+    display: block;
+    height: 100%;
+}
+
+/* Scroll Down Indicator */
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(139, 61, 255, 0.4);
+    /* Brand Violet #8B3DFF with opacity */
+    border: 2px solid #8B3DFF;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.8rem;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    animation: blink 2s infinite;
+    z-index: 10;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.scroll-indicator:hover {
+    background: rgba(139, 61, 255, 0.6);
+    border-color: #A366FF;
+    /* Lighter violet on hover */
+    transform: scale(1.1);
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 0.4;
+        transform: translateY(0);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateY(8px);
+    }
+}

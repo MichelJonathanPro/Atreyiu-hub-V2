@@ -1,11 +1,7 @@
 {% extends 'base/base.html' %}
 {% load static %}
 
-{% block title %}Accueil | Atreyiu Hub V2{% endblock %}
-
-{% block extra_css %}
-<link rel="stylesheet" href="{% static 'homepage/css/homepage.css' %}">
-{% endblock %}
+{% block title %}Accueil | Atreyiu Hub{% endblock %}
 
 {% block content %}
 
@@ -14,143 +10,38 @@
 
    {% include 'Components/Header/Header.html' %}
 
-   <main>
-      <!-- Header start -->
-      <section class="mt-8" data-cue="fadeIn">
+   <main class="homepage-content">
+      <section class="hero-section-v2" data-cue="fadeIn">
          <div class="container">
             <a href="#!">
-               <div class="py-lg-10 rounded-3 px-lg-8 py-md-8 px-md-6 p-4 image-blur"
+               <div class="rounded-3 image-blur hero-banner-container"
                   style="background-image: url({% static 'Images/Banners/Homepage/banner.png' %}); background-position: center; background-repeat: no-repeat; background-size: cover">
-                  <div class="row g-0">
+                  <div class="row g-0 text-start">
                      <div class="col-xxl-6 col-xl-7 col-lg-8">
-                        <div class="d-flex flex-column gap-10" data-cue="zoomIn">
-                           <div>
-                           </div>
+                        <div class="hero-content-card" data-cue="zoomIn">
+
                            <div class="d-flex flex-column gap-6">
                               <div class="d-flex flex-column gap-3">
                                  <h1 class="mb-0 text-white-stable">Bienvenue sur Atreyiu-Hub.com
                                  </h1>
                                  <p class="mb-0 text-white-stable">
-                                    Bienvenue sur Atreyiu-Hub.com, un site ou différents univers se côtoient et
-                                    s'entremêlent afin de présenter créations et passions qui pourraient être
-                                    communes !<br><br>
-                                    Découvrez différents univers au travers de catégories variées.
-                                    <br><br>
-                                    "Actuellement en cours de développement, le site est amené à évoluer."
-
+                                    Bienvenue sur Atreyiu Hub, j'y parle de code, IA, impression 3D, électronique, Jeux
+                                    et applications et d'autres curiosités. Ici, je partage des idées, des ressources et
+                                    des retours d’expérience.
                                  </p>
                               </div>
                            </div>
                         </div>
                      </div>
                   </div>
+                  <!-- Scroll Indicator Icon -->
+                  <div class="scroll-indicator">
+                     <i class="bi bi-chevron-double-down"></i>
+                  </div>
                </div>
             </a>
          </div>
       </section>
-      <!-- Header end -->
-
-      <!--Industry we serve start-->
-      <section class="py-xl-9 py-5">
-         <div class="container">
-            <div class="row g-4">
-               <div class="col-lg-2 col-md-4 col-6">
-                  <a href="#!" class="card-hover bg-white card card-lift text-center p-4">
-                     <span class="border rounded-circle icon-shape icon-xxl mb-4">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <path opacity="0.2" d="M28 6H4V26H28V6Z" fill="currentColor" />
-                           <path
-                              d="M28 4H4C2.89543 4 2 4.89543 2 6V26C2 27.1046 2.89543 28 4 28H28C29.1046 28 30 27.1046 30 26V6C30 4.89543 29.1046 4 28 4ZM28 26H4V6H28V26Z"
-                              fill="currentColor" />
-                           <path d="M6 8H14V16H6V8Z" fill="currentColor" />
-                           <path d="M16 8H26V10H16V8Z" fill="currentColor" />
-                           <path d="M16 12H26V14H16V12ZM6 18H26V20H6V18ZM6 22H26V24H6V22Z" fill="currentColor" />
-                        </svg>
-                     </span>
-                     <h4 class="mb-0 card-text fs-5">Articles</h4>
-                  </a>
-               </div>
-               <div class="col-lg-2 col-md-4 col-6">
-                  <a href="#!" class="card-hover bg-white card card-lift text-center p-4">
-                     <span class="border rounded-circle icon-shape icon-xxl mb-4">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <path opacity="0.2" d="M26 10H6V24H26V10Z" fill="currentColor" />
-                           <path
-                              d="M26 8H20V6C20 4.89543 19.1046 4 18 4H14C12.8954 4 12 4.89543 12 6V8H6C4.89543 8 4 8.89543 4 10V24C4 25.1046 4.89543 26 6 26H26C27.1046 26 28 25.1046 28 24V10C28 8.89543 27.1046 8 26 8ZM14 6H18V8H14V6ZM26 24H6V10H26V24Z"
-                              fill="currentColor" />
-                           <path d="M14 14H18V16H14V14Z" fill="currentColor" />
-                        </svg>
-                     </span>
-                     <h4 class="mb-0 card-text fs-5">Portfolios</h4>
-                  </a>
-               </div>
-               <div class="col-lg-2 col-md-4 col-6">
-                  <a href="#!" class="card-hover bg-white card card-lift text-center p-4">
-                     <span class="border rounded-circle icon-shape icon-xxl mb-4">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <path opacity="0.2" d="M26 6H6V26H26V6Z" fill="currentColor" />
-                           <path d="M6 6H10V10H6V6Z" fill="currentColor" />
-                           <path d="M14 6H18V10H14V6Z" fill="currentColor" />
-                           <path d="M22 6H26V10H22V6Z" fill="currentColor" />
-                           <path d="M6 14H10V18H6V14Z" fill="currentColor" />
-                           <path d="M14 14H18V18H14V14Z" fill="currentColor" />
-                           <path d="M22 14H26V18H22V14Z" fill="currentColor" />
-                           <path d="M6 22H10V26H6V22Z" fill="currentColor" />
-                           <path d="M14 22H18V26H14V22Z" fill="currentColor" />
-                           <path d="M22 22H26V26H22V22Z" fill="currentColor" />
-                        </svg>
-                     </span>
-                     <h4 class="mb-0 card-text fs-5">Applications</h4>
-                  </a>
-               </div>
-               <div class="col-lg-2 col-md-4 col-6">
-                  <a href="#!" class="card-hover bg-white card card-lift text-center p-4">
-                     <span class="border rounded-circle icon-shape icon-xxl mb-4">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <path opacity="0.2" d="M16 6L4 12L16 18L28 12L16 6Z" fill="currentColor" />
-                           <path d="M16 4L2 11L16 18L30 11L16 4ZM16 16L6 11L16 6L26 11L16 16Z" fill="currentColor" />
-                           <path d="M6 14V20C6 20 10 24 16 24C22 24 26 20 26 20V14L16 19L6 14Z" fill="currentColor" />
-                           <path d="M28 12V22H30V12H28Z" fill="currentColor" />
-                        </svg>
-                     </span>
-                     <h4 class="mb-0 card-text fs-5">Tutoriels</h4>
-                  </a>
-               </div>
-               <div class="col-lg-2 col-md-4 col-6">
-                  <a href="#!" class="card-hover bg-white card card-lift text-center p-4">
-                     <span class="border rounded-circle icon-shape icon-xxl mb-4">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <path opacity="0.2"
-                              d="M24 8H8C5.79086 8 4 9.79086 4 12V20C4 22.2091 5.79086 24 8 24H24C26.2091 24 28 22.2091 28 20V12C28 9.79086 26.2091 8 24 8Z"
-                              fill="currentColor" />
-                           <path
-                              d="M24 6H8C4.68629 6 2 8.68629 2 12V20C2 23.3137 4.68629 26 8 26H9.5L11 23H21L22.5 26H24C27.3137 26 30 23.3137 30 20V12C30 8.68629 27.3137 6 24 6ZM28 20C28 22.2091 26.2091 24 24 24H23L21.5 21H10.5L9 24H8C5.79086 24 4 22.2091 4 20V12C4 9.79086 5.79086 8 8 8H24C26.2091 8 28 9.79086 28 12V20Z"
-                              fill="currentColor" />
-                           <path d="M7 14H9V16H11V18H9V20H7V18H5V16H7V14Z" fill="currentColor" />
-                           <path d="M21 15H23V17H21V15Z" fill="currentColor" />
-                           <path d="M24 18H26V20H24V18Z" fill="currentColor" />
-                        </svg>
-                     </span>
-                     <h4 class="mb-0 card-text fs-5">Jeux</h4>
-                  </a>
-               </div>
-               <div class="col-lg-2 col-md-4 col-6">
-                  <a href="#!" class="card-hover bg-white card card-lift text-center p-4">
-                     <span class="border rounded-circle icon-shape icon-xxl mb-4">
-                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <path opacity="0.2" d="M26 10H6V26H26V10Z" fill="currentColor" />
-                           <path
-                              d="M26 8H22V7C22 3.68629 19.3137 1 16 1C12.6863 1 10 3.68629 10 7V8H6C4.89543 8 4 8.89543 4 10V26C4 27.1046 4.89543 28 6 28H26C27.1046 28 28 27.1046 28 26V10C28 8.89543 27.1046 8 26 8ZM12 7C12 4.79086 13.7909 3 16 3C18.2091 3 20 4.79086 20 7V8H12V7ZM26 26H6V10H26V26Z"
-                              fill="currentColor" />
-                        </svg>
-                     </span>
-                     <h4 class="mb-0 card-text fs-5">Boutique</h4>
-                  </a>
-               </div>
-            </div>
-         </div>
-      </section>
-      <!--Industry we serve end-->
 
       <!-- Events start -->
       <section class="mb-xl-9 mb-5 mt-5" data-cue="fadeIn">
@@ -389,9 +280,9 @@
                               </span>
                            </div>
                            <div class="d-flex flex-column gap-2">
-                              <h3 class="mb-0 text-success-emphasis h4">Subscribe Newsletter</h3>
-                              <p class="mb-0 text-dark">Register now to get latest updates about the topics you
-                                 interest.</p>
+                              <h3 class="mb-0 text-success-emphasis h4">Souscrire à la Newsletter</h3>
+                              <p class="mb-0 text-dark">Enregistrez-vous pour recevoir les dernières mises à jour sur
+                                 les sujets qui vous intéressent.</p>
                            </div>
                            <form class="needs-validation" novalidate>
                               <div class="mb-3">
@@ -422,9 +313,8 @@
                               </span>
                            </div>
                            <div class="d-flex flex-column gap-2 px-md-5 px-4">
-                              <h3 class="mb-0 text-danger-emphasis h4">Become an Author</h3>
-                              <p class="mb-0 text-dark">Register now to get latest updates about the topics you
-                                 interest.</p>
+                              <h3 class="mb-0 text-danger-emphasis h4">Devenez auteur/autrice</h3>
+                              <p class="mb-0 text-dark">Postulez pour devenir auteur/autrice sur Atreyiu Hub</p>
                            </div>
                            <div>
                               <div class="marquee" data-cue="slideInLeft">
@@ -521,12 +411,13 @@
                                  <label for="authorEmail" class="form-label visually-hidden">Email</label>
 
                                  <input type="email" class="form-control border-0" id="authorEmail"
-                                    placeholder="email@codescandy.com" required="" />
+                                    placeholder="exemple@mail.com" required="" />
                                  <div class="invalid-feedback">Please enter email.</div>
                               </div>
 
                               <div class="d-grid">
-                                 <button class="btn btn-danger" type="submit">Register as an author</button>
+                                 <button class="btn btn-danger" type="submit">Je souhaite contribuer en tant qu'auteur
+                                 </button>
                               </div>
                            </form>
                         </div>
@@ -534,23 +425,43 @@
                   </div>
                </div>
             </div>
+
             <div class="row mt-5" data-cue="fadeIn">
                <div class="col-12">
                   <div
                      class="bg-primary bg-opacity-25 p-md-7 p-4 rounded-3 overflow-hidden pattern-square text-center d-flex flex-column gap-5">
                      <div>
                         <span
-                           class="badge border border-primary bg-primary bg-opacity-10 rounded-pill fs-5 px-3 py-2 text-primary-emphasis fs-6">Community
-                           Version</span>
+                           class="badge border border-primary bg-primary bg-opacity-10 rounded-pill fs-5 px-3 py-2 text-primary-emphasis fs-6">Contactez-nous</span>
                      </div>
-                     <div class="d-flex flex-column gap-2">
-                        <h2 class="display-6 mb-0">Premium Membership</h2>
-                        <p class="mb-0">You can upgrade your plan anytime and start to engaging with other community
-                           users.</p>
+                     <div class="d-flex flex-column gap-2 mb-2">
+                        <h2 class="display-6 mb-0">Envoyez-nous un message</h2>
+                        <p class="mb-0 text-dark-emphasis">Une question, un projet, une idée ou vous avez trouvé un bug
+                           ?
+                           N'hésitez pas !</p>
                      </div>
-                     <div>
-                        <a href="#!" class="btn btn-primary">Upgrade Plan</a>
-                     </div>
+
+                     <form class="row g-3 needs-validation text-start" novalidate>
+                        <div class="col-md-6">
+                           <label for="contactName" class="form-label text-dark-emphasis fw-medium">Nom</label>
+                           <input type="text" class="form-control border-primary bg-white bg-opacity-50"
+                              id="contactName" placeholder="Votre nom" required>
+                        </div>
+                        <div class="col-md-6">
+                           <label for="contactEmail" class="form-label text-dark-emphasis fw-medium">Email</label>
+                           <input type="email" class="form-control border-primary bg-white bg-opacity-50"
+                              id="contactEmail" placeholder="votre@email.com" required>
+                        </div>
+                        <div class="col-12">
+                           <label for="contactMessage" class="form-label text-dark-emphasis fw-medium">Message</label>
+                           <textarea class="form-control border-primary bg-white bg-opacity-50" id="contactMessage"
+                              rows="4" placeholder="Comment pouvons-nous vous aider ?" required></textarea>
+                        </div>
+                        <div class="col-12 text-center mt-4">
+                           <button class="btn btn-primary px-5 py-2 fw-semibold" type="submit">Envoyer le
+                              Message</button>
+                        </div>
+                     </form>
                   </div>
                </div>
             </div>
@@ -1093,7 +1004,7 @@
                            </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-center">
-                           <a href="#!" class="btn btn-light">See All Post</a>
+                           <a href="#!" class="btn btn-primary px-5 py-2 fw-semibold">Voir tous les contenus</a>
                         </div>
                      </div>
                   </div>
@@ -1109,20 +1020,36 @@
                      <div class="col-lg-6 offset-lg-3 col-12 position-relative z-1">
                         <div class="text-center d-flex flex-column gap-5 px-4" data-cue="zoomOut">
                            <div>
-                              <span class="badge border border-white rounded-pill px-3 py-2">Download Our Mobile
-                                 App</span>
+                              <span class="badge border border-white rounded-pill px-3 py-2">Atreyiu-Hub partout avec
+                                 vous</span>
                            </div>
                            <div class="d-flex flex-column gap-4">
-                              <div class="d-flex flex-column gap-2">
-                                 <h2 class="h1 mb-0">Keep continue to reading</h2>
-                                 <p class="mb-0 text-primary-emphasis">You can download our mobile app and continue to
-                                    reading from all platforms.</p>
-                              </div>
-                              <div class="d-flex gap-2 justify-content-center">
-                                 <a href="#!"><img src="{% static 'assets/images/mobile-app/playstore.svg' %}"
-                                       alt="playstore" /></a>
-                                 <a href="#!"><img src="{% static 'assets/images/mobile-app/appstore.svg' %}"
-                                       alt="appstore" /></a>
+                              <div class="d-flex flex-column gap-3">
+                                 <h2 class="h1 mb-0">Le site est compatible sur toutes les plateformes</h2>
+                                 <p class="mb-0 text-primary-emphasis">Accédez à Atreyiu-Hub depuis votre mobile,
+                                    tablette ou ordinateur et restez connectés aux informations en continu.</p>
+                                 <div class="d-flex flex-wrap justify-content-center gap-3 text-primary-emphasis">
+                                    <span class="d-flex align-items-center gap-2">
+                                       <i class="bi bi-windows fs-2"></i>
+                                       <span class="fw-semibold">Windows</span>
+                                    </span>
+                                    <span class="d-flex align-items-center gap-2">
+                                       <i class="bi bi-apple fs-2"></i>
+                                       <span class="fw-semibold">macOS</span>
+                                    </span>
+                                    <span class="d-flex align-items-center gap-2">
+                                       <i class="bi bi-ubuntu fs-2"></i>
+                                       <span class="fw-semibold">Linux</span>
+                                    </span>
+                                    <span class="d-flex align-items-center gap-2">
+                                       <i class="bi bi-android fs-2"></i>
+                                       <span class="fw-semibold">Android</span>
+                                    </span>
+                                    <span class="d-flex align-items-center gap-2">
+                                       <i class="bi bi-phone fs-2"></i>
+                                       <span class="fw-semibold">iOS</span>
+                                    </span>
+                                 </div>
                               </div>
                            </div>
                         </div>
@@ -1135,10 +1062,6 @@
    </main>
 
    {% include 'Components/Footer/Footer.html' %}
-   <div class="btn-scroll-top">
-      <svg class="progress-square svg-content" width="100%" height="100%" viewBox="0 0 40 40">
-         <path
-            d="M8 1H32C35.866 1 39 4.13401 39 8V32C39 35.866 35.866 39 32 39H8C4.13401 39 1 35.866 1 32V8C1 4.13401 4.13401 1 8 1Z" />
-      </svg>
-   </div>
+   {% include 'Components/Back-to-top/Back-to-top.html' %}
+
    {% endblock %}
