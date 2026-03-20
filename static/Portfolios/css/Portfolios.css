@@ -1,0 +1,20 @@
+/* Portfolio Page Specific Styles */
+
+.pattern-square {
+    margin-top: 30px;
+    /* Mobile base */
+}
+
+@media (min-width: 768px) {
+    .pattern-square {
+        margin-top: 50px;
+        /* Tablet */
+    }
+}
+
+@media (min-width: 992px) {
+    .pattern-square {
+        margin-top: 130px;
+        /* Desktop (clears navbar) */
+    }
+}

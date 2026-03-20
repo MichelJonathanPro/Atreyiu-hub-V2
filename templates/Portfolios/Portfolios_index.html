@@ -1,0 +1,254 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Portfolios | Atreyiu Hub{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'Portfolios/css/Portfolios.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="pattern-square"></div>
+<!--Pageheader start-->
+<section class="py-5 py-lg-8">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-12">
+                <h1 class="mb-3">Nous portons les expériences numériques à un niveau supérieur</h1>
+                <p class="mb-0 lead">
+                    Nos services dédiés sont développés pour couvrir l'ensemble du cycle produit. Ils vont de la
+                    découverte, du branding, du design jusqu'au développement et aux améliorations continues afin
+                    d'obtenir le meilleur résultat.‍
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Pageheader end-->
+
+<!--Portfolio grid start-->
+<section class="gallery mb-xl-9 my-4">
+    <div class="container">
+        <!-- Filter Row -->
+        <div class="row mb-5 align-items-center">
+            <div class="col-lg-8 col-md-10 col-12">
+                <div class="row g-2 g-sm-3 align-items-center">
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <form>
+                            <label for="searchInput" class="form-label visually-hidden">Rechercher</label>
+                            <input type="search" class="form-control" id="searchInput" placeholder="Rechercher un projet" />
+                        </form>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <label for="categoryList" class="form-label visually-hidden">Catégorie</label>
+                        <select class="form-select" id="categoryList">
+                            <option selected disabled value="">Choisir une catégorie</option>
+                            <option value="Design">Design</option>
+                            <option value="Branding">Branding</option>
+                            <option value="UI/UX">UI/UX</option>
+                            <option value="WebDevelopment">Développement Web</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-12">
+                        <label for="tagList" class="form-label visually-hidden">Tag</label>
+                        <select class="form-select" id="tagList">
+                            <option selected disabled value="">Choisir un tag</option>
+                            <option value="Mobile">Mobile</option>
+                            <option value="Web">Web</option>
+                            <option value="E-commerce">E-commerce</option>
+                            <option value="SaaS">SaaS</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="gallery-item gallery-item-3 design">
+                <figure class="lift position-relative btn-arrow mb-5">
+                    <a href="#!" class="gallery-item-inner">
+                        <img src="{% static 'assets/images/portfolio/portfolio-img-1.jpg' %}" alt="portfolio"
+                            class="img-fluid rounded-3" />
+                        <div class="icon-shape icon-lg bg-white rounded-circle icon-arrow shadow-lg">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+                    </a>
+                </figure>
+
+                <div class="mb-5">
+                    <h2 class="lh-base h4">
+                        <a href="#!" class="text-reset">Chat Gpt - Un carré vert avec un nœud blanc</a>
+                    </h2>
+                    <p class="mb-0">Praesent molestie odio cursus porta in. Turpis bibendum ligula ullamcorper
+                        mauris.</p>
+                </div>
+
+                <a href="#!" class="btn btn-outline-dark">
+                    Voir le projet
+                    <span class="ms-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-up-right-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707l-4.096 4.096z" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
+            <!-- gallery item start -->
+            <div class="mt-md-5 gallery-item gallery-item-3 webdevelopment design ui/ux">
+                <figure class="lift position-relative btn-arrow mb-5">
+                    <a href="#!" class="gallery-item-inner">
+                        <img src="{% static 'assets/images/portfolio/portfolio-img-4.jpg' %}" alt="portfolio"
+                            class="img-fluid rounded-3" />
+                        <div class="icon-shape icon-lg bg-white rounded-circle icon-arrow shadow-lg">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+                    </a>
+                </figure>
+
+                <div class="mb-5">
+                    <h2 class="lh-base h4">
+                        <a href="#!" class="text-reset">Vue latérale d'un homme chargeant une voiture électrique</a>
+                    </h2>
+                    <p class="mb-0">Praesent molestie odio cursus porta in. Turpis bibendum ligula ullamcorper
+                        mauris.</p>
+                </div>
+                <a href="#!" class="btn btn-outline-dark">
+                    Voir le projet
+                    <span class="ms-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-up-right-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707l-4.096 4.096z" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
+            <!-- gallery item end -->
+            <!-- gallery item start -->
+            <div class="gallery-item gallery-item-3 design webdevelopment branding">
+                <figure class="lift position-relative btn-arrow mb-5">
+                    <a href="#!" class="gallery-item-inner">
+                        <img src="{% static 'assets/images/portfolio/portfolio-img-2.jpg' %}" alt="portfolio"
+                            class="img-fluid rounded-3" />
+                        <div class="icon-shape icon-lg bg-white rounded-circle icon-arrow shadow-lg">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+                    </a>
+                </figure>
+
+                <div class="mb-5">
+                    <h2 class="lh-base h4">
+                        <a href="#!" class="text-reset">Illustration 3D d'un design de visage humain.</a>
+                    </h2>
+                    <p class="mb-0">Praesent molestie odio cursus porta in. Turpis bibendum ligula ullamcorper
+                        mauris.</p>
+                </div>
+
+                <a href="#!" class="btn btn-outline-dark">
+                    Voir le projet
+                    <span class="ms-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-up-right-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707l-4.096 4.096z" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
+            <!-- gallery item end -->
+            <!-- gallery item start -->
+            <div class="mt-md-5 gallery-item gallery-item-3 branding design ui/ux">
+                <figure class="lift position-relative btn-arrow mb-5">
+                    <a href="#!" class="gallery-item-inner">
+                        <img src="{% static 'assets/images/portfolio/portfolio-img-5.jpg' %}" alt="portfolio"
+                            class="img-fluid rounded-3" />
+                        <div class="icon-shape icon-lg bg-white rounded-circle icon-arrow shadow-lg">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+                    </a>
+                </figure>
+
+                <div class="mb-5">
+                    <h2 class="lh-base h4">
+                        <a href="#!" class="text-reset">Femme portant un simulateur de réalité virtuelle</a>
+                    </h2>
+                    <p class="mb-0">Praesent molestie odio cursus porta in. Turpis bibendum ligula ullamcorper
+                        mauris.</p>
+                </div>
+                <a href="#!" class="btn btn-outline-dark">
+                    Voir le projet
+                    <span class="ms-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-up-right-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707l-4.096 4.096z" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
+            <!-- gallery item end -->
+            <div class="gallery-item gallery-item-3 ui/ux design branding">
+                <figure class="lift position-relative btn-arrow mb-5">
+                    <a href="#!" class="gallery-item-inner">
+                        <img src="{% static 'assets/images/portfolio/portfolio-img-3.jpg' %}" alt="portfolio"
+                            class="img-fluid rounded-3" />
+                        <div class="icon-shape icon-lg bg-white rounded-circle icon-arrow shadow-lg">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+                    </a>
+                </figure>
+
+                <div class="mb-5">
+                    <h2 class="lh-base h4">
+                        <a href="#!" class="text-reset">Poignée de main entre robot et humain, ère numérique futuriste</a>
+                    </h2>
+                    <p class="mb-0">Morbi a sem lobortis tincidunt dui, dui auctor ac. Donec ornare felis nibh...</p>
+                </div>
+                <a href="#!" class="btn btn-outline-dark">
+                    Voir le projet
+                    <span class="ms-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-up-right-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707l-4.096 4.096z" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
+            <div class="mt-md-5 gallery-item gallery-item-3 design branding ui/ux webdevelopment">
+                <figure class="lift position-relative btn-arrow mb-5">
+                    <a href="#!" class="gallery-item-inner">
+                        <img src="{% static 'assets/images/portfolio/portfolio-img-6.jpg' %}" alt="portfolio"
+                            class="img-fluid rounded-3" />
+                        <div class="icon-shape icon-lg bg-white rounded-circle icon-arrow shadow-lg">
+                            <i class="bi bi-arrow-up-right"></i>
+                        </div>
+                    </a>
+                </figure>
+
+                <div class="mb-5">
+                    <h2 class="lh-base h4">
+                        <a href="#!" class="text-reset">Livreur occupé conduisant un scooter tout en tenant une pizza</a>
+                    </h2>
+                    <p class="mb-0">Praesent molestie odio cursus porta in. Turpis bibendum ligula ullamcorper
+                        mauris.</p>
+                </div>
+
+                <a href="#!" class="btn btn-outline-secondary disabled">
+                    Bientôt disponible
+                    <span class="ms-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-arrow-up-right-circle-fill" viewBox="0 0 16 16">
+                            <path
+                                d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707l-4.096 4.096z" />
+                        </svg>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Portfolio grid end-->
+
+{% endblock %}

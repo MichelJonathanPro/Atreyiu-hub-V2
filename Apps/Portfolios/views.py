@@ -1,4 +1,4 @@
 from django.views.generic import TemplateView
 
 class PortfoliosIndexView(TemplateView):
-    template_name = 'Portfolios/Portfolios.html'
+    template_name = 'Portfolios/Portfolios_index.html'
