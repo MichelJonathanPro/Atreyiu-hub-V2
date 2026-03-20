@@ -3,8 +3,13 @@
 
 {% block title %}404 - Page non trouvée | Atreyiu Hub{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'Contact/css/Contact.css' %}">
+{% endblock %}
+
 {% block content %}
-{% include 'Components/Header/Header.html' %}
+
+<div class="pattern-square"></div>
 
 <main>
     <!--404 error start-->
@@ -54,5 +59,4 @@
     <!--404 error end-->
 </main>
 
-{% include 'Components/Footer/Footer.html' %}
 {% endblock %}
