@@ -47,6 +47,12 @@ INSTALLED_APPS = [
     'Apps.RoadMap',
     'Apps.Website_Updates',
     'Apps.FAQ',
+    'Apps.Articles',
+    'Apps.Portfolios',
+    'Apps.Applications',
+    'Apps.Tutoriels',
+    'Apps.Jeux',
+    'Apps.Boutique',
     
     # Allauth
     'django.contrib.sites',

@@ -27,6 +27,12 @@ urlpatterns = [
     path('roadmap/', include('Apps.RoadMap.urls')),
     path('updates/', include('Apps.Website_Updates.urls')),
     path('faq/', include('Apps.FAQ.urls')),
+    path('articles/', include('Apps.Articles.urls')),
+    path('portfolios/', include('Apps.Portfolios.urls')),
+    path('applications/', include('Apps.Applications.urls')),
+    path('tutoriels/', include('Apps.Tutoriels.urls')),
+    path('jeux/', include('Apps.Jeux.urls')),
+    path('boutique/', include('Apps.Boutique.urls')),
 ]
 
 handler404 = 'Apps.Homepage.views.error_404'

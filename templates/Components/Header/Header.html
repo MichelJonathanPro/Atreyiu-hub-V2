@@ -26,7 +26,7 @@
                         <a class="btn btn-light mx-2 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">Pages</a>
                         <div class="dropdown-menu dropdown-menu-md" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item mb-3 text-body" href="./account-profile.html">
+                            <a class="dropdown-item mb-3 text-body" href="{% url 'articles:index' %}">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-journal-text fs-4 text-primary"></i>
                                     <div class="ms-3 lh-1">
@@ -36,7 +36,7 @@
                                 </div>
                             </a>
 
-                            <a class="dropdown-item mb-3 text-body" href="./account-security.html">
+                            <a class="dropdown-item mb-3 text-body" href="{% url 'portfolios:index' %}">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-briefcase fs-4 text-primary"></i>
                                     <div class="ms-3 lh-1">
@@ -46,7 +46,7 @@
                                 </div>
                             </a>
 
-                            <a class="dropdown-item mb-3 text-body" href="./account-billing.html">
+                            <a class="dropdown-item mb-3 text-body" href="{% url 'applications:index' %}">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-cpu fs-4 text-primary"></i>
                                     <div class="ms-3 lh-1">
@@ -56,7 +56,7 @@
                                 </div>
                             </a>
 
-                            <a class="dropdown-item mb-3 text-body" href="./account-team.html">
+                            <a class="dropdown-item mb-3 text-body" href="{% url 'tutoriels:index' %}">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-book fs-4 text-primary"></i>
                                     <div class="ms-3 lh-1">
@@ -66,7 +66,7 @@
                                 </div>
                             </a>
 
-                            <a class="dropdown-item mb-3 text-body" href="./account-notification.html">
+                            <a class="dropdown-item mb-3 text-body" href="{% url 'jeux:index' %}">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-controller fs-4 text-primary"></i>
                                     <div class="ms-3 lh-1">
@@ -76,7 +76,7 @@
                                 </div>
                             </a>
 
-                            <a class="dropdown-item text-body" href="./account-app-integration.html">
+                            <a class="dropdown-item text-body" href="{% url 'boutique:index' %}">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-cart fs-4 text-primary"></i>
                                     <div class="ms-3 lh-1">
