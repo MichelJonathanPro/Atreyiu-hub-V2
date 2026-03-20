@@ -60,13 +60,24 @@
                             <div class="collapse d-lg-block" id="collapseAccounts" data-bs-parent="#ft-links">
                                 <ul class="list-unstyled mb-0 py-3 py-lg-0">
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">A propos</a>
+                                        <a href="#!" class="text-decoration-none text-reset">A
+                                            propos</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="{% url 'homepage:contact' %}" class="text-decoration-none text-reset">Contact</a>
+                                        <a href="{% url 'homepage:contact' %}"
+                                            class="text-decoration-none text-reset">Contact</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">RoadMap</a>
+                                        <a href="{% url 'website_updates:index' %}"
+                                            class="text-decoration-none text-reset">Mise à jours</a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="{% url 'roadmap:roadmap_view' %}"
+                                            class="text-decoration-none text-reset">RoadMap</a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="{% url 'faq:index' %}"
+                                            class="text-decoration-none text-reset">F.A.Q</a>
                                     </li>
                                     <li class="mb-2">
                                         <a href="#!" class="text-decoration-none text-reset">CGU</a>
