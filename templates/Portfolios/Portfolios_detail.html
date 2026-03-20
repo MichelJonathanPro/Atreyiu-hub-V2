@@ -1,3 +1,4 @@
+{% extends 'base/base.html' %}
 {% load static %}
 
 {% block content %}
@@ -27,7 +28,7 @@
         <div class="row">
             <div class="col-xl-12 col-lg-12 col-md-12 col-12">
                 <figure class="mb-lg-9 mb-md-7 mb-5">
-                    <img loading="lazy" src="./assets/images/portfolio/portfolio-single-img.jpg" alt="portfolio"
+                    <img loading="lazy" src="{% static 'assets/images/portfolio/portfolio-single-img.jpg' %}" alt="portfolio"
                         class="img-fluid rounded-3" />
                 </figure>
             </div>
@@ -37,7 +38,7 @@
                         <div class="mb-4 mb-lg-0">
                             <span>Client</span>
                             <div class="d-flex align-items-center mt-2">
-                                <img loading="lazy" src="./assets/images/avatar/avatar-1.jpg" alt="Avatar"
+                                <img loading="lazy" src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="Avatar"
                                     class="avatar avatar-xs rounded-circle" />
                                 <div class="ms-2">
                                     <a href="#" class="text-reset">
@@ -91,13 +92,13 @@
                 <div class="row mb-lg-9 mb-md-7 mb-5 g-4">
                     <div class="col-lg-6 col-md-6 col-12">
                         <figure>
-                            <img loading="lazy" src="./assets/images/portfolio/portfolio-img-4.jpg" alt="portfolio"
+                            <img loading="lazy" src="{% static 'assets/images/portfolio/portfolio-img-4.jpg' %}" alt="portfolio"
                                 class="img-fluid rounded-3" />
                         </figure>
                     </div>
                     <div class="col-lg-6 col-md-6 col-12">
                         <figure>
-                            <img loading="lazy" src="./assets/images/portfolio/portfolio-img-2.jpg" alt="portfolio"
+                            <img loading="lazy" src="{% static 'assets/images/portfolio/portfolio-img-2.jpg' %}" alt="portfolio"
                                 class="img-fluid rounded-3" />
                         </figure>
                     </div>
@@ -129,22 +130,22 @@
                             <h3 class="mb-3">Technology used</h3>
                             <div class="col-lg-3 col-md-3 col-6">
                                 <figure class="py-3">
-                                    <img loading="lazy" src="./assets/images/brand-logo/brand-logo-10.svg" alt="logo" class="mw-100" />
+                                    <img loading="lazy" src="{% static 'assets/images/brand-logo/brand-logo-10.svg' %}" alt="logo" class="mw-100" />
                                 </figure>
                             </div>
                             <div class="col-lg-3 col-md-3 col-6">
                                 <figure class="py-3">
-                                    <img loading="lazy" src="./assets/images/brand-logo/brand-logo-12.svg" alt="logo" class="mw-100" />
+                                    <img loading="lazy" src="{% static 'assets/images/brand-logo/brand-logo-12.svg' %}" alt="logo" class="mw-100" />
                                 </figure>
                             </div>
                             <div class="col-lg-3 col-md-3 col-6">
                                 <figure class="py-3">
-                                    <img loading="lazy" src="./assets/images/brand-logo/brand-logo-9.svg" alt="logo" class="mw-100" />
+                                    <img loading="lazy" src="{% static 'assets/images/brand-logo/brand-logo-9.svg' %}" alt="logo" class="mw-100" />
                                 </figure>
                             </div>
                             <div class="col-lg-3 col-md-3 col-6">
                                 <figure class="py-3">
-                                    <img loading="lazy" src="./assets/images/brand-logo/brand-logo-10.svg" alt="logo" class="mw-100" />
+                                    <img loading="lazy" src="{% static 'assets/images/brand-logo/brand-logo-10.svg' %}" alt="logo" class="mw-100" />
                                 </figure>
                             </div>
                         </div>
@@ -197,7 +198,7 @@
             <div class="offset-xl-1 col-xl-10 col-lg-12 col-md-12 col-12">
                 <div class="text-center mx-xl-7 my-5">
                     <div class="mb-5">
-                        <img loading="lazy" src="./assets/images/avatar/avatar-4.jpg" alt="Avatar"
+                        <img loading="lazy" src="{% static 'assets/images/avatar/avatar-4.jpg' %}" alt="Avatar"
                             class="avatar avatar-xxl rounded-circle" />
                     </div>
                     <p class="lead mb-4">
@@ -239,8 +240,8 @@
             </div>
             <div class="col-lg-4 col-md-6 col-12">
                 <figure class="lift position-relative btn-arrow mb-5">
-                    <a href="./portfolio-single.html">
-                        <img loading="lazy" src="./assets/images/portfolio/portfolio-img-3.jpg" alt="portfolio"
+                    <a href="#!">
+                        <img loading="lazy" src="{% static 'assets/images/portfolio/portfolio-img-3.jpg' %}" alt="portfolio"
                             class="img-fluid rounded-3" />
                         <div class="icon-shape icon-lg bg-white rounded-circle icon-arrow shadow-lg">
                             <i class="bi bi-arrow-up-right"></i>
@@ -250,13 +251,13 @@
 
                 <div class="mb-5">
                     <h2 class="lh-base h4">
-                        <a href="./portfolio-single.html" class="text-reset">Robot handshake human, futuristic digital
+                        <a href="#!" class="text-reset">Robot handshake human, futuristic digital
                             age</a>
                     </h2>
                     <p class="mb-0">Morbi a sem lobortis tincidunt dui, dui auctor ac. Donec ornare felis nibh. Vivamus
                         faucibus purus non libero porttitor viverra.</p>
                 </div>
-                <a href="./portfolio-single.html" class="btn btn-outline-dark">
+                <a href="#!" class="btn btn-outline-dark">
                     View Project
                     <span class="ms-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -269,8 +270,8 @@
             </div>
             <div class="col-lg-4 col-md-6 col-12">
                 <figure class="lift position-relative btn-arrow mb-5">
-                    <a href="./portfolio-single.html">
-                        <img loading="lazy" src="./assets/images/portfolio/portfolio-img-6.jpg" alt="portfolio"
+                    <a href="#!">
+                        <img loading="lazy" src="{% static 'assets/images/portfolio/portfolio-img-6.jpg' %}" alt="portfolio"
                             class="img-fluid rounded-3" />
                         <div class="icon-shape icon-lg bg-white rounded-circle icon-arrow shadow-lg">
                             <i class="bi bi-arrow-up-right"></i>
@@ -280,13 +281,13 @@
 
                 <div class="mb-5">
                     <h2 class="lh-base h4">
-                        <a href="./portfolio-single.html" class="text-reset">Busy deliveryman driving scooter while
+                        <a href="#!" class="text-reset">Busy deliveryman driving scooter while
                             holding pizza</a>
                     </h2>
                     <p class="mb-0">Praesent molestie odio cursus porta in. Turpis bibendum ligula ullamcorper mauris.
                     </p>
                 </div>
-                <a href="./portfolio-single.html" class="btn btn-outline-secondary disabled">
+                <a href="#!" class="btn btn-outline-secondary disabled">
                     Coming Soon
                     <span class="ms-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -299,8 +300,8 @@
             </div>
             <div class="col-lg-4 col-md-6 col-12">
                 <figure class="lift position-relative btn-arrow mb-5">
-                    <a href="./portfolio-single.html">
-                        <img loading="lazy" src="./assets/images/portfolio/portfolio-img-4.jpg" alt="portfolio"
+                    <a href="#!">
+                        <img loading="lazy" src="{% static 'assets/images/portfolio/portfolio-img-4.jpg' %}" alt="portfolio"
                             class="img-fluid rounded-3" />
                         <div class="icon-shape icon-lg bg-white rounded-circle icon-arrow shadow-lg">
                             <i class="bi bi-arrow-up-right"></i>
@@ -310,12 +311,12 @@
 
                 <div class="mb-5">
                     <h2 class="lh-base h4">
-                        <a href="./portfolio-single.html" class="text-reset">Side view man charging electric car</a>
+                        <a href="#!" class="text-reset">Side view man charging electric car</a>
                     </h2>
                     <p class="mb-0">Praesent molestie odio cursus porta in. Turpis bibendum ligula ullamcorper mauris.
                     </p>
                 </div>
-                <a href="./portfolio-single.html" class="btn btn-outline-dark">
+                <a href="#!" class="btn btn-outline-dark">
                     View Project
                     <span class="ms-1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

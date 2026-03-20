@@ -1,0 +1,291 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Jeu : Cyber Rangers | Atreyiu Hub{% endblock %}
+
+{% block extra_css %}
+<style>
+    .game-hero {
+        position: relative;
+        height: 600px;
+        background: url("{% static 'assets/images/portfolio/portfolio-img-1.jpg' %}") center/cover no-repeat;
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 4rem;
+    }
+    .game-hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
+    }
+    .hero-glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 1.5rem;
+        padding: 2.5rem;
+        color: white;
+    }
+    .game-rating {
+        background: #ffc107;
+        color: #000;
+        padding: 0.2rem 0.8rem;
+        border-radius: 0.5rem;
+        font-weight: bold;
+    }
+    .screenshot-thumb {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        border-radius: 1rem;
+    }
+    .screenshot-thumb:hover {
+        transform: scale(1.05);
+    }
+    .requirement-card {
+        background: #f8f9fa;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+    .sticky-sidebar {
+        position: sticky;
+        top: 2rem;
+    }
+    .btn-play {
+        padding: 1rem 2.5rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+        border-radius: 0.8rem;
+        transition: all 0.3s ease;
+    }
+    .btn-play:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(var(--bs-primary-rgb), 0.3);
+    }
+    .gallery-container {
+        display: flex;
+        gap: 1.5rem;
+        overflow-x: auto;
+        padding-bottom: 1rem;
+        scrollbar-width: thin;
+    }
+    .gallery-container::-webkit-scrollbar {
+        height: 6px;
+    }
+    .gallery-container::-webkit-scrollbar-thumb {
+        background: #ddd;
+        border-radius: 10px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="pattern-square"></div>
+
+<!-- Breadcrumb start -->
+<nav class="py-3 bg-white border-bottom">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'jeux:index' %}">Jeux</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Cyber Rangers : Zero Protocol</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Cinematic Hero start -->
+<section class="game-hero">
+    <div class="container position-relative z-1">
+
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="hero-glass">
+                    <div class="mb-3">
+                        <span class="game-rating">PEGI 12</span>
+                        <span class="ms-3 text-white-50"><i class="bi bi-controller me-1"></i> Action / Aventure</span>
+                    </div>
+                    <h1 class="display-3 fw-bold mb-3 text-white">Cyber Rangers : Zero Protocol</h1>
+                    <p class="lead mb-4 text-white-50">Plongez dans un univers néon-cyberpunk où chaque décision compte. Incarnez un agent d'élite et piratez le système pour sauver l'humanité du chaos numérique.</p>
+                    
+                    <div class="d-flex flex-wrap gap-3">
+                        <button class="btn btn-primary btn-play">Jouer Maintenant</button>
+                        <button class="btn btn-outline-light px-4 text-white"><i class="bi bi-plus-lg me-2"></i> Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Game Info Sections -->
+<section class="py-7 py-lg-9 bg-white">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Left Content: Description & Gallery -->
+            <div class="col-lg-8">
+                <h3 class="fw-bold mb-4">À propos du jeu</h3>
+                <p>Cyber Rangers : Zero Protocol redéfinit le genre action-RPG avec un système de combat dynamique et une narration profonde. Explorez les bas-fonds de Neo-Tokyo, améliorez vos implants cybernétiques et affrontez des méga-corporations corrompues.</p>
+                
+                <h4 class="mt-6 mb-4 fw-bold">Captures d'écran</h4>
+                <div class="gallery-container mb-6">
+                    <img src="{% static 'assets/images/portfolio/portfolio-img-2.jpg' %}" width="300" class="screenshot-thumb" alt="screen 1">
+                    <img src="{% static 'assets/images/portfolio/portfolio-img-3.jpg' %}" width="300" class="screenshot-thumb" alt="screen 2">
+                    <img src="{% static 'assets/images/portfolio/portfolio-img-4.jpg' %}" width="300" class="screenshot-thumb" alt="screen 3">
+                    <img src="{% static 'assets/images/portfolio/portfolio-img-5.jpg' %}" width="300" class="screenshot-thumb" alt="screen 4">
+                </div>
+
+                <h4 class="mt-6 mb-4 fw-bold">Fonctionnalités clés</h4>
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-cpu text-primary fs-3 me-3"></i>
+                            <div>
+                                <h6 class="fw-bold">Combat Tactique</h6>
+                                <p class="small text-muted">Combinez piratage informatique et combat en temps réel pour dominer vos ennemis.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-globe2 text-primary fs-3 me-3"></i>
+                            <div>
+                                <h6 class="fw-bold">Monde Ouvert</h6>
+                                <p class="small text-muted">Une ville immense à explorer, remplie de quêtes secondaires et de secrets.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-7">
+                    <h4 class="fw-bold mb-4">Configuration Requise (PC)</h4>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="requirement-card h-100">
+                                <h6 class="fw-bold text-primary mb-3">Minimum</h6>
+                                <ul class="list-unstyled small mb-0">
+                                    <li class="mb-2"><strong>OS:</strong> Windows 10 64-bit</li>
+                                    <li class="mb-2"><strong>Processor:</strong> Intel Core i5-4670K</li>
+                                    <li class="mb-2"><strong>Memory:</strong> 8 GB RAM</li>
+                                    <li><strong>Graphics:</strong> GTX 1060 6GB</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="requirement-card h-100 border-primary border-opacity-25">
+                                <h6 class="fw-bold text-primary mb-3">Recommandée</h6>
+                                <ul class="list-unstyled small mb-0">
+                                    <li class="mb-2"><strong>OS:</strong> Windows 11 64-bit</li>
+                                    <li class="mb-2"><strong>Processor:</strong> Intel Core i7-12700K</li>
+                                    <li class="mb-2"><strong>Memory:</strong> 16 GB RAM</li>
+                                    <li><strong>Graphics:</strong> RTX 3070</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Content: Sidebar -->
+            <div class="col-lg-4">
+                <div class="sticky-sidebar">
+                    <!-- Buy/Play Card -->
+                    <div class="card border-0 shadow-sm p-4 mb-4" style="border-radius: 1.5rem;">
+                        <h4 class="fw-bold mb-4">Détails du produit</h4>
+                        <div class="mb-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted small">Développeur</span>
+                                <span class="small fw-bold">Atreyiu Studios</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted small">Date de sortie</span>
+                                <span class="small fw-bold">15 Mars 2024</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted small">Plateformes</span>
+                                <span class="small fw-bold">PC, PS5, Xbox Series</span>
+                            </div>
+                        </div>
+                        <hr class="my-4 opacity-10">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary py-2 fw-bold">Acheter (49.99€)</button>
+                            <button class="btn btn-outline-dark py-2 fw-bold">Essayer la Démo</button>
+                        </div>
+                    </div>
+
+                    <!-- Social Presence -->
+                    <div class="card border-0 shadow-sm p-4 mb-4" style="background: #111; color: white; border-radius: 1.5rem;">
+                        <h6 class="fw-bold mb-4 text-white-50">Communauté</h6>
+                        <div class="d-flex align-items-center gap-3">
+                            <a href="#!" class="btn btn-icon btn-dark rounded-circle border-secondary"><i class="bi bi-discord text-white"></i></a>
+                            <a href="#!" class="btn btn-icon btn-dark rounded-circle border-secondary"><i class="bi bi-reddit text-white"></i></a>
+                            <a href="#!" class="btn btn-icon btn-dark rounded-circle border-secondary"><i class="bi bi-twitch text-white"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Tech Tags -->
+                    <div class="card border-0 shadow-sm p-4" style="border-radius: 1.5rem;">
+                        <h6 class="fw-bold mb-3">Moteur de jeu</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-light text-dark border">Unreal Engine 5</span>
+                            <span class="badge bg-light text-dark border">Ray Tracing</span>
+                            <span class="badge bg-light text-dark border">Dlss 3.5</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Games -->
+<section class="py-7 bg-light">
+    <div class="container">
+        <h3 class="mb-5 text-center fw-bold">Jeux Similaires</h3>
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card h-100 border-0 shadow-sm lift">
+                    <img src="{% static 'assets/images/portfolio/portfolio-img-6.jpg' %}" class="card-img-top rounded-top-3" alt="related">
+                    <div class="card-body p-3">
+                        <h6 class="fw-bold mb-1 small">The Last Hope</h6>
+                        <p class="text-muted extra-small mb-0">Action / Survie</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 border-0 shadow-sm lift">
+                    <img src="{% static 'assets/images/portfolio/portfolio-img-4.jpg' %}" class="card-img-top rounded-top-3" alt="related">
+                    <div class="card-body p-3">
+                        <h6 class="fw-bold mb-1 small">Neon Drifter</h6>
+                        <p class="text-muted extra-small mb-0">Course Arcade</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 border-0 shadow-sm lift">
+                    <img src="{% static 'assets/images/portfolio/portfolio-img-2.jpg' %}" class="card-img-top rounded-top-3" alt="related">
+                    <div class="card-body p-3">
+                        <h6 class="fw-bold mb-1 small">Quantum Rift</h6>
+                        <p class="text-muted extra-small mb-0">FPS Tactique</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 border-0 shadow-sm lift">
+                    <img src="{% static 'assets/images/portfolio/portfolio-img-3.jpg' %}" class="card-img-top rounded-top-3" alt="related">
+                    <div class="card-body p-3">
+                        <h6 class="fw-bold mb-1 small">Void Explorer</h6>
+                        <p class="text-muted extra-small mb-0">Exploration Spatiale</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

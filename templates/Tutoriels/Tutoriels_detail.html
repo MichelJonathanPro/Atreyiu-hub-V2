@@ -1,0 +1,313 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Tutoriel : Introduction à Django 5.1 | Atreyiu Hub{% endblock %}
+
+{% block extra_css %}
+<style>
+    .tutorial-container {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .video-wrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 */
+        height: 0;
+        overflow: hidden;
+        border-radius: 1rem;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        background: #000;
+    }
+    .video-placeholder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: url("{% static 'assets/images/blog/blog-img-1.jpg' %}") center/cover no-repeat;
+    }
+    .video-placeholder::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.4);
+    }
+    .play-btn {
+        width: 80px;
+        height: 80px;
+        background: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--bs-primary);
+        font-size: 2.5rem;
+        cursor: pointer;
+        transition: transform 0.3s ease, background 0.3s ease;
+        z-index: 2;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    .play-btn:hover {
+        transform: scale(1.1);
+        background: var(--bs-primary);
+        color: #fff;
+    }
+    .badge-outline {
+        border: 1px solid rgba(0,0,0,0.1);
+        background: transparent;
+        color: #666;
+    }
+    .instructor-card {
+        border-radius: 1rem;
+        background: #f8f9fa;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+    .sticky-sidebar {
+        position: sticky;
+        top: 2rem;
+    }
+    pre {
+        background: #282c34;
+        color: #abb2bf;
+        padding: 1.5rem;
+        border-radius: 0.5rem;
+        overflow-x: auto;
+    }
+    code {
+        color: #e06c75;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<div class="pattern-square"></div>
+
+<!-- Breadcrumb start -->
+<nav class="py-3 bg-white border-bottom">
+    <div class="container">
+        <ol class="breadcrumb mb-0">
+            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'tutoriels:index' %}">Tutoriels</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Introduction à Django 5.1</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Hero Section start -->
+<section class="py-5 py-lg-8 bg-light">
+    <div class="container mt-lg-2">
+        <div class="row align-items-center">
+            <div class="col-lg-8 offset-lg-2 text-center mt-lg-6 mt-4">
+                <div class="mb-4">
+                    <span class="badge bg-primary-subtle text-primary px-3 py-2 rounded-pill text-uppercase ls-md fw-bold">Nouveau</span>
+                    <span class="ms-2 text-muted small"><i class="bi bi-clock me-1"></i> 1h 45 min de contenu</span>
+                </div>
+                <h1 class="display-4 mb-3 fw-bold">Maîtrisez Django 5.1 : De Zéro à Héros</h1>
+                <p class="lead mb-5 px-lg-8">Apprenez à construire des applications web professionnelles, scalables et sécurisées avec le framework le plus puissant de Python.</p>
+                
+                <div class="d-flex flex-wrap justify-content-center gap-3">
+                    <div class="d-flex align-items-center bg-white px-3 py-2 rounded-3 shadow-sm">
+                        <i class="bi bi-bar-chart-fill text-primary me-2"></i>
+                        <span class="small fw-semibold">Niveau Débutant</span>
+                    </div>
+                    <div class="d-flex align-items-center bg-white px-3 py-2 rounded-3 shadow-sm">
+                        <i class="bi bi-person-circle text-primary me-2"></i>
+                        <span class="small fw-semibold">Sandip Chauhan</span>
+                    </div>
+                    <div class="d-flex align-items-center bg-white px-3 py-2 rounded-3 shadow-sm">
+                        <i class="bi bi-calendar-event text-primary me-2"></i>
+                        <span class="small fw-semibold">Mis à jour Déc 2023</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Course Content -->
+<section class="py-7 py-lg-9">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Left Column: Video & Main Content -->
+            <div class="col-lg-8">
+                <!-- Video Player -->
+                <div class="video-wrapper mb-6">
+                    <div class="video-placeholder">
+                        <div class="play-btn">
+                            <i class="bi bi-play-fill"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs/Navigation -->
+                <ul class="nav nav-pills mb-5 gap-3 border-bottom pb-3" id="courseTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="overview-tab" data-bs-toggle="pill" href="#overview" role="tab">Présentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="curriculum-tab" data-bs-toggle="pill" href="#curriculum" role="tab">Programme</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="resources-tab" data-bs-toggle="pill" href="#resources" role="tab">Ressources</a>
+                    </li>
+                </ul>
+
+                <!-- Tab Content -->
+                <div class="tab-content" id="courseTabContent">
+                    <!-- Overview Tab -->
+                    <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                        <h3 class="mb-4">À propos de ce tutoriel</h3>
+                        <p>Django est un framework web Python de haut niveau qui encourage un développement rapide et une conception propre et pragmatique. Dans ce cours complet, nous allons explorer les nouveautés de la version 5.1 et construire une application de A à Z.</p>
+                        
+                        <div class="my-5 bg-primary bg-opacity-10 p-4 rounded-3 border-start border-primary border-4">
+                            <h5 class="text-primary fw-bold"><i class="bi bi-info-circle me-2"></i> Ce que vous allez apprendre</h5>
+                            <ul class="row list-unstyled mt-3 mb-0 gy-2">
+                                <li class="col-md-6"><i class="bi bi-check-circle-fill text-primary me-2 small"></i> Structure d'un projet Django 5.1</li>
+                                <li class="col-md-6"><i class="bi bi-check-circle-fill text-primary me-2 small"></i> ORM et gestion des données</li>
+                                <li class="col-md-6"><i class="bi bi-check-circle-fill text-primary me-2 small"></i> Templates et Moteur de Rendu</li>
+                                <li class="col-md-6"><i class="bi bi-check-circle-fill text-primary me-2 small"></i> Authentification et Sécurité</li>
+                            </ul>
+                        </div>
+
+                        <h4 class="mt-6 mb-4">Configuration initiale</h4>
+                        <p>Avant de commencer, assurons-nous d'avoir un environnement virtuel prêt. Voici la commande pour installer Django 5.1 :</p>
+                        <pre><code>pip install django==5.1.0</code></pre>
+                        
+                        <p class="mt-4">Ensuite, créez votre premier projet avec :</p>
+                        <pre><code>django-admin startproject mysite</code></pre>
+                    </div>
+
+                    <!-- Curriculum Tab -->
+                    <div class="tab-pane fade" id="curriculum" role="tabpanel">
+                        <div class="accordion accordion-flush" id="curriculumAccordion">
+                            <div class="accordion-item bg-transparent">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#chapter1">
+                                        Module 1: Introduction (15:00)
+                                    </button>
+                                </h2>
+                                <div id="chapter1" class="accordion-collapse collapse show">
+                                    <div class="accordion-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 px-0">
+                                                <span><i class="bi bi-play-circle me-2"></i> Pourquoi Django en 2024 ?</span>
+                                                <span class="badge badge-outline rounded-pill">05:20</span>
+                                            </li>
+                                            <li class="list-group-item d-flex justify-content-between align-items-center bg-transparent border-0 px-0">
+                                                <span><i class="bi bi-play-circle me-2"></i> Installation et Setup</span>
+                                                <span class="badge badge-outline rounded-pill">09:40</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer social -->
+                <div class="d-flex align-items-center gap-3 border-top mt-7 pt-4">
+                    <span class="fw-bold">Partagez ce cours :</span>
+                    <a href="#!" class="btn btn-icon btn-light rounded-circle"><i class="bi bi-facebook"></i></a>
+                    <a href="#!" class="btn btn-icon btn-light rounded-circle"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#!" class="btn btn-icon btn-light rounded-circle"><i class="bi bi-linkedin"></i></a>
+                    <a href="#!" class="btn btn-icon btn-light rounded-circle"><i class="bi bi-link-45deg"></i></a>
+                </div>
+            </div>
+
+            <!-- Right Column: Sidebar -->
+            <div class="col-lg-4">
+                <div class="sticky-sidebar">
+                    <!-- CTA Card -->
+                    <div class="card border-0 shadow-lg mb-4 instructor-card p-4 overflow-hidden position-relative">
+                        <div class="position-relative z-1">
+                            <h4 class="fw-bold mb-3">Rejoignez 5,234 Étudiants</h4>
+                            <p class="small text-muted mb-4">Accédez au code source complet et aux ressources PDF en rejoignant la communauté.</p>
+                            <button class="btn btn-primary w-100 mb-3">S'inscrire Maintenant</button>
+                            <button class="btn btn-outline-dark w-100">Plus d'infos</button>
+                        </div>
+                        <div class="position-absolute end-0 bottom-0 p-3 opacity-10">
+                            <i class="bi bi-mortarboard display-1"></i>
+                        </div>
+                    </div>
+
+                    <!-- Instructor Info -->
+                    <div class="card border-0 shadow-sm instructor-card p-4 mb-4">
+                        <h5 class="fw-bold mb-4">Votre Instructeur</h5>
+                        <div class="d-flex align-items-center mb-4">
+                            <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="Sandip Chauhan" class="avatar avatar-lg rounded-circle">
+                            <div class="ms-3">
+                                <h6 class="mb-0 fw-bold">Sandip Chauhan</h6>
+                                <p class="small text-muted mb-0">Développeur Fullstack Sr.</p>
+                            </div>
+                        </div>
+                        <p class="small text-muted mb-0">Passionné par le partage de connaissances, Sandip a formé plus de 50k développeurs sur les plateformes comme Udemy et YouTube.</p>
+                        <div class="mt-4 pt-4 border-top">
+                            <a href="#!" class="btn btn-sm btn-link p-0 fw-bold">Voir son profil <i class="bi bi-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Tech Tags -->
+                    <div class="card border-0 shadow-sm instructor-card p-4">
+                        <h5 class="fw-bold mb-3">Technologies Clés</h5>
+                        <div class="d-flex flex-wrap gap-2">
+                            <span class="badge bg-light text-dark border">Python</span>
+                            <span class="badge bg-light text-dark border">Django 5.1</span>
+                            <span class="badge bg-light text-dark border">PostgreSQL</span>
+                            <span class="badge bg-light text-dark border">Bootstrap 5</span>
+                            <span class="badge bg-light text-dark border">Docker</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Tutorials start -->
+<section class="py-7 bg-light">
+    <div class="container">
+        <h3 class="mb-5 text-center fw-bold">Tutoriels Recommandés</h3>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm lift">
+                    <img src="{% static 'assets/images/blog/blog-img-2.jpg' %}" class="card-img-top rounded-top-3" alt="related">
+                    <div class="card-body">
+                        <span class="badge bg-warning-subtle text-warning-emphasis mb-2">Intermédiaire</span>
+                        <h5 class="card-title fw-bold">Django REST Framework</h5>
+                        <p class="small text-muted">Apprenez à construire des API robustes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm lift">
+                    <img src="{% static 'assets/images/blog/blog-img-3.jpg' %}" class="card-img-top rounded-top-3" alt="related">
+                    <div class="card-body">
+                        <span class="badge bg-success-subtle text-success-emphasis mb-2">Débutant</span>
+                        <h5 class="card-title fw-bold">Introduction à React</h5>
+                        <p class="small text-muted">Le complément parfait pour votre backend Django.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm lift">
+                    <img src="{% static 'assets/images/blog/blog-img-4.jpg' %}" class="card-img-top rounded-top-3" alt="related">
+                    <div class="card-body">
+                        <span class="badge bg-danger-subtle text-danger-emphasis mb-2">Expert</span>
+                        <h5 class="card-title fw-bold">Déploiement AWS CI/CD</h5>
+                        <p class="small text-muted">Mettez vos applications en production.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
