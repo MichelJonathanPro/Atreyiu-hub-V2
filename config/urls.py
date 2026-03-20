@@ -26,6 +26,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('roadmap/', include('Apps.RoadMap.urls')),
     path('updates/', include('Apps.Website_Updates.urls')),
+    path('faq/', include('Apps.FAQ.urls')),
 ]
 
 handler404 = 'Apps.Homepage.views.error_404'

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'Apps.Accounts',
     'Apps.RoadMap',
     'Apps.Website_Updates',
+    'Apps.FAQ',
     
     # Allauth
     'django.contrib.sites',
