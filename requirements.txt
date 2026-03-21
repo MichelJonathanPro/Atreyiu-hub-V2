@@ -7,4 +7,4 @@ django-allauth
 requests
 PyJWT
 cryptography
-
+Pillow==12.1.1

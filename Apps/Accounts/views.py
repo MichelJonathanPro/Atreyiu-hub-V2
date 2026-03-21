@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth import login, authenticate, logout, update_session_auth_hash
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_str
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -10,7 +10,7 @@ from django.contrib import messages
 from django.core.mail import EmailMessage
 from django.conf import settings
 from .tokens import account_activation_token
-from .forms import SignupForm
+from .forms import SignupForm, EmailChangeForm, UserUpdateForm, ProfileUpdateForm
 from .utils import send_activation_email
 
 import time
@@ -115,11 +115,64 @@ def account_home(request):
 
 @login_required
 def account_profile(request):
-    return render(request, 'accounts/account-profile.html')
+    if request.method == 'POST':
+        u_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
+        
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            messages.success(request, 'Votre profil a été mis à jour avec succès !')
+            return redirect('account_profile')
+        else:
+            messages.error(request, 'Veuillez corriger les erreurs ci-dessous.')
+    else:
+        u_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+    
+    context = {
+        'u_form': u_form,
+        'p_form': p_form
+    }
+    return render(request, 'accounts/account-profile.html', context)
 
 @login_required
 def account_security(request):
-    return render(request, 'accounts/account-security.html')
+    if request.method == 'POST':
+        if 'change_email' in request.POST:
+            email_form = EmailChangeForm(request.POST, instance=request.user)
+            if email_form.is_valid():
+                email_form.save()
+                messages.success(request, 'Votre adresse e-mail a été mise à jour.')
+                return redirect('account_security')
+            else:
+                messages.error(request, 'Veuillez corriger les erreurs dans le formulaire d\'e-mail.')
+        
+        elif 'change_password' in request.POST:
+            password_form = PasswordChangeForm(request.user, request.POST)
+            if password_form.is_valid():
+                user = password_form.save()
+                update_session_auth_hash(request, user)  # Crucial pour ne pas déconnecter l'utilisateur
+                messages.success(request, 'Votre mot de passe a été mis à jour avec succès.')
+                return redirect('account_security')
+            else:
+                messages.error(request, 'Veuillez corriger les erreurs dans le formulaire de mot de passe.')
+        
+        elif 'delete_account' in request.POST:
+            user = request.user
+            logout(request)
+            user.delete()
+            messages.success(request, 'Votre compte a été supprimé définitivement.')
+            return redirect('homepage:index')
+            
+    email_form = EmailChangeForm(instance=request.user)
+    password_form = PasswordChangeForm(request.user)
+    
+    context = {
+        'email_form': email_form,
+        'password_form': password_form,
+    }
+    return render(request, 'accounts/account-security.html', context)
 
 @login_required
 def account_billing(request):
@@ -139,7 +192,36 @@ def account_app_integration(request):
 
 @login_required
 def account_device_session(request):
-    return render(request, 'accounts/account-device-session.html')
+    from .models import UserSession
+    from django.contrib.sessions.models import Session
+    from django.utils import timezone
+    
+    if request.method == 'POST' and 'revoke_session' in request.POST:
+        session_key_to_revoke = request.POST.get('revoke_session')
+        user_session = UserSession.objects.filter(session_key=session_key_to_revoke, user=request.user).first()
+        if user_session:
+            Session.objects.filter(session_key=session_key_to_revoke).delete()
+            user_session.delete()
+            messages.success(request, "Session révoquée avec succès.")
+            return redirect('account_device_session')
+
+    # Cleanup expired sessions for this user
+    valid_sessions = Session.objects.filter(expire_date__gte=timezone.now()).values_list('session_key', flat=True)
+    UserSession.objects.filter(user=request.user).exclude(session_key__in=valid_sessions).delete()
+
+    current_session_key = request.session.session_key
+    all_sessions = UserSession.objects.filter(user=request.user).order_by('-last_activity')
+    
+    web_sessions = [s for s in all_sessions if not s.is_mobile]
+    mobile_sessions = [s for s in all_sessions if s.is_mobile]
+    
+    context = {
+        'web_sessions': web_sessions,
+        'mobile_sessions': mobile_sessions,
+        'current_session_key': current_session_key
+    }
+    
+    return render(request, 'accounts/account-device-session.html', context)
 
 @login_required
 def account_social_links(request):

@@ -12,10 +12,13 @@
         <div class="row">
             <div class="col-lg-3 col-md-4">
                 <div class="d-flex align-items-center mb-4 justify-content-center justify-content-md-start">
-                    <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar"
-                        class="avatar avatar-lg rounded-circle" />
+                    {% if user.profile.avatar %}
+                        <img src="{{ user.profile.avatar.url }}" alt="avatar" class="avatar avatar-lg rounded-circle" style="object-fit: cover;" />
+                    {% else %}
+                        <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar" class="avatar avatar-lg rounded-circle" />
+                    {% endif %}
                     <div class="ms-3">
-                        <h5 class="mb-0">Jitu Chauhan</h5>
+                        <h5 class="mb-0">{{ user.username }}</h5>
                         <small>Compte personnel</small>
                     </div>
                 </div>
@@ -49,7 +52,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'account_home' %}">
                                 <i class="align-bottom bx bx-home"></i>
-                                <span class="ms-2">Accueil</span>
+                                <span class="ms-2">Tableau de bord</span>
                             </a>
                         </li>
                         <li class="nav-item">

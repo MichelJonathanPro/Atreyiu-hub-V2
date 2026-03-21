@@ -1,1 +1,115 @@
-(()=>{"use strict";const t=()=>localStorage.getItem("theme"),a=()=>{var e=t();return e||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")},r=e=>{"auto"===e&&window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.setAttribute("data-bs-theme","dark"):document.documentElement.setAttribute("data-bs-theme",e)},c=(r(a()),(e,t=!1)=>{var a=document.querySelector(".bs-theme-text"),r=document.querySelector(`[data-bs-theme-value="${e}"]`);r&&(document.querySelectorAll("[data-bs-theme-value]").forEach(e=>{e.classList.remove("active"),e.setAttribute("aria-pressed","false")}),r.classList.add("active"),r.setAttribute("aria-pressed","true"),a&&r&&(a.textContent,r.dataset.bsThemeValue),a=e,e=document.querySelector(".theme-icon-active"),a=document.querySelector(`[data-bs-theme-value="${a}"] .theme-icon`),e&&a&&(e.innerHTML=a.outerHTML),t)&&r.focus()});window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{var e=t();"light"!==e&&"dark"!==e&&r(a())}),window.addEventListener("DOMContentLoaded",()=>{c(a()),document.querySelectorAll("[data-bs-theme-value]").forEach(t=>{t.addEventListener("click",()=>{var e=t.getAttribute("data-bs-theme-value");localStorage.setItem("theme",e),r(e),c(e,!0)})})})})();
+/*!
+ * Color mode toggler for Bootstrap's docs (https://getbootstrap.com/)
+ * Updated for Atreyiu Hub with Cookie support and Global ThemeManager
+ */
+
+(() => {
+    'use strict'
+
+    const getCookie = (name) => {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    const setCookie = (name, value, days) => {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    const getStoredTheme = () => localStorage.getItem('theme') || getCookie('theme')
+    const setStoredTheme = theme => {
+        localStorage.setItem('theme', theme)
+        setCookie('theme', theme, 365)
+    }
+
+    const getPreferredTheme = () => {
+        const storedTheme = getStoredTheme()
+        if (storedTheme) {
+            return storedTheme
+        }
+
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+    }
+
+    const setTheme = theme => {
+        if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-bs-theme', 'dark')
+        } else {
+            document.documentElement.setAttribute('data-bs-theme', theme)
+        }
+    }
+
+    const showActiveTheme = (theme, focus = false) => {
+        const themeSwitcherText = document.querySelector('.bs-theme-text')
+        const activeThemeIcon = document.querySelector('.theme-icon-active')
+        const btnToActive = document.querySelector(`[data-bs-theme-value="${theme}"]`)
+
+        if (!btnToActive) {
+            return
+        }
+
+        document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+            element.classList.remove('active')
+            element.setAttribute('aria-pressed', 'false')
+        })
+
+        btnToActive.classList.add('active')
+        btnToActive.setAttribute('aria-pressed', 'true')
+
+        // Update active icon if elements exist
+        const iconOfActiveBtn = btnToActive.querySelector('.theme-icon')
+        if (activeThemeIcon && iconOfActiveBtn) {
+            activeThemeIcon.innerHTML = iconOfActiveBtn.outerHTML
+        }
+
+        if (focus) {
+            btnToActive.focus()
+        }
+    }
+
+    // Expose ThemeManager globally
+    window.ThemeManager = {
+        getStoredTheme,
+        setStoredTheme,
+        getPreferredTheme,
+        setTheme,
+        showActiveTheme
+    }
+
+    // Initialize theme
+    setTheme(getPreferredTheme())
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+        const storedTheme = getStoredTheme()
+        if (storedTheme !== 'light' && storedTheme !== 'dark') {
+            setTheme(getPreferredTheme())
+        }
+    })
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const preferredTheme = getPreferredTheme()
+        setTheme(preferredTheme)
+        showActiveTheme(preferredTheme)
+
+        document.querySelectorAll('[data-bs-theme-value]')
+            .forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const theme = toggle.getAttribute('data-bs-theme-value')
+                    setStoredTheme(theme)
+                    setTheme(theme)
+                    showActiveTheme(theme, true)
+                })
+            })
+    })
+})()

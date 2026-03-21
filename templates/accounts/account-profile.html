@@ -11,10 +11,13 @@
         <div class="row">
             <div class="col-lg-3 col-md-4">
                 <div class="d-flex align-items-center mb-4 justify-content-center justify-content-md-start">
-                    <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar"
-                        class="avatar avatar-lg rounded-circle" />
+                    {% if user.profile.avatar %}
+                        <img src="{{ user.profile.avatar.url }}" alt="avatar" class="avatar avatar-lg rounded-circle" style="object-fit: cover;" />
+                    {% else %}
+                        <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar" class="avatar avatar-lg rounded-circle" />
+                    {% endif %}
                     <div class="ms-3">
-                        <h5 class="mb-0">Jitu Chauhan</h5>
+                        <h5 class="mb-0">{{ user.username }}</h5>
                         <small>Compte personnel</small>
                     </div>
                 </div>
@@ -49,7 +52,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'account_home' %}">
                                 <i class="align-bottom bx bx-home"></i>
-                                <span class="ms-2">Accueil</span>
+                                <span class="ms-2">Tableau de bord</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -121,101 +124,68 @@
                 <div class="mb-4">
                     <h1 class="mb-0 h3">Profil</h1>
                 </div>
-                <div class="card glass-card mb-4">
-                    <div class="card-body p-lg-5">
-                        <div class="mb-5">
-                            <h4 class="mb-1">Photo de profil</h4>
-                            <p class="mb-0 fs-6">Téléchargez une photo pour faire ressortir votre profil et permettre aux gens d'identifier facilement vos commentaires et contributions !</p>
-                        </div>
-                        <div class="d-flex align-items-center">
-                            <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar"
-                                class="avatar avatar-lg rounded-circle" />
-                            <div class="ms-4">
-                                <h5 class="mb-0">Votre photo</h5>
-                                <small>Autorisé : *.jpeg, *.jpg, *.png, *.gif, taille max de 4 Mo</small>
+                <form class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
+                    <div class="card glass-card mb-4">
+                        <div class="card-body p-lg-5">
+                            <div class="mb-5">
+                                <h4 class="mb-1">Photo de profil</h4>
+                                <p class="mb-0 fs-6">Téléchargez une photo pour faire ressortir votre profil et permettre aux gens d'identifier facilement vos commentaires et contributions !</p>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                {% if user.profile.avatar %}
+                                    <img src="{{ user.profile.avatar.url }}" alt="avatar" class="avatar avatar-lg rounded-circle" style="object-fit: cover;" />
+                                {% else %}
+                                    <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar" class="avatar avatar-lg rounded-circle" />
+                                {% endif %}
+                                <div class="ms-4">
+                                    <h5 class="mb-2">Votre photo</h5>
+                                    {{ p_form.avatar }}
+                                    {% if p_form.avatar.errors %}
+                                        <div class="text-danger small mt-1">{{ p_form.avatar.errors }}</div>
+                                    {% endif %}
+                                    <small class="d-block mt-2 text-muted">Autorisé : *.jpeg, *.jpg, *.png, *.gif, taille max de 4 Mo</small>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="card glass-card mb-4">
-                    <div class="card-body p-lg-5">
-                        <div class="mb-5">
-                            <h4 class="mb-1">Informations du compte</h4>
-                            <p class="mb-0 fs-6">Modifiez vos informations personnelles et votre adresse.</p>
-                        </div>
-                        <form class="row g-3 needs-validation" novalidate>
+                    <div class="card glass-card mb-4">
+                        <div class="card-body p-lg-5">
+                            <div class="mb-5">
+                                <h4 class="mb-1">Informations du compte</h4>
+                                <p class="mb-0 fs-6">Modifiez vos informations de base.</p>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-lg-6 col-md-12">
+                                <label for="{{ u_form.username.id_for_label }}" class="form-label">{{ u_form.username.label }}</label>
+                                {{ u_form.username }}
+                                {% if u_form.username.errors %}
+                                    <div class="text-danger small">{{ u_form.username.errors }}</div>
+                                {% endif %}
+                                <div class="invalid-feedback">Veuillez entrer votre nom d'utilisateur.</div>
+                            </div>
+                            
                             <div class="col-lg-6 col-md-12">
-                                <label for="profileFirstNameInput" class="form-label">Prénom</label>
-                                <input type="text" class="form-control" id="profileFirstNameInput" value="Jitu"
-                                    required />
-                                <div class="invalid-feedback">Veuillez entrer votre prénom.</div>
-                            </div>
-                            <div class="col-lg-6 col-md-12">
-                                <label for="profileLastNameInput" class="form-label">Nom</label>
-                                <input type="text" class="form-control" id="profileLastNameInput" value="Chauhan"
-                                    required />
-                                <div class="invalid-feedback">Veuillez entrer votre nom.</div>
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="profilePhoneInput" class="form-label">Téléphone</label>
-                                <input type="text" class="form-control input-phone" id="profilePhoneInput"
-                                    placeholder="+33 6XX XXX XXXX" required />
-                                <div class="invalid-feedback">Veuillez entrer votre numéro de téléphone.</div>
-                            </div>
-                            <div class="col-lg-6">
-                                <label for="profileBirthdayInput" class="form-label">Date de naissance</label>
-                                <input type="text" class="form-control input-date" id="profileBirthdayInput"
-                                    placeholder="jj/mm/aaaa" required />
+                                <label for="{{ p_form.birth_date.id_for_label }}" class="form-label">{{ p_form.birth_date.label }}</label>
+                                {{ p_form.birth_date }}
+                                {% if p_form.birth_date.errors %}
+                                    <div class="text-danger small">{{ p_form.birth_date.errors }}</div>
+                                {% endif %}
                                 <div class="invalid-feedback">Veuillez entrer votre date de naissance.</div>
+                                <div class="form-text mt-2">
+                                    <i class="bi bi-info-circle me-1"></i>
+                                    Certains contenus peuvent être sensibles et l'utilisation de cette donnée n'est destinée qu'à la restriction des droits de visite sur certains contenus.
+                                </div>
                             </div>
-                            <div class="col-lg-12">
-                                <label for="profileAddressInput" class="form-label">Adresse</label>
-                                <input type="text" class="form-control" id="profileAddressInput" required />
-                                <div class="invalid-feedback">Veuillez entrer votre adresse.</div>
+
+                                <div class="col-12 mt-4">
+                                    <button class="btn btn-primary me-2" type="submit">Enregistrer les modifications</button>
+                                    <a href="{% url 'account_profile' %}" class="btn btn-light">Annuler</a>
+                                </div>
                             </div>
-                            <div class="col-lg-3">
-                                <label for="profileCountryInput" class="form-label">Pays</label>
-                                <select class="form-select" id="profileCountryInput" required>
-                                    <option selected disabled value="">Choisir...</option>
-                                    <option value="France" selected>France</option>
-                                    <option value="Belgique">Belgique</option>
-                                    <option value="Suisse">Suisse</option>
-                                    <option value="Canada">Canada</option>
-                                </select>
-                                <div class="invalid-feedback">Veuillez sélectionner un pays.</div>
-                            </div>
-                            <div class="col-lg-3">
-                                <label for="profileStateInput" class="form-label">Département / Région</label>
-                                <select class="form-select" id="profileStateInput" required>
-                                    <option selected disabled value="">Choisir...</option>
-                                    <option selected value="">Paris</option>
-                                    <option value="Lyon">Lyon</option>
-                                    <option value="Marseille">Marseille</option>
-                                </select>
-                                <div class="invalid-feedback">Veuillez sélectionner une région.</div>
-                            </div>
-                            <div class="col-lg-3">
-                                <label for="profileCityInput" class="form-label">Ville</label>
-                                <select class="form-select" id="profileCityInput" required>
-                                    <option selected disabled value="">Choisir...</option>
-                                    <option value="Paris" selected="">Paris</option>
-                                    <option value="Marseille">Marseille</option>
-                                    <option value="Lyon">Lyon</option>
-                                </select>
-                                <div class="invalid-feedback">Veuillez sélectionner une ville valide.</div>
-                            </div>
-                            <div class="col-lg-3">
-                                <label for="profilezipInput" class="form-label">Code Postal</label>
-                                <input type="text" class="form-control" id="profilezipInput" required />
-                                <div class="invalid-feedback">Veuillez fournir un code postal.</div>
-                            </div>
-                            <div class="col-12 mt-4">
-                                <button class="btn btn-primary me-2" type="submit">Enregistrer les modifications</button>
-                                <button class="btn btn-light" type="submit">Annuler</button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

@@ -75,6 +75,9 @@ MIDDLEWARE = [
     
     # Allauth middleware
     'allauth.account.middleware.AccountMiddleware',
+    
+    # Custom UserSession Middleware
+    'Apps.Accounts.middleware.UserSessionMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'

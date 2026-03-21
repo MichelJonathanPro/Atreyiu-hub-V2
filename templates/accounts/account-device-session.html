@@ -13,10 +13,13 @@
         <div class="row">
             <div class="col-lg-3 col-md-4">
                 <div class="d-flex align-items-center mb-4 justify-content-center justify-content-md-start">
-                    <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar"
-                        class="avatar avatar-lg rounded-circle" />
+                    {% if user.profile.avatar %}
+                        <img src="{{ user.profile.avatar.url }}" alt="avatar" class="avatar avatar-lg rounded-circle" style="object-fit: cover;" />
+                    {% else %}
+                        <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar" class="avatar avatar-lg rounded-circle" />
+                    {% endif %}
                     <div class="ms-3">
-                        <h5 class="mb-0">Jitu Chauhan</h5>
+                        <h5 class="mb-0">{{ user.username }}</h5>
                         <small>Compte personnel</small>
                     </div>
                 </div>
@@ -50,7 +53,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'account_home' %}">
                                 <i class="align-bottom bx bx-home"></i>
-                                <span class="ms-2">Accueil</span>
+                                <span class="ms-2">Tableau de bord</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -131,102 +134,64 @@
 
 
                         <div class="accordion" id="accordionExampleOne">
-                            <div class="border mb-4 rounded-3 px-4 py-3">
-                                <div class="d-flex align-items-start">
-                                    <div class="me-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                            fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
-                                            <circle cx="8" cy="8" r="8" />
-                                        </svg>
-                                    </div>
-                                    <div class="d-lg-flex align-items-center justify-content-between w-100">
-                                        <div class="d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                fill="currentColor" class="bi bi-display text-primary"
-                                                viewBox="0 0 16 16">
-                                                <path
-                                                    d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4c0 .667.083 1.167.25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75c.167-.333.25-.833.25-1.5H2s-2 0-2-2V4zm1.398-.855a.758.758 0 0 0-.254.302A1.46 1.46 0 0 0 1 4.01V10c0 .325.078.502.145.602.07.105.17.188.302.254a1.464 1.464 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.758.758 0 0 0 .254-.302 1.464 1.464 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.757.757 0 0 0-.302-.254A1.46 1.46 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145z" />
+                            {% if web_sessions %}
+                                {% for session in web_sessions %}
+                                <div class="border mb-4 rounded-3 px-4 py-3">
+                                    <div class="d-flex align-items-start">
+                                        <div class="me-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                fill="currentColor" class="bi bi-circle-fill {% if session.session_key == current_session_key %}text-success{% else %}text-muted{% endif %}" viewBox="0 0 16 16">
+                                                <circle cx="8" cy="8" r="8" />
                                             </svg>
-                                            <div class="ms-4">
-                                                <h5 class="mb-0">Ahmedabad 102.250.233.120</h5>
-                                                <small>Votre session actuelle</small>
+                                        </div>
+                                        <div class="d-lg-flex align-items-center justify-content-between w-100">
+                                            <div class="d-flex">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    fill="currentColor" class="bi bi-display text-primary"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4c0 .667.083 1.167.25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75c.167-.333.25-.833.25-1.5H2s-2 0-2-2V4zm1.398-.855a.758.758 0 0 0-.254.302A1.46 1.46 0 0 0 1 4.01V10c0 .325.078.502.145.602.07.105.17.188.302.254a1.464 1.464 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.758.758 0 0 0 .254-.302 1.464 1.464 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.757.757 0 0 0-.302-.254A1.46 1.46 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145z" />
+                                                </svg>
+                                                <div class="ms-4">
+                                                    <h5 class="mb-0">{% if session.location %}{{ session.location }}{% else %}Emplacement Inconnu{% endif %} {{ session.ip_address }}</h5>
+                                                    <small>{% if session.session_key == current_session_key %}Votre session actuelle{% else %}Dernière activité: {{ session.last_activity|date:"d M Y H:i" }}{% endif %}</small>
+                                                </div>
+                                            </div>
+                                            <div class="mt-4 mt-lg-0 d-flex gap-2">
+                                                <form method="POST" action="{% url 'account_device_session' %}" class="d-inline">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="revoke_session" value="{{ session.session_key }}">
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm"{% if session.session_key == current_session_key %} disabled title="Vous ne pouvez pas révoquer votre session actuelle."{% endif %}>Révoquer</button>
+                                                </form>
+                                                <a href="#" class="btn btn-light btn-sm" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseDevice{{ forloop.counter }}" aria-expanded="false"
+                                                    aria-controls="collapseDevice{{ forloop.counter }}">
+                                                    Voir plus
+                                                </a>
                                             </div>
                                         </div>
-                                        <div class="mt-4 mt-lg-0">
-                                            <a href="#" class="btn btn-light btn-sm" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseDeviceOne" aria-expanded="false"
-                                                aria-controls="collapseDeviceOne">
-                                                Voir plus
-                                            </a>
-                                        </div>
                                     </div>
-                                </div>
-                                <div id="collapseDeviceOne" class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionExampleOne">
-                                    <div class="pt-4">
-                                        <div class="mb-4">
-                                            <h6 class="mb-0">Appareil :</h6>
-                                            <small>Chrome sur macOS</small>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h6 class="mb-0">Dernier emplacement :</h6>
-                                            <small>Ahmedabad, Gujarat, Inde</small>
-                                        </div>
-
-
-                                        <h6 class="mb-1">Connecté le :</h6>
-                                        <small>28 février 2022</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="border mb-4 rounded-3 px-4 py-3">
-                                <div class="d-flex align-items-start">
-                                    <div class="me-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                            fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
-                                            <circle cx="8" cy="8" r="8" />
-                                        </svg>
-                                    </div>
-                                    <div class="d-lg-flex align-items-center justify-content-between w-100">
-                                        <div class="d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                fill="currentColor" class="bi bi-display text-primary"
-                                                viewBox="0 0 16 16">
-                                                <path
-                                                    d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4c0 .667.083 1.167.25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75c.167-.333.25-.833.25-1.5H2s-2 0-2-2V4zm1.398-.855a.758.758 0 0 0-.254.302A1.46 1.46 0 0 0 1 4.01V10c0 .325.078.502.145.602.07.105.17.188.302.254a1.464 1.464 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.758.758 0 0 0 .254-.302 1.464 1.464 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.757.757 0 0 0-.302-.254A1.46 1.46 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145z" />
-                                            </svg>
-                                            <div class="ms-4">
-                                                <h5 class="mb-0">Ahmedabad 102.250.233.120</h5>
-                                                <small>Votre session actuelle</small>
+                                    <div id="collapseDevice{{ forloop.counter }}" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionExampleOne">
+                                        <div class="pt-4">
+                                            <div class="mb-4">
+                                                <h6 class="mb-0">Appareil :</h6>
+                                                <small>{{ session.device }}</small>
                                             </div>
-                                        </div>
-                                        <div class="mt-4 mt-lg-0">
-                                            <a href="#" class="btn btn-light btn-sm" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseDeviceTwo" aria-expanded="false"
-                                                aria-controls="collapseDeviceTwo">
-                                                Voir plus
-                                            </a>
+                                            <div class="mb-4">
+                                                <h6 class="mb-0">Dernier emplacement :</h6>
+                                                <small>{% if session.location %}{{ session.location }}{% else %}Non spécifié{% endif %}</small>
+                                            </div>
+
+                                            <h6 class="mb-1">Connecté le :</h6>
+                                            <small>{{ session.created_at|date:"d F Y H:i" }}</small>
                                         </div>
                                     </div>
                                 </div>
-                                <div id="collapseDeviceTwo" class="accordion-collapse collapse show"
-                                    data-bs-parent="#accordionExampleOne">
-                                    <div class="pt-4">
-                                        <div class="mb-4">
-                                            <h6 class="mb-0">Appareil :</h6>
-                                            <small>Chrome sur macOS</small>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h6 class="mb-0">Dernier emplacement :</h6>
-                                            <small>Ahmedabad, Gujarat, Inde</small>
-                                        </div>
-
-
-                                        <h6 class="mb-1">Connecté le :</h6>
-                                        <small>28 février 2022</small>
-                                    </div>
-                                </div>
-                            </div>
+                                {% endfor %}
+                            {% else %}
+                                <p class="text-muted">Aucune session web trouvée.</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
@@ -239,56 +204,64 @@
 
 
                         <div class="accordion" id="accordionExampleTwo">
-                            <div class="border mb-4 rounded-3 px-4 py-3">
-                                <div class="d-flex align-items-start">
-                                    <div class="me-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
-                                            fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
-                                            <circle cx="8" cy="8" r="8" />
-                                        </svg>
-                                    </div>
-                                    <div class="d-lg-flex align-items-center justify-content-between w-100">
-                                        <div class="d-flex">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                fill="currentColor" class="bi bi-display text-primary"
-                                                viewBox="0 0 16 16">
-                                                <path
-                                                    d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4c0 .667.083 1.167.25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75c.167-.333.25-.833.25-1.5H2s-2 0-2-2V4zm1.398-.855a.758.758 0 0 0-.254.302A1.46 1.46 0 0 0 1 4.01V10c0 .325.078.502.145.602.07.105.17.188.302.254a1.464 1.464 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.758.758 0 0 0 .254-.302 1.464 1.464 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.757.757 0 0 0-.302-.254A1.46 1.46 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145z" />
+                            {% if mobile_sessions %}
+                                {% for session in mobile_sessions %}
+                                <div class="border mb-4 rounded-3 px-4 py-3">
+                                    <div class="d-flex align-items-start">
+                                        <div class="me-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
+                                                fill="currentColor" class="bi bi-circle-fill {% if session.session_key == current_session_key %}text-success{% else %}text-muted{% endif %}" viewBox="0 0 16 16">
+                                                <circle cx="8" cy="8" r="8" />
                                             </svg>
-                                            <div class="ms-4">
-                                                <h5 class="mb-0">Ahmedabad 102.250.233.120</h5>
-                                                <small>Votre session actuelle</small>
+                                        </div>
+                                        <div class="d-lg-flex align-items-center justify-content-between w-100">
+                                            <div class="d-flex">
+                                                <!-- Smartphone icon instead of display -->
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                    fill="currentColor" class="bi bi-phone text-primary" viewBox="0 0 16 16">
+                                                    <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z"/>
+                                                    <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                                                </svg>
+                                                <div class="ms-4">
+                                                    <h5 class="mb-0">{% if session.location %}{{ session.location }}{% else %}Emplacement Inconnu{% endif %} {{ session.ip_address }}</h5>
+                                                    <small>{% if session.session_key == current_session_key %}Votre session actuelle{% else %}Dernière activité: {{ session.last_activity|date:"d M Y H:i" }}{% endif %}</small>
+                                                </div>
+                                            </div>
+                                            <div class="mt-4 mt-lg-0 d-flex gap-2">
+                                                <form method="POST" action="{% url 'account_device_session' %}" class="d-inline">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="revoke_session" value="{{ session.session_key }}">
+                                                    <button type="submit" class="btn btn-outline-danger btn-sm"{% if session.session_key == current_session_key %} disabled title="Vous ne pouvez pas révoquer votre session actuelle."{% endif %}>Révoquer</button>
+                                                </form>
+                                                <a href="#" class="btn btn-light btn-sm" data-bs-toggle="collapse"
+                                                    data-bs-target="#collapseMobile{{ forloop.counter }}" aria-expanded="false"
+                                                    aria-controls="collapseMobile{{ forloop.counter }}">
+                                                    Voir plus
+                                                </a>
                                             </div>
                                         </div>
-                                        <div class="mt-4 mt-lg-0">
-                                            <a href="#" class="btn btn-light btn-sm" data-bs-toggle="collapse"
-                                                data-bs-target="#collapseMobileOne" aria-expanded="false"
-                                                aria-controls="collapseMobileOne">
-                                                Voir plus
-                                            </a>
+                                    </div>
+                                    <div id="collapseMobile{{ forloop.counter }}" class="accordion-collapse collapse"
+                                        data-bs-parent="#accordionExampleTwo">
+                                        <div class="pt-4">
+                                            <div class="mb-4">
+                                                <h6 class="mb-0">Appareil :</h6>
+                                                <small>{{ session.device }}</small>
+                                            </div>
+                                            <div class="mb-4">
+                                                <h6 class="mb-0">Dernier emplacement :</h6>
+                                                <small>{% if session.location %}{{ session.location }}{% else %}Non spécifié{% endif %}</small>
+                                            </div>
+
+                                            <h6 class="mb-1">Connecté le :</h6>
+                                            <small>{{ session.created_at|date:"d F Y H:i" }}</small>
                                         </div>
                                     </div>
                                 </div>
-
-
-                                <div id="collapseMobileOne" class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionExampleTwo">
-                                    <div class="pt-4">
-                                        <div class="mb-4">
-                                            <h6 class="mb-0">Appareil :</h6>
-                                            <small>Chrome sur macOS</small>
-                                        </div>
-                                        <div class="mb-4">
-                                            <h6 class="mb-0">Dernier emplacement :</h6>
-                                            <small>Ahmedabad, Gujarat, Inde</small>
-                                        </div>
-
-
-                                        <h6 class="mb-1">Connecté le :</h6>
-                                        <small>28 février 2022</small>
-                                    </div>
-                                </div>
-                            </div>
+                                {% endfor %}
+                            {% else %}
+                                <p class="text-muted">Aucune session mobile trouvée.</p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

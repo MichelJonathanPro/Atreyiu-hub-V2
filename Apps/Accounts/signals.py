@@ -5,6 +5,19 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.utils import timezone
+from .models import Profile
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.get_or_create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    if hasattr(instance, 'profile'):
+        instance.profile.save()
+    else:
+        Profile.objects.get_or_create(user=instance)
 
 @receiver(post_save, sender=User)
 def export_user_to_obsidian(sender, instance, created, **kwargs):
@@ -104,3 +117,67 @@ last_sync: {sync_date}
                 f.write(content)
         except Exception as e:
             print(f"Error exporting to Obsidian file system: {e}")
+
+
+from django.contrib.auth.signals import user_logged_in
+
+@receiver(user_logged_in)
+def create_or_update_user_session(sender, user, request, **kwargs):
+    if not request:
+        return
+        
+    session_key = request.session.session_key
+    if not session_key:
+        request.session.save()
+        session_key = request.session.session_key
+        
+    ip_address = request.META.get('HTTP_X_FORWARDED_FOR')
+    if ip_address:
+        ip_address = ip_address.split(',')[0].strip()
+    else:
+        ip_address = request.META.get('REMOTE_ADDR')
+        
+    user_agent = request.META.get('HTTP_USER_AGENT', '')
+    
+    # Basic parsing
+    is_mobile = False
+    if "Mobile" in user_agent or "Android" in user_agent or "iPhone" in user_agent:
+        is_mobile = True
+        
+    if "Windows" in user_agent:
+        os_name = "Windows"
+    elif "Mac" in user_agent:
+        os_name = "macOS"
+    elif "Linux" in user_agent:
+        os_name = "Linux"
+    elif "Android" in user_agent:
+        os_name = "Android"
+    elif "iPhone" in user_agent or "iPad" in user_agent:
+        os_name = "iOS"
+    else:
+        os_name = "Inconnu"
+        
+    if "Edg" in user_agent:
+        browser = "Edge"
+    elif "Chrome" in user_agent:
+        browser = "Chrome"
+    elif "Firefox" in user_agent:
+        browser = "Firefox"
+    elif "Safari" in user_agent:
+        browser = "Safari"
+    else:
+        browser = "Navigateur Web"
+        
+    device = f"{browser} sur {os_name}"
+    
+    from .models import UserSession
+    UserSession.objects.update_or_create(
+        session_key=session_key,
+        defaults={
+            'user': user,
+            'ip_address': ip_address,
+            'device': device,
+            'is_mobile': is_mobile,
+            'last_activity': timezone.now()
+        }
+    )

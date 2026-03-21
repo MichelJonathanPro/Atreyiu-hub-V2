@@ -13,10 +13,13 @@
         <div class="row">
             <div class="col-lg-3 col-md-4">
                 <div class="d-flex align-items-center mb-4 justify-content-center justify-content-md-start">
-                    <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar"
-                        class="avatar avatar-lg rounded-circle" />
+                    {% if user.profile.avatar %}
+                        <img src="{{ user.profile.avatar.url }}" alt="avatar" class="avatar avatar-lg rounded-circle" style="object-fit: cover;" />
+                    {% else %}
+                        <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar" class="avatar avatar-lg rounded-circle" />
+                    {% endif %}
                     <div class="ms-3">
-                        <h5 class="mb-0">Jitu Chauhan</h5>
+                        <h5 class="mb-0">{{ user.username }}</h5>
                         <small>Compte personnel</small>
                     </div>
                 </div>
@@ -52,7 +55,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'account_home' %}">
                                 <i class="align-bottom bx bx-home"></i>
-                                <span class="ms-2">Accueil</span>
+                                <span class="ms-2">Tableau de bord</span>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -148,19 +151,19 @@
                             <div class="col-lg-4 col-md-6 col-12">
                                 <div class="form-check card-radio">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault1" />
+                                        id="flexRadioDefault1" value="light" />
                                     <label class="form-check-label p-0" for="flexRadioDefault1">
                                         <div class="theme-preview rounded-top-3">
                                             <i class="bx bx-sun text-warning transition-base"></i>
                                         </div>
-                                        <span class="fs-6 text-dark fw-semibold px-3 py-2 d-block">Lumineux</span>
+                                        <span class="fs-6 text-dark fw-semibold px-3 py-2 d-block">Clair</span>
                                     </label>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 col-12">
                                 <div class="form-check card-radio">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault2" checked />
+                                        id="flexRadioDefault2" value="dark" />
                                     <label class="form-check-label p-0" for="flexRadioDefault2">
                                         <div class="theme-preview rounded-top-3">
                                             <i class="bx bx-moon text-primary transition-base"></i>
@@ -172,7 +175,7 @@
                             <div class="col-lg-4 col-md-6 col-12">
                                 <div class="form-check card-radio">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault3" />
+                                        id="flexRadioDefault3" value="auto" />
                                     <label class="form-check-label p-0" for="flexRadioDefault3">
                                         <div class="theme-preview rounded-top-3">
                                             <i class="bx bx-desktop text-info transition-base"></i>
@@ -185,7 +188,7 @@
                         <div class="row mt-4">
                             <div class="col-lg-12">
                                 <div class="text-end">
-                                    <a href="#" class="btn btn-primary">Enregistrer les modifications</a>
+                                    <a href="#" id="btn-save-appearance" class="btn btn-primary">Enregistrer les modifications</a>
                                 </div>
                             </div>
                         </div>
@@ -198,4 +201,43 @@
 <!--Account appearance end-->
 
 
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        if (window.ThemeManager) {
+            const currentTheme = window.ThemeManager.getStoredTheme() || 'auto';
+            const radio = document.querySelector(`input[name="flexRadioDefault"][value="${currentTheme}"]`);
+            if (radio) {
+                radio.checked = true;
+            }
+        }
+
+        const saveBtn = document.getElementById('btn-save-appearance');
+        if (saveBtn) {
+            saveBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const selectedRadio = document.querySelector('input[name="flexRadioDefault"]:checked');
+                if (selectedRadio && window.ThemeManager) {
+                    const selectedTheme = selectedRadio.value;
+                    window.ThemeManager.setStoredTheme(selectedTheme);
+                    window.ThemeManager.setTheme(selectedTheme);
+                    window.ThemeManager.showActiveTheme(selectedTheme);
+                    
+                    // Provide visual feedback
+                    const originalText = saveBtn.textContent;
+                    saveBtn.textContent = 'Modifications enregistrées !';
+                    saveBtn.classList.remove('btn-primary');
+                    saveBtn.classList.add('btn-success');
+                    setTimeout(() => {
+                        saveBtn.textContent = originalText;
+                        saveBtn.classList.remove('btn-success');
+                        saveBtn.classList.add('btn-primary');
+                    }, 2000);
+                }
+            });
+        }
+    });
+</script>
 {% endblock %}
