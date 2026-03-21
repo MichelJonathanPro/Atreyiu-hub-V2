@@ -28,11 +28,9 @@
         color: var(--bs-primary) !important;
     }
 </style>
-
 {% endblock %}
 
 {% block content %}
-
 <div class="pattern-square"></div>
 <!--Pageheader start-->
 <section class="py-5 py-lg-8 text-center">
@@ -46,40 +44,54 @@
 <!--Blog sections start-->
 <section class="mb-xl-9 my-4">
     <div class="container">
+        {% if user.is_authenticated and user.is_staff %}
+        <!-- Admin Actions Row -->
+        <div class="row mb-4">
+            <div class="col-12 text-md-end">
+                <a href="{% url 'articles:create' %}" class="btn btn-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-lg me-1" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"/>
+                    </svg>
+                    Nouvel Article
+                </a>
+            </div>
+        </div>
+        {% endif %}
+
         <!-- Filter Row -->
         <div class="row mb-5 align-items-center">
-            <div class="col-lg-8 col-md-10 col-12">
-                <div class="row g-2 g-sm-3 align-items-center">
-                    <div class="col-lg-4 col-md-4 col-12">
-                        <form>
-                            <label for="searchInput" class="form-label visually-hidden">Rechercher</label>
-                            <input type="search" class="form-control" id="searchInput" placeholder="Rechercher un article" />
-                        </form>
+            <div class="col-lg-10 col-md-12">
+                <form method="get" id="filterForm" class="row g-2 g-sm-3 align-items-center">
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <label for="searchInput" class="form-label visually-hidden">Rechercher</label>
+                        <input type="search" name="q" class="form-control" id="searchInput" placeholder="Rechercher un article" value="{{ request.GET.q|default:'' }}" />
                     </div>
-                    <div class="col-lg-4 col-md-4 col-12">
+                    <div class="col-lg-3 col-md-6 col-12">
                         <label for="categoryList" class="form-label visually-hidden">Catégorie</label>
-                        <select class="form-select" id="categoryList">
-                            <option selected disabled value="">Choisir une catégorie</option>
-                            <option value="Digital">Numérique</option>
-                            <option value="Design">Design</option>
-                            <option value="Business">Affaires</option>
-                            <option value="Startup">Startup</option>
+                        <select name="category" class="form-select" id="categoryList" onchange="this.form.submit();">
+                            <option value="">Toutes les catégories</option>
+                            <option value="Digital" {% if request.GET.category == 'Digital' %}selected{% endif %}>Numérique</option>
+                            <option value="Design" {% if request.GET.category == 'Design' %}selected{% endif %}>Design</option>
+                            <option value="Business" {% if request.GET.category == 'Business' %}selected{% endif %}>Affaires</option>
+                            <option value="Startup" {% if request.GET.category == 'Startup' %}selected{% endif %}>Startup</option>
                         </select>
                     </div>
-                    <div class="col-lg-4 col-md-4 col-12">
+                    <div class="col-lg-3 col-md-6 col-12">
                         <label for="tagList" class="form-label visually-hidden">Tag</label>
-                        <select class="form-select" id="tagList">
-                            <option selected disabled value="">Choisir un tag</option>
-                            <option value="Tech">Tech</option>
-                            <option value="Innovation">Innovation</option>
-                            <option value="Tutoriel">Tutoriel</option>
-                            <option value="Astuce">Astuce</option>
+                        <select name="tag" class="form-select" id="tagList" onchange="this.form.submit();">
+                            <option value="">Tous les tags</option>
+                            {% for tag in available_tags %}
+                            <option value="{{ tag }}" {% if request.GET.tag == tag %}selected{% endif %}>{{ tag }}</option>
+                            {% endfor %}
                         </select>
                     </div>
-                </div>
+                    <div class="col-lg-3 col-md-6 col-12">
+                        <button type="submit" class="btn btn-primary w-100">Filtrer</button>
+                    </div>
+                </form>
             </div>
             <!-- Layout Switcher Buttons -->
-            <div class="col-lg-4 col-md-2 col-12 d-none d-lg-block">
+            <div class="col-lg-2 col-md-12 d-none d-lg-block">
                 <ul class="nav d-flex gap-1 justify-content-md-end mt-3 mt-md-0">
                     <li>
                         <button class="btn btn-light btn-icon btn-md layout-btn" data-view="thumbnail" title="Grille avec miniatures">
@@ -109,154 +121,156 @@
         <!-- 1. List View -->
         <div id="view-list" class="layout-content active">
             <div class="row">
-                <!-- Article 1 -->
+                {% for article in articles %}
+                <!-- Article -->
                 <article class="row d-flex align-items-center mb-7 mb-md-5">
                     <div class="col-lg-5 col-xl-5 col-md-12 col-12">
                         <figure class="mb-4 mb-lg-0 zoom-img">
-                            <a href="{% url 'articles:detail' %}"><img loading="lazy" src="{% static 'assets/images/blog/blog-img-9.jpg' %}" alt="blog" class="img-fluid rounded-3" /></a>
+                            <a href="{{ article.get_absolute_url }}">
+                                {% if article.image %}
+                                <img loading="lazy" src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid rounded-3" />
+                                {% else %}
+                                <img loading="lazy" src="{% static 'assets/images/blog/blog-img-9.jpg' %}" alt="blog" class="img-fluid rounded-3" />
+                                {% endif %}
+                            </a>
                         </figure>
                     </div>
                     <div class="col-lg-7 col-xl-7 col-md-12 col-12">
                         <div class="ms-lg-4">
-                            <a href="#!" class="mb-3 badge bg-primary-subtle text-primary-emphasis rounded-pill text-uppercase">Numérique</a>
+                            <div class="d-flex align-items-center mb-3 flex-wrap gap-2">
+                                <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill text-uppercase">{{ article.get_category_display }}</span>
+                                {% for tag in article.get_tags_list %}
+                                <span class="badge bg-light text-dark border rounded-pill">{{ tag }}</span>
+                                {% endfor %}
+                                {% if not article.is_published %}
+                                <span class="badge bg-danger rounded-pill">Brouillon</span>
+                                {% endif %}
+                            </div>
                             <div class="mb-4">
-                                <h3 class="lh-base h4"><a href="{% url 'articles:detail' %}" class="text-reset">Présentation du design basé sur Bootstrap 5 en 2024</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut velit dui...</p>
+                                <h3 class="lh-base h4"><a href="{{ article.get_absolute_url }}" class="text-reset">{{ article.title }}</a></h3>
+                                <p>{{ article.content|truncatewords:30 }}</p>
                             </div>
                             <div class="d-flex align-items-center mb-0">
+                                {% if article.author.profile_picture %}
+                                <img loading="lazy" src="{{ article.author.profile_picture.url }}" alt="Avatar" class="avatar avatar-xs rounded-circle" />
+                                {% else %}
                                 <img loading="lazy" src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="Avatar" class="avatar avatar-xs rounded-circle" />
-                                <div class="ms-2"><a href="#" class="text-reset fs-6">Sandip Chauhan</a></div>
-                                <div class="ms-3"><span class="fs-6">21 Déc, 2023</span></div>
+                                {% endif %}
+                                <div class="ms-2"><a href="#" class="text-reset fs-6">{{ article.author.get_full_name|default:article.author.username }}</a></div>
+                                <div class="ms-3"><span class="fs-6">{{ article.created_at|date:"d M, Y" }}</span></div>
                             </div>
                         </div>
                     </div>
                 </article>
-                <!-- Article 2 -->
-                <article class="row d-flex align-items-center mb-7 mb-md-5">
-                    <div class="col-lg-5 col-xl-5 col-md-12 col-12">
-                        <figure class="mb-4 mb-lg-0 zoom-img">
-                            <a href="{% url 'articles:detail' %}"><img loading="lazy" src="{% static 'assets/images/blog/blog-img-1.jpg' %}" alt="blog" class="img-fluid rounded-3" /></a>
-                        </figure>
-                    </div>
-                    <div class="col-lg-7 col-xl-7 col-md-12 col-12">
-                        <div class="ms-lg-4">
-                            <a href="#!" class="mb-3 badge bg-success-subtle text-success-emphasis rounded-pill text-uppercase">Design</a>
-                            <div class="mb-4">
-                                <h3 class="lh-base h4"><a href="{% url 'articles:detail' %}" class="text-reset">Les tendances d'écriture qui définiront 2023</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                            </div>
-                            <div class="d-flex align-items-center mb-0">
-                                <img loading="lazy" src="{% static 'assets/images/avatar/avatar-7.jpg' %}" alt="Avatar" class="avatar avatar-xs rounded-circle" />
-                                <div class="ms-2"><a href="#" class="text-reset fs-6">Jitu Chauhan</a></div>
-                                <div class="ms-3"><span class="fs-6">11 Déc, 2023</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-                <!-- Article 3 -->
-                <article class="row d-flex align-items-center mb-7 mb-md-5">
-                    <div class="col-lg-5 col-xl-5 col-md-12 col-12">
-                        <figure class="mb-4 mb-lg-0 zoom-img">
-                            <a href="{% url 'articles:detail' %}"><img loading="lazy" src="{% static 'assets/images/blog/blog-img-2.jpg' %}" alt="blog" class="img-fluid rounded-3" /></a>
-                        </figure>
-                    </div>
-                    <div class="col-lg-7 col-xl-7 col-md-12 col-12">
-                        <div class="ms-lg-4">
-                            <a href="#!" class="mb-3 badge bg-warning-subtle text-warning-emphasis rounded-pill text-uppercase">Affaires</a>
-                            <div class="mb-4">
-                                <h3 class="lh-base h4"><a href="{% url 'articles:detail' %}" class="text-reset">Une introduction approfondie aux thèmes Bootstrap Block</a></h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-                            </div>
-                            <div class="d-flex align-items-center mb-0">
-                                <img loading="lazy" src="{% static 'assets/images/avatar/avatar-2.jpg' %}" alt="Avatar" class="avatar avatar-xs rounded-circle" />
-                                <div class="ms-2"><a href="#" class="text-reset fs-6">Anita Parmar</a></div>
-                                <div class="ms-3"><span class="fs-6">01 Déc, 2023</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
+                {% empty %}
+                <div class="col-12 text-center py-5">
+                    <h3>Aucun article trouvé.</h3>
+                </div>
+                {% endfor %}
             </div>
         </div>
 
         <!-- 2. Grid View -->
         <div id="view-grid" class="layout-content">
             <div class="row gy-lg-7 gy-5">
+                {% for article in articles %}
                 <article class="col-lg-4 col-md-6 col-12">
                     <figure class="mb-4 zoom-img">
-                        <a href="{% url 'articles:detail' %}"><img loading="lazy" src="{% static 'assets/images/blog/blog-img-9.jpg' %}" alt="blog" class="img-fluid rounded-3" /></a>
+                        <a href="{{ article.get_absolute_url }}">
+                            {% if article.image %}
+                            <img loading="lazy" src="{{ article.image.url }}" alt="{{ article.title }}" class="img-fluid rounded-3" />
+                            {% else %}
+                            <img loading="lazy" src="{% static 'assets/images/blog/blog-img-9.jpg' %}" alt="blog" class="img-fluid rounded-3" />
+                            {% endif %}
+                        </a>
                     </figure>
-                    <a href="#!" class="badge bg-primary-subtle text-primary-emphasis rounded-pill text-uppercase">Numérique</a>
-                    <h3 class="my-3 lh-base h4"><a href="{% url 'articles:detail' %}" class="text-reset">Présentation du design basé sur Bootstrap 5 en 2024</a></h3>
+                    <div class="d-flex align-items-center mb-3 flex-wrap gap-2">
+                        <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill text-uppercase">{{ article.get_category_display }}</span>
+                        {% for tag in article.get_tags_list %}
+                        <span class="badge bg-light text-dark border rounded-pill" style="font-size: 0.75rem;">{{ tag }}</span>
+                        {% endfor %}
+                    </div>
+                    <h3 class="my-3 lh-base h4"><a href="{{ article.get_absolute_url }}" class="text-reset">{{ article.title }}</a></h3>
                 </article>
-                <article class="col-lg-4 col-md-6 col-12">
-                    <figure class="mb-4 zoom-img">
-                        <a href="{% url 'articles:detail' %}"><img loading="lazy" src="{% static 'assets/images/blog/blog-img-1.jpg' %}" alt="blog" class="img-fluid rounded-3" /></a>
-                    </figure>
-                    <a href="#!" class="badge bg-success-subtle text-success-emphasis rounded-pill text-uppercase">Design</a>
-                    <h3 class="my-3 lh-base h4"><a href="{% url 'articles:detail' %}" class="text-reset">Les tendances d'écriture qui définiront 2023</a></h3>
-                </article>
-                <article class="col-lg-4 col-md-6 col-12">
-                    <figure class="mb-4 zoom-img">
-                        <a href="{% url 'articles:detail' %}"><img loading="lazy" src="{% static 'assets/images/blog/blog-img-2.jpg' %}" alt="blog" class="img-fluid rounded-3" /></a>
-                    </figure>
-                    <a href="#!" class="badge bg-warning-subtle text-warning-emphasis rounded-pill text-uppercase">Affaires</a>
-                    <h3 class="my-3 lh-base h4"><a href="{% url 'articles:detail' %}" class="text-reset">Une introduction approfondie aux thèmes Bootstrap Block</a></h3>
-                </article>
+                {% endfor %}
             </div>
         </div>
 
         <!-- 3. Thumbnail View -->
         <div id="view-thumbnail" class="layout-content">
             <div class="row gy-lg-7 gy-5">
+                {% for article in articles %}
                 <article class="col-xl-6 col-lg-6 col-md-6 col-12">
                     <figure class="zoom-img mb-4">
-                        <a href="{% url 'articles:detail' %}"><img loading="lazy" src="{% static 'assets/images/blog/blog-img-9.jpg' %}" alt="blog" class="rounded-3 img-fluid" /></a>
+                        <a href="{{ article.get_absolute_url }}">
+                            {% if article.image %}
+                            <img loading="lazy" src="{{ article.image.url }}" alt="{{ article.title }}" class="rounded-3 img-fluid" />
+                            {% else %}
+                            <img loading="lazy" src="{% static 'assets/images/blog/blog-img-9.jpg' %}" alt="blog" class="rounded-3 img-fluid" />
+                            {% endif %}
+                        </a>
                     </figure>
                     <div class="px-md-4">
-                        <h3 class="lh-base h4"><a href="{% url 'articles:detail' %}" class="text-reset">Résumé de la semaine de lancement</a></h3>
-                        <p class="mb-4">Un aperçu de ce que nous avons livré lors de notre première semaine de lancement.</p>
+                        <div class="d-flex align-items-center mb-3 flex-wrap gap-2">
+                            <span class="badge bg-primary-subtle text-primary-emphasis rounded-pill text-uppercase">{{ article.get_category_display }}</span>
+                            {% for tag in article.get_tags_list %}
+                            <span class="badge bg-light text-dark border rounded-pill">{{ tag }}</span>
+                            {% endfor %}
+                        </div>
+                        <h3 class="lh-base h4"><a href="{{ article.get_absolute_url }}" class="text-reset">{{ article.title }}</a></h3>
+                        <p class="mb-4">{{ article.content|truncatewords:20 }}</p>
                         <div class="d-flex align-items-center mt-3">
+                            {% if article.author.profile_picture %}
+                            <img loading="lazy" src="{{ article.author.profile_picture.url }}" alt="Avatar" class="avatar avatar-xs rounded-circle" />
+                            {% else %}
                             <img loading="lazy" src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="Avatar" class="avatar avatar-xs rounded-circle" />
+                            {% endif %}
                             <div class="ms-2">
-                                <a href="#" class="text-reset fs-6">Sandip Chauhan</a>
+                                <a href="#" class="text-reset fs-6">{{ article.author.get_full_name|default:article.author.username }}</a>
                             </div>
-                            <div class="ms-3 text-dark"><span class="fs-6">09 Oct, 2023</span></div>
+                            <div class="ms-3 text-dark"><span class="fs-6">{{ article.created_at|date:"d M, Y" }}</span></div>
                         </div>
                     </div>
                 </article>
-                <article class="col-xl-6 col-lg-6 col-md-6 col-12">
-                    <figure class="zoom-img mb-4">
-                        <a href="{% url 'articles:detail' %}"><img loading="lazy" src="{% static 'assets/images/blog/blog-img-1.jpg' %}" alt="blog" class="rounded-3 img-fluid" /></a>
-                    </figure>
-                    <div class="px-md-4">
-                        <h3 class="lh-base h4"><a href="{% url 'articles:detail' %}" class="text-reset">Un nouveau look et une nouvelle sensation</a></h3>
-                        <p class="mb-4">Comment nous avons changé notre design pour le rendre encore plus facile et rapide à utiliser.</p>
-                        <div class="d-flex align-items-center mt-3">
-                            <img loading="lazy" src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="Avatar" class="avatar avatar-xs rounded-circle" />
-                            <div class="ms-2">
-                                <a href="#" class="text-reset fs-6">Jitu Chauhan</a>
-                            </div>
-                            <div class="ms-3 text-dark"><span class="fs-6">07 Oct, 2023</span></div>
-                        </div>
-                    </div>
-                </article>
+                {% endfor %}
             </div>
         </div>
 
-        <!-- Load More Section -->
+        <!-- Pagination Section -->
+        {% if is_paginated %}
         <div class="col-lg-12">
             <div class="mt-xl-7 mt-3">
-                <a class="btn btn-outline-primary" href="#!">
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    <span class="ms-2">Charger plus</span>
-                </a>
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}">Précédent</a>
+                        </li>
+                        {% endif %}
+                        
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                            <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}">{{ num }}</a>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category }}{% endif %}">Suivant</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </nav>
             </div>
         </div>
-
+        {% endif %}
     </div>
 </section>
 <!--Blog sections end-->
-
 {% endblock %}
 
 {% block extra_js %}
@@ -278,7 +292,6 @@
             });
             button.classList.add('active-layout');
 
-            
             // Update Title/Tagline based on view
             const title = document.getElementById('page-title');
             const tagline = document.getElementById('page-tagline');
@@ -286,7 +299,7 @@
                 title.textContent = 'Grille d\'articles avec miniatures';
                 tagline.textContent = 'Un aperçu visuel de nos dernières publications.';
             } else if(view === 'list') {
-                title.textContent = 'Articles en colonne unique';
+                title.textContent = 'Articles du blog';
                 tagline.textContent = 'Nous écrivons de temps en temps des choses qui pourraient être intéressantes 🤷';
             } else {
                 title.textContent = 'Articles du blog';

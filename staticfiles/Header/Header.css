@@ -1,0 +1,150 @@
+    header ul,
+    header li {
+        list-style: none !important;
+    }
+
+    /* Base Navbar Styles (All screen sizes) */
+    nav.navbar.navbar-boxed {
+        border: 2px solid #8B3DFF !important;
+        border-radius: 1rem !important;
+        background-color: var(--bs-body-bg) !important;
+        transition: all 0.3s ease;
+        z-index: 1000;
+    }
+
+    /* --- DESKTOP STYLES (992px and up) --- */
+    @media (min-width: 992px) {
+        .navbar-nav-centered {
+            position: absolute !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            margin: 0 !important;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+        }
+
+        html body header .container {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+            position: relative !important;
+            display: flex !important;
+            justify-content: center !important;
+        }
+
+        nav.navbar.navbar-boxed:not(.navbar-clone) {
+            position: absolute !important;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin-top: 1.5rem !important;
+            width: 100% !important;
+        }
+
+        /* Sticky navbar desktop centering */
+        .navbar-clone.navbar-stick {
+            display: flex !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            width: 95% !important;
+            max-width: 1140px !important;
+            z-index: 1050 !important;
+        }
+
+        @media (min-width: 1200px) and (max-width: 1399px) {
+            .navbar-clone.navbar-stick {
+                max-width: 1140px !important;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .navbar-clone.navbar-stick {
+                max-width: 1320px !important;
+            }
+        }
+    }
+
+    /* --- MOBILE/TABLET STYLES (Up to 991px) --- */
+    @media (max-width: 991px) {
+        header {
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 1030 !important;
+            background: transparent !important;
+            padding: 10px 0 !important;
+            /* Add space around the boxed nav */
+        }
+
+        html body header .container {
+            display: block !important;
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
+
+        nav.navbar.navbar-boxed {
+            position: relative !important;
+            margin: 0 auto !important;
+            width: 100% !important;
+            border: 2px solid #8B3DFF !important;
+            /* RESTORE FULL BORDER */
+            border-radius: 1rem !important;
+            /* RESTORE FULL RADIUS */
+            background-color: var(--bs-body-bg) !important;
+        }
+
+
+        .navbar-nav-centered {
+            text-align: center !important;
+            align-items: center !important;
+            width: 100% !important;
+            padding: 1rem 0 !important;
+        }
+
+        .navbar-nav-centered .nav-item {
+            width: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+        }
+
+        .navbar-nav-centered .nav-link {
+            width: 100% !important;
+            text-align: center !important;
+        }
+
+        /* Hide Headhesive clone on mobile to avoid glitches/double nav */
+        .navbar-clone {
+            display: none !important;
+        }
+    }
+
+    /* Theme switcher adjustment */
+    .theme-switcher-nav .dropdown-toggle::after {
+        display: none;
+    }
+
+    /* User dropdown: hide redundant caret to keep only the theme's chevron */
+    .user-dropdown.dropdown-toggle::after {
+        display: none !important;
+    }
+
+    /* Fix User Dropdown Alignment */
+    .dropdown .user-dropdown + .dropdown-menu {
+        right: 0;
+        left: auto;
+        min-width: 200px;
+    }
+
+    @media (max-width: 991px) {
+
+        /* Even more specific to override theme's dark default */
+        body header nav.navbar.navbar-boxed .navbar-toggler,
+        body header nav.navbar.navbar-boxed .navbar-toggler i {
+            border-color: #8B3DFF !important;
+            color: #8B3DFF !important;
+            border-width: 2px !important;
+        }
+    }

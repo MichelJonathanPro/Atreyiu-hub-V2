@@ -1,0 +1,31 @@
+/* Boutique Page Specific Styles */
+
+.pattern-square {
+    margin-top: 30px;
+}
+
+@media (min-width: 768px) {
+    .pattern-square {
+        margin-top: 50px;
+    }
+}
+
+@media (min-width: 992px) {
+    .pattern-square {
+        margin-top: 130px;
+    }
+}
+
+.lift {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,0.1) !important;
+}
+
+.card-body h4 {
+    color: var(--bs-heading-color);
+    font-weight: 600;
+}

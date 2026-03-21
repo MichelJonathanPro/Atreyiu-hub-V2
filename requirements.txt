@@ -8,3 +8,6 @@ requests
 PyJWT
 cryptography
 Pillow==12.1.1
+python-frontmatter
+PyYAML
+markdown

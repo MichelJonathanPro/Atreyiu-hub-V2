@@ -1,0 +1,92 @@
+/* Contact Page Specific Styles */
+
+.pattern-square {
+    margin-top: 30px;
+}
+
+@media (min-width: 768px) {
+    .pattern-square {
+        margin-top: 50px;
+    }
+}
+
+@media (min-width: 992px) {
+    .pattern-square {
+        margin-top: 130px;
+    }
+}
+
+/* Premium Styling for Contact Page */
+
+.card.shadow-sm {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: #ffffff;
+}
+
+.card.shadow-sm:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1) !important;
+}
+
+.form-control, .form-select {
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 4px rgba(var(--bs-primary-rgb), 0.1);
+}
+
+.btn-primary {
+    padding: 0.8rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(var(--bs-primary-rgb), 0.3);
+}
+
+.icon-shape {
+    transition: all 0.3s ease;
+}
+
+.contact-info-block:hover .icon-shape {
+    transform: scale(1.1) rotate(5deg);
+    background-color: rgba(var(--bs-primary-rgb), 0.2) !important;
+}
+
+.contact-info-block {
+    padding: 1.5rem;
+    border-radius: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.contact-info-block:hover {
+    background-color: #f8f9fa;
+}
+
+
+h1 {
+    position: relative;
+    display: inline-block;
+}
+
+h1::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 4px;
+    background: var(--bs-primary);
+    border-radius: 2px;
+}

@@ -1,0 +1,37 @@
+/* Tutoriels Page Specific Styles */
+
+.pattern-square {
+    margin-top: 30px;
+}
+
+@media (min-width: 768px) {
+    .pattern-square {
+        margin-top: 50px;
+    }
+}
+
+@media (min-width: 992px) {
+    .pattern-square {
+        margin-top: 130px;
+    }
+}
+
+.lift {
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+/* Premium Glassmorphism Card (Moved to base.css) */
+
+.object-fit-cover {
+    object-fit: cover;
+}
+
+.tutorial-img-container {
+    min-height: 180px;
+}
+
+@media (min-width: 768px) {
+    .tutorial-img-container {
+        min-height: 100%;
+    }
+}
