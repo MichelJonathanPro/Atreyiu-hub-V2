@@ -1,0 +1,181 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Mon Panier | Atreyiu Hub{% endblock %}
+
+{% block extra_css %}
+    <style>
+        .cart-item-card {
+            background-color: var(--bs-body-tertiary);
+            border: 1px solid var(--bs-border-color);
+            border-radius: 1.5rem;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        [data-bs-theme="dark"] .cart-item-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+        }
+        .cart-item-card:hover {
+            border-color: var(--bs-primary);
+            transform: scale(1.01);
+        }
+        .summary-card-glass {
+            background: rgba(var(--bs-body-bg-rgb), 0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--bs-border-color);
+            border-radius: 1.5rem;
+            position: sticky;
+            top: 7rem;
+            padding: 2rem;
+        }
+        .qty-controls {
+            display: inline-flex;
+            align-items: center;
+            background: var(--bs-body-bg);
+            border: 1px solid var(--bs-border-color);
+            border-radius: 0.8rem;
+            padding: 0.25rem;
+        }
+        .qty-btn {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+        }
+        .qty-btn:hover {
+            background: var(--bs-secondary-bg);
+        }
+        .empty-cart-illust {
+            font-size: 5rem;
+            opacity: 0.2;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--bs-primary) 0%, #4338ca 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+
+<div class="pattern-square"></div>
+
+<!-- Pageheader start -->
+<section class="py-5 py-lg-8 border-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="mb-2">Votre Panier</h1>
+                <p class="text-muted mb-0">Vous avez 2 articles dans votre panier numérique.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Cart Content start -->
+<section class="py-7 py-lg-9 adaptive-bg-section">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Items Column -->
+            <div class="col-lg-8">
+                <!-- Item 1 -->
+                <div class="cart-item-card p-4 mb-4">
+                    <div class="row align-items-center g-4">
+                        <div class="col-auto">
+                            <div class="rounded-3 bg-white p-2 border" style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;">
+                                <img loading="lazy" src="{% static 'assets/images/landings/product/product-img-1.png' %}" alt="Product" class="img-fluid" onerror="this.onerror=null;this.src='{% static 'assets/images/landings/sass-v3/product-roadmap.png' %}';">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <h5 class="fw-bold mb-1">Atreyiu Hub - UI Kit Premium</h5>
+                            <p class="small text-muted mb-0">Licence Personnelle • ZIP accessible après paiement</p>
+                        </div>
+                        <div class="col-auto text-end">
+                            <div class="h5 fw-bold mb-3">29.00 €</div>
+                            <div class="qty-controls">
+                                <div class="qty-btn"><i class="bi bi-dash"></i></div>
+                                <span class="px-3 fw-bold">1</span>
+                                <div class="qty-btn"><i class="bi bi-plus"></i></div>
+                            </div>
+                            <button class="btn btn-link link-danger p-0 ms-3" title="Supprimer"><i class="bi bi-trash fs-5"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="cart-item-card p-4 mb-4">
+                    <div class="row align-items-center g-4">
+                        <div class="col-auto">
+                            <div class="rounded-3 bg-white p-2 border" style="width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;">
+                                <img loading="lazy" src="{% static 'assets/images/landings/product/product-img-3.png' %}" alt="Product" class="img-fluid" onerror="this.onerror=null;this.src='{% static 'assets/images/landings/sass-v3/product-roadmap.png' %}';">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <h5 class="fw-bold mb-1">Pack Icônes Cyberpunk</h5>
+                            <p class="small text-muted mb-0">500+ Icônes Vectorielles (SVG, PNG)</p>
+                        </div>
+                        <div class="col-auto text-end">
+                            <div class="h5 fw-bold mb-3">15.00 €</div>
+                            <div class="qty-controls">
+                                <div class="qty-btn"><i class="bi bi-dash"></i></div>
+                                <span class="px-3 fw-bold">1</span>
+                                <div class="qty-btn"><i class="bi bi-plus"></i></div>
+                            </div>
+                            <button class="btn btn-link link-danger p-0 ms-3" title="Supprimer"><i class="bi bi-trash fs-5"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5">
+                    <a href="{% url 'boutique:index' %}" class="btn btn-link p-0 text-decoration-none fw-bold">
+                        <i class="bi bi-arrow-left me-2"></i> Continuer mes achats
+                    </a>
+                </div>
+            </div>
+
+            <!-- Summary Column -->
+            <div class="col-lg-4">
+                <div class="summary-card-glass shadow-lg">
+                    <h4 class="fw-bold mb-4">Résumé de commande</h4>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">Sous-total</span>
+                        <span class="fw-bold">44.00 €</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="text-muted">TVA (0% - Digital)</span>
+                        <span class="fw-bold">0.00 €</span>
+                    </div>
+                    <hr class="my-3 opacity-10">
+                    <div class="d-flex justify-content-between mb-4 mt-2">
+                        <span class="h5 fw-bold">Total</span>
+                        <span class="h5 fw-bold text-primary">44.00 €</span>
+                    </div>
+
+                    <div class="d-grid gap-2 mb-4">
+                        <a href="{% url 'boutique:paiement' %}" class="btn btn-primary btn-lg rounded-pill py-3 fw-bold shadow-sm text-decoration-none text-center">
+                            Passer à la caisse <i class="bi bi-arrow-right ms-2"></i>
+                        </a>
+                    </div>
+
+                    <div class="text-center">
+                        <p class="small text-muted mb-3"><i class="bi bi-shield-check me-1"></i> Paiement 100% Sécurisé</p>
+                        <div class="d-flex justify-content-center gap-3 opacity-50">
+                            <i class="bi bi-stripe fs-3"></i>
+                            <i class="bi bi-paypal fs-3"></i>
+                            <i class="bi bi-credit-card fs-3"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

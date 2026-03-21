@@ -65,12 +65,16 @@
     }
     .instructor-card {
         border-radius: 1rem;
-        background: #f8f9fa;
-        border: 1px solid rgba(0,0,0,0.05);
+        background-color: var(--bs-body-tertiary);
+        border: 1px solid var(--bs-border-color) !important;
+        transition: background-color 0.3s ease;
+    }
+    [data-bs-theme="dark"] .instructor-card {
+        background-color: rgba(255, 255, 255, 0.02) !important;
     }
     .sticky-sidebar {
         position: sticky;
-        top: 2rem;
+        top: 8rem;
     }
     pre {
         background: #282c34;
@@ -82,6 +86,14 @@
     code {
         color: #e06c75;
     }
+    .hero-tutorial {
+        background-color: var(--bs-body-tertiary);
+        border-bottom: 1px solid var(--bs-border-color);
+        transition: background-color 0.3s ease;
+    }
+    [data-bs-theme="dark"] .hero-tutorial {
+        background-color: rgba(255, 255, 255, 0.02) !important;
+    }
 </style>
 {% endblock %}
 
@@ -89,19 +101,9 @@
 
 <div class="pattern-square"></div>
 
-<!-- Breadcrumb start -->
-<nav class="py-3 bg-white border-bottom">
-    <div class="container">
-        <ol class="breadcrumb mb-0">
-            <li class="breadcrumb-item"><a href="/">Accueil</a></li>
-            <li class="breadcrumb-item"><a href="{% url 'tutoriels:index' %}">Tutoriels</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Introduction à Django 5.1</li>
-        </ol>
-    </div>
-</nav>
 
 <!-- Hero Section start -->
-<section class="py-5 py-lg-8 bg-light">
+<section class="py-5 py-lg-8 hero-tutorial">
     <div class="container mt-lg-2">
         <div class="row align-items-center">
             <div class="col-lg-8 offset-lg-2 text-center mt-lg-6 mt-4">
@@ -233,9 +235,6 @@
                             <button class="btn btn-primary w-100 mb-3">S'inscrire Maintenant</button>
                             <button class="btn btn-outline-dark w-100">Plus d'infos</button>
                         </div>
-                        <div class="position-absolute end-0 bottom-0 p-3 opacity-10">
-                            <i class="bi bi-mortarboard display-1"></i>
-                        </div>
                     </div>
 
                     <!-- Instructor Info -->
@@ -272,7 +271,7 @@
 </section>
 
 <!-- Related Tutorials start -->
-<section class="py-7 bg-light">
+<section class="py-7 hero-tutorial border-top">
     <div class="container">
         <h3 class="mb-5 text-center fw-bold">Tutoriels Recommandés</h3>
         <div class="row g-4">

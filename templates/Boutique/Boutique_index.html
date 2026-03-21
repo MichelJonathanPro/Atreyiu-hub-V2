@@ -5,6 +5,134 @@
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'Boutique/css/Boutique.css' %}">
+    <style>
+        .product-card-premium {
+            border-radius: 1.5rem !important;
+            border: 1px solid var(--bs-border-color) !important;
+            background: var(--bs-body-tertiary);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+        }
+        [data-bs-theme="dark"] .product-card-premium {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .product-card-premium:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12) !important;
+            border-color: var(--bs-primary) !important;
+        }
+        [data-bs-theme="dark"] .product-card-premium:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4) !important;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .product-img-container {
+            padding: 2.5rem;
+            background: var(--bs-secondary-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            min-height: 240px;
+            transition: background 0.3s ease;
+        }
+        .product-card-premium:hover .product-img-container {
+            background: var(--bs-primary-bg-subtle);
+        }
+        .product-card-premium .img-fluid {
+            transition: transform 0.5s ease;
+        }
+        .product-card-premium:hover .img-fluid {
+            transform: scale(1.08);
+        }
+        .badge-premium {
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .badge-new {
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            color: white;
+        }
+        .badge-soon {
+            background: linear-gradient(135deg, #94a3b8 0%, #64748b 100%);
+            color: white;
+        }
+        .price-premium {
+            font-size: 1.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--bs-primary) 0%, #4338ca 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Floating Cart Button (FAB) */
+        .boutique-fab {
+            position: fixed;
+            bottom: 100px;
+            right: 40px;
+            z-index: 10000;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--bs-primary) 0%, #4338ca 100%);
+            color: white !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 
+                0 15px 35px rgba(67, 56, 202, 0.4),
+                0 0 15px rgba(67, 56, 202, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+        }
+
+        .boutique-fab:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 
+                0 20px 45px rgba(67, 56, 202, 0.5),
+                0 0 25px rgba(67, 56, 202, 0.4);
+            color: white;
+        }
+
+        .boutique-fab i {
+            font-size: 1.8rem;
+        }
+
+        .boutique-fab .badge-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            border: 2px solid white;
+            font-size: 0.8rem;
+            min-width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .boutique-fab {
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
 {% endblock %}
 
 {% block content %}
@@ -72,50 +200,50 @@
         <div class="row g-4">
             <!-- Product 1 -->
             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm lift">
-                    <div class="p-4 bg-light-subtle rounded-top-3 text-center position-relative">
-                        <img loading="lazy" src="{% static 'assets/images/landings/product/product-img-1.png' %}" alt="Product" class="img-fluid" onerror="this.src='{% static 'assets/images/landings/sass-v3/product-roadmap.png' %}';">
-                        <span class="badge bg-primary position-absolute top-0 start-0 m-3">Nouveau</span>
-                    </div>
-                    <div class="card-body">
-                        <h4 class="h5 mb-2">Atreyiu Hub - UI Kit Premium</h4>
-                        <p class="small text-muted mb-3">Un kit complet de composants Bootstrap 5 modernes et réutilisables.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-auto">
-                            <span class="h5 mb-0 text-primary">29.00 €</span>
-                            <a href="#!" class="btn btn-sm btn-outline-dark">Acheter</a>
+                <div class="card h-100 product-card-premium">
+                    <a href="{% url 'boutique:detail' %}" class="product-img-container position-relative text-decoration-none">
+                        <img loading="lazy" src="{% static 'assets/images/landings/product/product-img-1.png' %}" alt="Product" class="img-fluid" onerror="this.onerror=null;this.src='{% static 'assets/images/landings/sass-v3/product-roadmap.png' %}';">
+                        <span class="badge badge-premium badge-new position-absolute top-0 start-0 m-3">Nouveau</span>
+                    </a>
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h4 class="h5 fw-bold mb-2"><a href="{% url 'boutique:detail' %}" class="text-inherit text-decoration-none">Atreyiu Hub - UI Kit Premium</a></h4>
+                        <p class="small text-muted mb-4">Un kit complet de composants Bootstrap 5 modernes et réutilisables.</p>
+                        <div class="mt-auto d-flex justify-content-between align-items-center">
+                            <span class="price-premium">29.00 €</span>
+                            <a href="{% url 'boutique:panier' %}" class="btn btn-primary rounded-pill px-4 shadow-sm">Acheter</a>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Product 2 -->
             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm lift">
-                    <div class="p-4 bg-light-subtle rounded-top-3 text-center position-relative">
-                        <img loading="lazy" src="{% static 'assets/images/landings/product/product-img-2.png' %}" alt="Product" class="img-fluid" onerror="this.src='{% static 'assets/images/hero/landing-product.jpg' %}';">
-                    </div>
-                    <div class="card-body">
-                        <h4 class="h5 mb-2">Template Portfolio Minimaliste</h4>
-                        <p class="small text-muted mb-3">Idéal pour les designers et développeurs souhaitant exposer leurs travaux.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-auto">
-                            <span class="h5 mb-0 text-primary">Gratuit</span>
-                            <a href="#!" class="btn btn-sm btn-outline-dark">Télécharger</a>
+                <div class="card h-100 product-card-premium">
+                    <a href="{% url 'boutique:detail' %}" class="product-img-container position-relative text-decoration-none">
+                        <img loading="lazy" src="{% static 'assets/images/landings/product/product-img-2.png' %}" alt="Product" class="img-fluid" onerror="this.onerror=null;this.src='{% static 'assets/images/hero/landing-product.jpg' %}';">
+                    </a>
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h4 class="h5 fw-bold mb-2"><a href="{% url 'boutique:detail' %}" class="text-inherit text-decoration-none">Template Portfolio Minimaliste</a></h4>
+                        <p class="small text-muted mb-4">Idéal pour les designers et développeurs souhaitant exposer leurs travaux.</p>
+                        <div class="mt-auto d-flex justify-content-between align-items-center">
+                            <span class="price-premium text-success">Gratuit</span>
+                            <a href="{% url 'boutique:panier' %}" class="btn btn-outline-primary rounded-pill px-4">Télécharger</a>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Product 3 -->
             <div class="col-lg-4 col-md-6">
-                <div class="card h-100 border-0 shadow-sm lift opacity-75">
-                    <div class="p-4 bg-light-subtle rounded-top-3 text-center position-relative">
-                        <img loading="lazy" src="{% static 'assets/images/landings/product/product-img-3.png' %}" alt="Product" class="img-fluid" onerror="this.src='{% static 'assets/images/landings/sass-v3/product-roadmap.png' %}';">
-                        <span class="badge bg-secondary position-absolute top-0 start-0 m-3">Bientôt</span>
+                <div class="card h-100 product-card-premium opacity-75">
+                    <div class="product-img-container position-relative">
+                        <img loading="lazy" src="{% static 'assets/images/landings/product/product-img-3.png' %}" alt="Product" class="img-fluid" onerror="this.onerror=null;this.src='{% static 'assets/images/landings/sass-v3/product-roadmap.png' %}';">
+                        <span class="badge badge-premium badge-soon position-absolute top-0 start-0 m-3">Bientôt</span>
                     </div>
-                    <div class="card-body">
-                        <h4 class="h5 mb-2">Automatisation IA - Script Python</h4>
-                        <p class="small text-muted mb-3">Un ensemble d'outils pour automatiser vos tâches quotidiennes avec l'IA.</p>
-                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h4 class="h5 fw-bold mb-2">Automatisation IA - Script Python</h4>
+                        <p class="small text-muted mb-4">Un ensemble d'outils pour automatiser vos tâches quotidiennes avec l'IA.</p>
+                        <div class="mt-auto d-flex justify-content-between align-items-center">
                             <span class="h6 mb-0 text-muted">Disponible bientôt</span>
-                            <a href="#!" class="btn btn-sm btn-secondary disabled">Plus d'infos</a>
+                            <a href="#!" class="btn btn-secondary rounded-pill px-4 disabled">Plus d'infos</a>
                         </div>
                     </div>
                 </div>
@@ -136,5 +264,11 @@
         </div>
     </div>
 </section>
+
+<!-- Floating Cart FAB -->
+<a href="{% url 'boutique:panier' %}" class="boutique-fab" title="Voir mon panier">
+    <i class="bi bi-cart-fill"></i>
+    <span class="badge-count">2</span>
+</a>
 
 {% endblock %}

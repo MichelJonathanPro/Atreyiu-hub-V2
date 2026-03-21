@@ -59,20 +59,21 @@
     transition: all 0.3s ease;
 }
 
-.mb-7:hover .icon-shape {
+.contact-info-block:hover .icon-shape {
     transform: scale(1.1) rotate(5deg);
     background-color: rgba(var(--bs-primary-rgb), 0.2) !important;
 }
 
-.mb-7 {
+.contact-info-block {
     padding: 1.5rem;
     border-radius: 1rem;
     transition: background-color 0.3s ease;
 }
 
-.mb-7:hover {
+.contact-info-block:hover {
     background-color: #f8f9fa;
 }
+
 
 h1 {
     position: relative;

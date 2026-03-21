@@ -22,7 +22,13 @@
     .zoom-img:hover img {
         transform: scale(1.05);
     }
+    .layout-btn.active-layout {
+        border: 2px solid var(--bs-primary) !important;
+        background-color: var(--bs-light) !important;
+        color: var(--bs-primary) !important;
+    }
 </style>
+
 {% endblock %}
 
 {% block content %}
@@ -83,7 +89,7 @@
                         </button>
                     </li>
                     <li>
-                        <button class="btn btn-primary btn-icon btn-md layout-btn" data-view="list" title="Vue en liste">
+                        <button class="btn btn-light btn-icon btn-md layout-btn active-layout" data-view="list" title="Vue en liste">
                             <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
                             </svg>
@@ -266,13 +272,12 @@
             });
             document.getElementById(targetId).classList.add('active');
             
-            // Toggle active button
+            // Toggle active layout button
             document.querySelectorAll('.layout-btn').forEach(btn => {
-                btn.classList.remove('btn-primary');
-                btn.classList.add('btn-light');
+                btn.classList.remove('active-layout');
             });
-            button.classList.remove('btn-light');
-            button.classList.add('btn-primary');
+            button.classList.add('active-layout');
+
             
             // Update Title/Tagline based on view
             const title = document.getElementById('page-title');
