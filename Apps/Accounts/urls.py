@@ -24,4 +24,16 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(
         template_name='accounts/password_reset_complete.html'
     ), name='password_reset_complete'),
+
+    # Account Pages
+    path('account-home/', views.account_home, name='account_home'),
+    path('profile/', views.account_profile, name='account_profile'),
+    path('security/', views.account_security, name='account_security'),
+    path('billing/', views.account_billing, name='account_billing'),
+    path('team/', views.account_team, name='account_team'),
+    path('notification/', views.account_notification, name='account_notification'),
+    path('app-integration/', views.account_app_integration, name='account_app_integration'),
+    path('device-session/', views.account_device_session, name='account_device_session'),
+    path('social-links/', views.account_social_links, name='account_social_links'),
+    path('appearance/', views.account_appearance, name='account_appearance'),
 ]

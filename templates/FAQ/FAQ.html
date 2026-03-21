@@ -9,66 +9,117 @@
 
 {% block content %}
 <div class="pattern-square"></div>
-
-<!--Pageheader start-->
-<section class="py-5 py-lg-8">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
-                <h1 class="mb-3">Frequently asked questions</h1>
-                <p class="mb-0 lead">
-                    Can’t find any answer for your question?
-                    <br />
-                    Ask our
-                    <a href="{% url 'homepage:contact' %}" class="text-primary">customer
-                        support</a>
-                </p>
-
-                {% if user.is_staff %}
-                <div class="mt-4 d-flex gap-2">
-                    <a href="{% url 'admin:FAQ_faq_add' %}" class="btn btn-primary btn-sm">
-                        <i class="bi bi-plus-lg me-1"></i> Ajouter une FAQ
-                    </a>
-                    <a href="{% url 'admin:FAQ_faq_changelist' %}" class="btn btn-outline-primary btn-sm">
-                        <i class="bi bi-gear me-1"></i> Gérer les FAQs
-                    </a>
-                </div>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</section>
-<!--Pageheader end-->
-
-<!--asked question-->
-<section class="mb-xl-9 mb-4">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1 col-md-12 col-12">
-                <div class="accordion" id="accordionExample">
-                    {% for faq in faqs %}
-                    <div class="border mb-2 rounded-3 p-3">
-                        <h2 class="h5 mb-0">
-                            <a href="#" class="text-reset d-flex justify-content-between
-                                       align-items-center" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}"
-                                aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="collapse{{ forloop.counter }}">
-                                {{ faq.question }}
-                                <span class="chevron-arrow"><i class="bi bi-chevron-down"></i></span>
-                            </a>
-                        </h2>
-                        <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" data-bs-parent="#accordionExample">
-                            <div class="mt-3">
-                                {{ faq.answer|linebreaks }}
-                            </div>
+<main>
+    <!-- FAQ Hero Section -->
+    <section class="faq-hero py-5 py-lg-8" data-cue="fadeIn">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="display-4 fw-bold mb-3">Questions Fréquentes</h1>
+                    <p class="lead mb-0 text-body-secondary">
+                        Vous avez des questions ? Nous avons (probablement) les réponses.
+                        Si vous ne trouvez pas votre bonheur, contactez notre <a href="{% url 'homepage:contact' %}" class="text-primary fw-bold">support</a>.
+                    </p>
+                    
+                    <!-- Search Bar -->
+                    <div class="search-container" data-cue="slideInUp">
+                        <div class="search-input-wrapper">
+                            <i class="bi bi-search"></i>
+                            <input type="text" id="faqSearch" placeholder="Rechercher une question ou un mot-clé..." autocomplete="off">
                         </div>
                     </div>
-                    {% empty %}
-                    <p class="text-center">Aucune FAQ disponible pour le moment.</p>
-                    {% endfor %}
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- FAQ Accordion Section -->
+    <section class="py-xl-9 py-5 bg-light-subtle">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-xl-8">
+                    <div class="accordion" id="faqAccordion" data-cue="slideInUp">
+                        {% for faq in faqs %}
+                        <div class="faq-accordion-item border-0" data-question="{{ faq.question|lower }}" data-answer="{{ faq.answer|lower }}">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ forloop.counter }}" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" aria-controls="collapse{{ forloop.counter }}">
+                                    {{ faq.question }}
+                                </button>
+                            </h2>
+                            <div id="collapse{{ forloop.counter }}" class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    {{ faq.answer|linebreaks }}
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <div class="text-center py-5">
+                            <i class="bi bi-question-circle font-size-60 text-body-tertiary mb-3"></i>
+                            <h3 class="h4">Aucune FAQ disponible</h3>
+                            <p class="text-body-secondary">Revenez plus tard pour voir les mises à jour.</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- No Results Message -->
+                    <div id="noResults" class="no-results shadow-sm">
+                        <i class="bi bi-search font-size-40 text-primary mb-3"></i>
+                        <h4 class="mb-2">Aucun résultat trouvé</h4>
+                        <p class="mb-0 text-body-secondary">Essayez d'autres mots-clés ou réinitialisez votre recherche.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Staff Admin Actions (Floating) -->
+    {% if user.is_staff %}
+    <div class="admin-actions d-none d-md-flex">
+        <a href="{% url 'admin:FAQ_faq_add' %}" class="btn btn-primary admin-btn" title="Ajouter une FAQ">
+            <i class="bi bi-plus-lg fs-4"></i>
+        </a>
+        <a href="{% url 'admin:FAQ_faq_changelist' %}" class="btn btn-dark admin-btn" title="Gérer les FAQs">
+            <i class="bi bi-gear fs-4"></i>
+        </a>
     </div>
-</section>
-<!--asked question-->
+    {% endif %}
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('faqSearch');
+    const accordionItems = document.querySelectorAll('.faq-accordion-item');
+    const noResults = document.getElementById('noResults');
+    const accordion = document.getElementById('faqAccordion');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            let hasVisibleItems = false;
+
+            accordionItems.forEach(item => {
+                const question = item.getAttribute('data-question');
+                const answer = item.getAttribute('data-answer');
+                
+                if (question.includes(query) || answer.includes(query)) {
+                    item.style.display = 'block';
+                    hasVisibleItems = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            if (hasVisibleItems) {
+                noResults.style.display = 'none';
+                accordion.style.display = 'block';
+            } else {
+                noResults.style.display = 'block';
+                accordion.style.display = 'none';
+            }
+        });
+    }
+});
+</script>
 {% endblock %}

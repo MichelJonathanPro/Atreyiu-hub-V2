@@ -5,6 +5,7 @@ body {
     padding: 0;
 }
 
+
 /* Social Media Hover Colors */
 .btn-instagram:hover {
     color: #fff !important;
@@ -12,11 +13,13 @@ body {
     border-color: transparent !important;
 }
 
+
 .btn-facebook:hover {
     color: #fff !important;
     background-color: #1877F2 !important;
     border-color: #1877F2 !important;
 }
+
 
 .btn-twitter:hover {
     color: #fff !important;
@@ -24,14 +27,112 @@ body {
     border-color: #000000 !important;
 }
 
+
 .btn-youtube:hover {
     color: #fff !important;
     background-color: #FF0000 !important;
     border-color: #FF0000 !important;
 }
 
+
 .btn-tiktok:hover {
     color: #fff !important;
     background-color: #000000 !important;
     border-color: #000000 !important;
+}
+
+
+/* Premium Glassmorphism Card (Global) */
+.glass-card {
+    background-color: rgba(var(--bs-body-bg-rgb), 0.3) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    border: 1px solid rgba(var(--bs-emphasis-color-rgb), 0.1) !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08) !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border-radius: 1.25rem !important;
+}
+
+
+.glass-card:hover {
+    background-color: rgba(var(--bs-body-bg-rgb), 0.45) !important;
+    border-color: rgba(var(--bs-primary-rgb), 0.4) !important;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(var(--bs-primary-rgb), 0.15) !important;
+}
+
+
+[data-bs-theme="dark"] .glass-card {
+    background-color: rgba(var(--bs-body-bg-rgb), 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+
+.glass-card .card-body {
+    background: transparent !important;
+}
+
+
+/* Dark Mode Background Fixes */
+[data-bs-theme="dark"] .bg-light-subtle {
+    background-color: rgba(var(--bs-body-bg-rgb), 1) !important;
+}
+
+
+/* Card Radio Styles */
+.card-radio {
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+}
+
+
+.card-radio .form-check-input {
+    display: none;
+}
+
+
+.card-radio .form-check-label {
+    display: block;
+    border: 2px solid transparent;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.card-radio:hover .form-check-label {
+    border-color: rgba(var(--bs-primary-rgb), 0.3);
+}
+
+
+.card-radio .form-check-input:checked + .form-check-label {
+    border-color: var(--bs-primary) !important;
+    box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25) !important;
+}
+
+
+.theme-preview {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bs-light);
+    color: var(--bs-gray-400);
+}
+
+
+[data-bs-theme="dark"] .theme-preview {
+    background-color: var(--bs-gray-900);
+}
+
+
+.theme-preview i {
+    font-size: 3.5rem;
+    transition: transform 0.3s ease;
+}
+
+
+.card-radio:hover .theme-preview i {
+    transform: scale(1.1);
 }

@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}CGU | Atreyiu Hub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/Legal.css' %}">
+<style>
+    .pattern-square {
+        margin-top: 30px;
+    }
+    @media (min-width: 768px) { .pattern-square { margin-top: 50px; } }
+    @media (min-width: 992px) { .pattern-square { margin-top: 130px; } }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="pattern-square"></div>
+<main class="legal-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="legal-header text-center" data-cue="fadeIn">
+                    <h1 class="display-4 fw-bold">Conditions Générales d'Utilisation</h1>
+                    <p class="text-body-secondary mb-0">Dernière mise à jour : 21 Mars 2026</p>
+                </div>
+
+                <div class="legal-card legal-content" data-cue="slideInUp">
+                    <h2>1. Présentation du site</h2>
+                    <p>En vertu de l'article 6 de la loi n° 2004-575 du 21 juin 2004 pour la confiance dans l'économie numérique, il est précisé aux utilisateurs du site Atreyiu Hub l'identité des différents intervenants dans le cadre de sa réalisation et de son suivi.</p>
+
+                    <h2>2. Conditions générales d'utilisation du site et des services proposés</h2>
+                    <p>L'utilisation du site Atreyiu Hub implique l'acceptation pleine et entière des conditions générales d'utilisation ci-après décrites. Ces conditions d'utilisation sont susceptibles d'être modifiées ou complétées à tout moment, les utilisateurs du site Atreyiu Hub sont donc invités à les consulter de manière régulière.</p>
+
+                    <h2>3. Description des services fournis</h2>
+                    <p>Atreyiu Hub a pour objet de fournir une information concernant l'ensemble des activités de la société. L'auteur s'efforce de fournir sur le site Atreyiu Hub des informations aussi précises que possible. Toutefois, il ne pourra être tenue responsable des omissions, des inexactitudes et des carences dans la mise à jour, qu'elles soient de son fait ou du fait des tiers partenaires qui lui fournissent ces informations.</p>
+
+                    <h2>4. Propriété intellectuelle et contrefaçons</h2>
+                    <p>Tout le contenu présent sur le site Atreyiu Hub, incluant, de façon non limitative, les graphismes, images, textes, vidéos, animations, sons, logos, gifs et icônes ainsi que leur mise en forme sont la propriété exclusive de l'auteur à l'exception des marques, logos ou contenus appartenant à d'autres sociétés partenaires ou auteurs.</p>
+
+                    <h2>5. Limitations de responsabilité</h2>
+                    <p>Atreyiu Hub ne pourra être tenu responsable des dommages directs et indirects causés au matériel de l'utilisateur, lors de l'accès au site Atreyiu Hub, et résultant soit de l'utilisation d'un matériel ne répondant pas aux spécifications indiquées au point 4, soit de l'apparition d'un bug ou d'une incompatibilité.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

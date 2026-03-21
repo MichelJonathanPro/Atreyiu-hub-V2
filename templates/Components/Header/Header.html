@@ -91,7 +91,7 @@
                         <a class="btn btn-light mx-2 dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Informations</a>
                         <div class="dropdown-menu dropdown-menu-md" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item mb-3 text-body" href="#">
+                            <a class="dropdown-item mb-3 text-body" href="{% url 'homepage:about' %}">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-info-circle fs-4 text-primary"></i>
                                     <div class="ms-3 lh-1">
@@ -144,7 +144,7 @@
                                 </div>
                             </a>
 
-                            <a class="dropdown-item mb-3 text-body" href="#">
+                            <a class="dropdown-item mb-3 text-body" href="{% url 'homepage:cgu' %}">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-file-earmark-check fs-4 text-primary"></i>
                                     <div class="ms-3 lh-1">
@@ -153,8 +153,7 @@
                                     </div>
                                 </div>
                             </a>
-
-                            <a class="dropdown-item text-body" href="#">
+                            <a class="dropdown-item text-body" href="{% url 'homepage:cookies' %}">
                                 <div class="d-flex align-items-center">
                                     <i class="bi bi-cookie fs-4 text-primary"></i>
                                     <div class="ms-3 lh-1">
@@ -170,13 +169,13 @@
                     {% if user.is_authenticated %}
                     <div class="dropdown mx-2">
                         <a class="btn btn-primary dropdown-toggle user-dropdown" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                            aria-expanded="false" data-bs-display="static">
                             <i class="bi bi-person-circle me-1"></i> {{ user.username }} <i class="bi bi-chevron-down ms-1"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="./account-profile.html"><i
+                            <li><a class="dropdown-item" href="{% url 'account_home' %}"><i
                                         class="bi bi-person me-2"></i>Profile</a></li>
-                            <li><a class="dropdown-item" href="./account-security.html"><i
+                            <li><a class="dropdown-item" href="{% url 'account_security' %}"><i
                                         class="bi bi-gear me-2"></i>Settings</a></li>
                             <li>
                                 <hr class="dropdown-divider">

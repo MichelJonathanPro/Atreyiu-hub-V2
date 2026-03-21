@@ -131,6 +131,13 @@
         display: none !important;
     }
 
+    /* Fix User Dropdown Alignment */
+    .dropdown .user-dropdown + .dropdown-menu {
+        right: 0;
+        left: auto;
+        min-width: 200px;
+    }
+
     @media (max-width: 991px) {
 
         /* Even more specific to override theme's dark default */

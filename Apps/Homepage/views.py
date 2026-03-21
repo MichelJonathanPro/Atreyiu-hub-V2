@@ -70,4 +70,13 @@ def contact(request):
         
     return render(request, 'Contact/Contact.html')
 
+def about(request):
+    return render(request, 'A Propos/A_Propos.html')
+
+def cgu(request):
+    return render(request, 'CGU/CGU.html')
+
+def cookies(request):
+    return render(request, 'Cookies/Cookies.html')
+
 

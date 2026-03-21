@@ -101,7 +101,50 @@ def login_view(request):
         form = AuthenticationForm()
     return render(request, 'accounts/login.html', {'form': form})
 
+
 def logout_view(request):
     logout(request)
     messages.info(request, 'Vous avez été déconnecté.')
     return redirect('login')
+
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def account_home(request):
+    return render(request, 'accounts/account-home.html')
+
+@login_required
+def account_profile(request):
+    return render(request, 'accounts/account-profile.html')
+
+@login_required
+def account_security(request):
+    return render(request, 'accounts/account-security.html')
+
+@login_required
+def account_billing(request):
+    return render(request, 'accounts/account-billing.html')
+
+@login_required
+def account_team(request):
+    return render(request, 'accounts/account-team.html')
+
+@login_required
+def account_notification(request):
+    return render(request, 'accounts/account-notification.html')
+
+@login_required
+def account_app_integration(request):
+    return render(request, 'accounts/account-app-integration.html')
+
+@login_required
+def account_device_session(request):
+    return render(request, 'accounts/account-device-session.html')
+
+@login_required
+def account_social_links(request):
+    return render(request, 'accounts/account-social-links.html')
+
+@login_required
+def account_appearance(request):
+    return render(request, 'accounts/account-appearance.html')

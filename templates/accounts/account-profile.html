@@ -1,0 +1,226 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content%}
+<div class="pattern-square"></div>
+
+
+<!--Account profile Start-->
+<section class="py-lg-7 py-5 bg-light-subtle">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="d-flex align-items-center mb-4 justify-content-center justify-content-md-start">
+                    <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar"
+                        class="avatar avatar-lg rounded-circle" />
+                    <div class="ms-3">
+                        <h5 class="mb-0">Jitu Chauhan</h5>
+                        <small>Compte personnel</small>
+                    </div>
+                </div>
+
+                <!-- Navbar -->
+                <div class="mb-4 text-center text-md-start">
+                    <a href="#" class="text-reset">
+                        <span>
+                            <span>Voir le site / profil</span>
+                        </span>
+                        <span class="ms-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                                <path fill-rule="evenodd"
+                                    d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+                <div class="d-md-none text-center d-grid">
+                    <button class="btn btn-light mb-3 d-flex align-items-center justify-content-between" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseAccountMenu" aria-expanded="false"
+                        aria-controls="collapseAccountMenu">
+                        Menu du compte
+                        <i class="bi bi-chevron-down ms-2"></i>
+                    </button>
+                </div>
+                <div class="collapse d-md-block" id="collapseAccountMenu">
+                    <ul class="nav flex-column nav-account">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_home' %}">
+                                <i class="align-bottom bx bx-home"></i>
+                                <span class="ms-2">Accueil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_profile' %}">
+                                <i class="align-bottom bx bx-user"></i>
+                                <span class="ms-2">Profil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'account_security' %}">
+                                <i class="align-bottom bx bx-lock-alt"></i>
+                                <span class="ms-2">Sécurité</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_billing' %}">
+                                <i class="align-bottom bx bx-credit-card-front"></i>
+                                <span class="ms-2">Facturation</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_team' %}">
+                                <i class="align-bottom bx bx-user-plus"></i>
+                                <span class="ms-2">Équipe</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_notification' %}">
+                                <i class="align-bottom bx bx-bell"></i>
+                                <span class="ms-2">Notifications</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_app_integration' %}">
+                                <i class="align-bottom bx bx-box"></i>
+                                <span class="ms-2">Intégration</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_device_session' %}">
+                                <i class="align-bottom bx bx-time"></i>
+                                <span class="ms-2">Session</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_social_links' %}">
+                                <i class="align-bottom bx bx-link"></i>
+                                <span class="ms-2">Réseaux Sociaux</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_appearance' %}">
+                                <i class="align-bottom bx bx-palette"></i>
+                                <span class="ms-2">Apparence</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">
+                                <i class="align-bottom bx bx-log-out"></i>
+                                <span class="ms-2">Se déconnecter</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="col-lg-9 col-md-8">
+                <div class="mb-4">
+                    <h1 class="mb-0 h3">Profil</h1>
+                </div>
+                <div class="card glass-card mb-4">
+                    <div class="card-body p-lg-5">
+                        <div class="mb-5">
+                            <h4 class="mb-1">Photo de profil</h4>
+                            <p class="mb-0 fs-6">Téléchargez une photo pour faire ressortir votre profil et permettre aux gens d'identifier facilement vos commentaires et contributions !</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar"
+                                class="avatar avatar-lg rounded-circle" />
+                            <div class="ms-4">
+                                <h5 class="mb-0">Votre photo</h5>
+                                <small>Autorisé : *.jpeg, *.jpg, *.png, *.gif, taille max de 4 Mo</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card glass-card mb-4">
+                    <div class="card-body p-lg-5">
+                        <div class="mb-5">
+                            <h4 class="mb-1">Informations du compte</h4>
+                            <p class="mb-0 fs-6">Modifiez vos informations personnelles et votre adresse.</p>
+                        </div>
+                        <form class="row g-3 needs-validation" novalidate>
+                            <div class="col-lg-6 col-md-12">
+                                <label for="profileFirstNameInput" class="form-label">Prénom</label>
+                                <input type="text" class="form-control" id="profileFirstNameInput" value="Jitu"
+                                    required />
+                                <div class="invalid-feedback">Veuillez entrer votre prénom.</div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <label for="profileLastNameInput" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="profileLastNameInput" value="Chauhan"
+                                    required />
+                                <div class="invalid-feedback">Veuillez entrer votre nom.</div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="profilePhoneInput" class="form-label">Téléphone</label>
+                                <input type="text" class="form-control input-phone" id="profilePhoneInput"
+                                    placeholder="+33 6XX XXX XXXX" required />
+                                <div class="invalid-feedback">Veuillez entrer votre numéro de téléphone.</div>
+                            </div>
+                            <div class="col-lg-6">
+                                <label for="profileBirthdayInput" class="form-label">Date de naissance</label>
+                                <input type="text" class="form-control input-date" id="profileBirthdayInput"
+                                    placeholder="jj/mm/aaaa" required />
+                                <div class="invalid-feedback">Veuillez entrer votre date de naissance.</div>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="profileAddressInput" class="form-label">Adresse</label>
+                                <input type="text" class="form-control" id="profileAddressInput" required />
+                                <div class="invalid-feedback">Veuillez entrer votre adresse.</div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="profileCountryInput" class="form-label">Pays</label>
+                                <select class="form-select" id="profileCountryInput" required>
+                                    <option selected disabled value="">Choisir...</option>
+                                    <option value="France" selected>France</option>
+                                    <option value="Belgique">Belgique</option>
+                                    <option value="Suisse">Suisse</option>
+                                    <option value="Canada">Canada</option>
+                                </select>
+                                <div class="invalid-feedback">Veuillez sélectionner un pays.</div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="profileStateInput" class="form-label">Département / Région</label>
+                                <select class="form-select" id="profileStateInput" required>
+                                    <option selected disabled value="">Choisir...</option>
+                                    <option selected value="">Paris</option>
+                                    <option value="Lyon">Lyon</option>
+                                    <option value="Marseille">Marseille</option>
+                                </select>
+                                <div class="invalid-feedback">Veuillez sélectionner une région.</div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="profileCityInput" class="form-label">Ville</label>
+                                <select class="form-select" id="profileCityInput" required>
+                                    <option selected disabled value="">Choisir...</option>
+                                    <option value="Paris" selected="">Paris</option>
+                                    <option value="Marseille">Marseille</option>
+                                    <option value="Lyon">Lyon</option>
+                                </select>
+                                <div class="invalid-feedback">Veuillez sélectionner une ville valide.</div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label for="profilezipInput" class="form-label">Code Postal</label>
+                                <input type="text" class="form-control" id="profilezipInput" required />
+                                <div class="invalid-feedback">Veuillez fournir un code postal.</div>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <button class="btn btn-primary me-2" type="submit">Enregistrer les modifications</button>
+                                <button class="btn btn-light" type="submit">Annuler</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Account profile end-->
+
+
+{% endblock %}

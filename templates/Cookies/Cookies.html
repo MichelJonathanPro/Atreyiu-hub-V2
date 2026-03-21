@@ -1,0 +1,54 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}Politique des Cookies | Atreyiu Hub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'assets/css/Legal.css' %}">
+<style>
+    .pattern-square {
+        margin-top: 30px;
+    }
+    @media (min-width: 768px) { .pattern-square { margin-top: 50px; } }
+    @media (min-width: 992px) { .pattern-square { margin-top: 130px; } }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="pattern-square"></div>
+<main class="legal-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="legal-header text-center" data-cue="fadeIn">
+                    <h1 class="display-4 fw-bold">Politique des Cookies</h1>
+                    <p class="text-body-secondary mb-0">Informations sur l'utilisation des cookies sur Atreyiu Hub</p>
+                </div>
+
+                <div class="legal-card legal-content" data-cue="slideInUp">
+                    <h2>Qu'est-ce qu'un cookie ?</h2>
+                    <p>Un "cookie" est un fichier de taille limitée, généralement constitué de lettres et de chiffres, envoyé par le serveur internet au fichier cookie du navigateur situé sur le disque dur de votre ordinateur.</p>
+
+                    <h2>Pourquoi utilisons-nous des cookies ?</h2>
+                    <p>Nous utilisons différents types de cookies pour améliorer votre expérience sur Atreyiu Hub :</p>
+                    <ul>
+                        <li><strong>Cookies techniques</strong> : Indispensables au bon fonctionnement du site (session, sécurité).</li>
+                        <li><strong>Cookies de mesure d'audience</strong> : Pour comprendre comment vous utilisez le site et l'améliorer.</li>
+                        <li><strong>Cookies de personnalisation</strong> : Pour mémoriser vos préférences (langue, thème clair/sombre).</li>
+                    </ul>
+
+                    <h2>Comment gérer les cookies ?</h2>
+                    <p>Vous pouvez à tout moment choisir de désactiver ces cookies. Votre navigateur peut également être paramétré pour vous signaler les cookies qui sont déposés dans votre ordinateur et vous demander de les accepter ou non.</p>
+                    <p>Vous pouvez accepter ou refuser les cookies au cas par cas ou bien les refuser systématiquement une fois pour toutes.</p>
+
+                    <h2>Bouton de gestion</h2>
+                    <p>Vous pouvez également réinitialiser vos préférences de cookies en cliquant sur le bouton ci-dessous (si applicable).</p>
+                    <div class="mt-4">
+                        <button class="btn btn-outline-primary" onclick="alert('Fonctionnalité de reset à venir')">Gérer mes préférences</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

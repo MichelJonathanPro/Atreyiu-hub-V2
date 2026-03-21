@@ -1,0 +1,208 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="pattern-square"></div>
+
+<!--Account security start-->
+<section class="py-lg-7 py-5 bg-light-subtle">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="d-flex align-items-center mb-4 justify-content-center justify-content-md-start">
+                    <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar"
+                        class="avatar avatar-lg rounded-circle" />
+                    <div class="ms-3">
+                        <h5 class="mb-0">Jitu Chauhan</h5>
+                        <small>Compte personnel</small>
+                    </div>
+                </div>
+
+                <!-- Navbar -->
+                <div class="mb-4 text-center text-md-start">
+                    <a href="#" class="text-reset">
+                        <span>
+                            <span>Voir le site / profil</span>
+                        </span>
+                        <span class="ms-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                                <path fill-rule="evenodd"
+                                    d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+                <div class="d-md-none text-center d-grid">
+                    <button class="btn btn-light mb-3 d-flex align-items-center justify-content-between" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseAccountMenu" aria-expanded="false"
+                        aria-controls="collapseAccountMenu">
+                        Menu du compte
+                        <i class="bi bi-chevron-down ms-2"></i>
+                    </button>
+                </div>
+                <div class="collapse d-md-block" id="collapseAccountMenu">
+                    <ul class="nav flex-column nav-account">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_home' %}">
+                                <i class="align-bottom bx bx-home"></i>
+                                <span class="ms-2">Accueil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_profile' %}">
+                                <i class="align-bottom bx bx-user"></i>
+                                <span class="ms-2">Profil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'account_security' %}">
+                                <i class="align-bottom bx bx-lock-alt"></i>
+                                <span class="ms-2">Sécurité</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_billing' %}">
+                                <i class="align-bottom bx bx-credit-card-front"></i>
+                                <span class="ms-2">Facturation</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_team' %}">
+                                <i class="align-bottom bx bx-user-plus"></i>
+                                <span class="ms-2">Équipe</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_notification' %}">
+                                <i class="align-bottom bx bx-bell"></i>
+                                <span class="ms-2">Notifications</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_app_integration' %}">
+                                <i class="align-bottom bx bx-box"></i>
+                                <span class="ms-2">Intégration</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_device_session' %}">
+                                <i class="align-bottom bx bx-time"></i>
+                                <span class="ms-2">Session</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_social_links' %}">
+                                <i class="align-bottom bx bx-link"></i>
+                                <span class="ms-2">Réseaux Sociaux</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_appearance' %}">
+                                <i class="align-bottom bx bx-palette"></i>
+                                <span class="ms-2">Apparence</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">
+                                <i class="align-bottom bx bx-log-out"></i>
+                                <span class="ms-2">Se déconnecter</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="mb-4">
+                    <h1 class="mb-0 h3">Sécurité</h1>
+                </div>
+                <div class="card glass-card mb-4">
+                    <div class="card-body p-lg-5">
+                        <div class="mb-5">
+                            <h4 class="mb-1">Adresse e-mail</h4>
+                            <p class="mb-0 fs-6">
+                                Changez l'adresse e-mail de votre compte. Votre compte actuel est
+                                <a href="#" class="text-primary">blocktheme@example.com</a>
+                            </p>
+                        </div>
+                        <form class="row needs-validation" novalidate>
+                            <div class="col-lg-7">
+                                <div class="mb-3">
+                                    <label for="securityEmailInput" class="form-label">Nouvelle adresse e-mail</label>
+                                    <input type="email" class="form-control" id="securityEmailInput"
+                                        placeholder="blocktheme@example.com" required />
+                                    <div class="invalid-feedback">Veuillez entrer une adresse e-mail.</div>
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card glass-card mb-4">
+                    <div class="card-body p-lg-5">
+                        <div class="mb-5">
+                            <h4 class="mb-1">Changer le mot de passe</h4>
+                            <p class="mb-0 fs-6">Nous vous enverrons un e-mail de confirmation lors du changement de votre mot de passe, veuillez donc surveiller votre boîte de réception après avoir validé.</p>
+                        </div>
+                        <form class="row gy-3 needs-validation" novalidate>
+                            <div class="col-lg-7">
+                                <label for="securityOldPasswordInput" class="form-label">Ancien mot de passe</label>
+                                <input type="password" class="form-control" id="securityOldPasswordInput" required />
+                                <div class="invalid-feedback">Veuillez entrer votre ancien mot de passe.</div>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <label for="securityNewPasswordInput" class="form-label">Nouveau mot de passe</label>
+                                <input type="password" class="form-control" id="securityNewPasswordInput" required />
+                                <div class="invalid-feedback">Veuillez entrer votre nouveau mot de passe.</div>
+                                <div class="form-text">Assurez-vous qu'il contient au moins 15 caractères OU au moins 8 caractères avec un chiffre et une lettre minuscule. En savoir plus.</div>
+                            </div>
+
+                            <div class="col-lg-7">
+                                <label for="securityConfirmPasswordInput" class="form-label">Confirmer le nouveau mot de passe</label>
+                                <input type="password" class="form-control" id="securityConfirmPasswordInput"
+                                    required />
+                                <div class="invalid-feedback">Veuillez confirmer votre mot de passe.</div>
+                                <div class="form-text">Assurez-vous qu'il correspond au nouveau mot de passe ci-dessus.</div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary me-2" type="submit">Enregistrer les modifications</button>
+                                <button class="btn btn-light" type="submit">Annuler</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card border-danger bg-danger bg-opacity-10 mb-4 shadow-sm">
+                    <div class="card-body p-lg-5">
+                        <div class="mb-4">
+                            <h5 class="mb-0">Zone de danger</h5>
+                            <small>Supprimer votre compte va :</small>
+                        </div>
+                        <ul class="list-unstyled mb-3">
+                            <li class="mb-2">1. Supprimer définitivement votre profil, ainsi que vos associations d'authentification.</li>
+                            <li class="mb-2">2. Supprimer définitivement tout votre contenu, y compris vos articles, favoris, commentaires, votes, etc.</li>
+                            <li class="mb-2">3. Rendre votre nom d'utilisateur disponible pour n'importe qui.</li>
+                        </ul>
+                        <p class="mb-0">
+                            Important : la suppression de votre compte est irréversible et ne peut pas être annulée. N'hésitez pas à contacter
+                            <a href="#" class="text-danger">support@blockthemeexample.com</a>
+                            pour toute question.
+                        </p>
+                        <div class="mt-3">
+                            <a href="#" class="btn btn-danger">Supprimer le compte</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Account security end-->
+
+
+{% endblock %}

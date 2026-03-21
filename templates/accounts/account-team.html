@@ -1,0 +1,235 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="pattern-square"></div>
+
+
+<!--Account team start-->
+<section class="py-lg-7 py-5 bg-light-subtle">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="d-flex align-items-center mb-4 justify-content-center justify-content-md-start">
+                    <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar"
+                        class="avatar avatar-lg rounded-circle" />
+                    <div class="ms-3">
+                        <h5 class="mb-0">Jitu Chauhan</h5>
+                        <small>Compte personnel</small>
+                    </div>
+                </div>
+
+                <!-- Navbar -->
+                <div class="mb-4 text-center text-md-start">
+                    <a href="#" class="text-reset">
+                        <span>
+                            <span>Voir le site / profil</span>
+                        </span>
+                        <span class="ms-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                                <path fill-rule="evenodd"
+                                    d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+                <div class="d-md-none text-center d-grid">
+                    <button class="btn btn-light mb-3 d-flex align-items-center justify-content-between" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseAccountMenu" aria-expanded="false"
+                        aria-controls="collapseAccountMenu">
+                        Menu du compte
+                        <i class="bi bi-chevron-down ms-2"></i>
+                    </button>
+                </div>
+                <div class="collapse d-md-block" id="collapseAccountMenu">
+                    <ul class="nav flex-column nav-account">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_home' %}">
+                                <i class="align-bottom bx bx-home"></i>
+                                <span class="ms-2">Accueil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_profile' %}">
+                                <i class="align-bottom bx bx-user"></i>
+                                <span class="ms-2">Profil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'account_security' %}">
+                                <i class="align-bottom bx bx-lock-alt"></i>
+                                <span class="ms-2">Sécurité</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_billing' %}">
+                                <i class="align-bottom bx bx-credit-card-front"></i>
+                                <span class="ms-2">Facturation</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_team' %}">
+                                <i class="align-bottom bx bx-user-plus"></i>
+                                <span class="ms-2">Équipe</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_notification' %}">
+                                <i class="align-bottom bx bx-bell"></i>
+                                <span class="ms-2">Notifications</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_app_integration' %}">
+                                <i class="align-bottom bx bx-box"></i>
+                                <span class="ms-2">Intégration</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_device_session' %}">
+                                <i class="align-bottom bx bx-time"></i>
+                                <span class="ms-2">Session</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_social_links' %}">
+                                <i class="align-bottom bx bx-link"></i>
+                                <span class="ms-2">Réseaux Sociaux</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_appearance' %}">
+                                <i class="align-bottom bx bx-palette"></i>
+                                <span class="ms-2">Apparence</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">
+                                <i class="align-bottom bx bx-log-out"></i>
+                                <span class="ms-2">Se déconnecter</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="mb-4">
+                    <h1 class="mb-0 h3">Équipes</h1>
+                </div>
+                <div class="card glass-card mb-4">
+                    <div class="card-body p-lg-5">
+                        <div class="mb-5">
+                            <h4 class="mb-1">Ajouter des membres de l'équipe</h4>
+                            <p class="fs-6 mb-0">Invitez autant de membres d'équipe que vous le souhaitez pour aider à gérer ce compte. En savoir plus</p>
+                        </div>
+                        <form class="row g-3 needs-validation" novalidate>
+                            <div class="col-lg-6 col-md-12">
+                                <label for="formGroupEmailInput" class="form-label">E-mail</label>
+                                <input type="email" class="form-control" id="formGroupEmailInput"
+                                    placeholder="E-mail du membre" required />
+                                <div class="invalid-feedback">Veuillez entrer un e-mail.</div>
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+                                <label for="formGroupRoleInput" class="form-label">Rôle</label>
+                                <select class="form-select" id="formGroupRoleInput" required>
+                                    <option selected disabled value="">Rôle</option>
+                                    <option value="Propriétaire">Propriétaire</option>
+                                    <option value="Développeur Front End">Développeur Front End</option>
+                                    <option value="Développeur Full Stack">Développeur Full Stack</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit">Envoyer l'invitation</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card glass-card mb-4 shadow-sm">
+                    <div class="card-body p-lg-5">
+                        <div class="mb-5">
+                            <h4 class="mb-1">Membres de l'équipe</h4>
+                            <p class="mb-0 fs-6">Liste des membres de votre équipe avec leurs rôles.</p>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-centered td table-centered th table-lg text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <div class="fs-6 text-dark fw-semibold">Membre</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="fs-6 text-dark fw-semibold">Rôle</div>
+                                        </th>
+                                        <th scope="col"></th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar"
+                                                    class="avatar avatar-lg rounded-circle" />
+                                                <div class="ms-3">
+                                                    <div class="fs-5 fw-semibold text-dark">Jitu Chauhan</div>
+                                                    <small>anitaexample@block.com</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><span>Propriétaire</span></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="d-flex align-items-center">
+                                                <img src="{% static 'assets/images/avatar/avatar-2.jpg' %}" alt="avatar"
+                                                    class="avatar avatar-lg rounded-circle" />
+                                                <div class="ms-3">
+                                                    <div class="fs-5 fw-semibold text-dark">Anita parmar</div>
+                                                    <small>anitaexample@block.com</small>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td><span>Développeur Front End</span></td>
+                                        <td></td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-dark me-2">Modifier</a>
+                                            <a href="#" class="btn btn-sm btn-light">Supprimer</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="d-flex align-items-center">
+                                                <img src="{% static 'assets/images/avatar/avatar-9.jpg' %}" alt="avatar"
+                                                    class="avatar avatar-lg rounded-circle" />
+                                                <div class="ms-3">
+                                                    <div class="fs-5 fw-semibold text-dark">Sandip Chauhan</div>
+                                                    <small>sandipexample@block.com</small>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td><span>Développeur Full Stack</span></td>
+                                        <td></td>
+                                        <td>
+                                            <a href="#" class="btn btn-sm btn-dark me-2">Modifier</a>
+                                            <a href="#" class="btn btn-sm btn-light">Supprimer</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Account team end-->
+
+
+{% endblock %}

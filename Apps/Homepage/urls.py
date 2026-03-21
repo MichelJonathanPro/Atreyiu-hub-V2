@@ -8,4 +8,7 @@ urlpatterns = [
     path('.well-known/appspecific/com.chrome.devtools.json', views.devtools_json, name='devtools_json'),
     path('404-test/', views.error_404, {'exception': Exception()}, name='404_test'),
     path('contact/', views.contact, name='contact'),
+    path('a-propos/', views.about, name='about'),
+    path('cgu/', views.cgu, name='cgu'),
+    path('cookies/', views.cookies, name='cookies'),
 ]

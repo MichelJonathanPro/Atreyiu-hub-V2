@@ -1,0 +1,180 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}À Propos | Atreyiu Hub{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'A_Propos/css/A_Propos.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="pattern-square"></div>
+<main>
+    <!-- Hero Section -->
+    <section class="about-hero" style="background-image: url({% static 'A_Propos/images/about-hero-bg.png' %});">
+        <div class="about-hero-overlay"></div>
+        <div class="container text-center py-7">
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-cue="zoomIn">
+                    <h1 class="display-3 fw-bold mb-4 text-white">À Propos d'Atreyiu Hub</h1>
+                    <p class="lead mb-0 text-white-50">
+                        Bienvenue dans mon univers numérique où le code, l'IA, l'impression 3D et l'électronique se rencontrent pour créer l'avenir.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Story Section -->
+    <section class="about-content-section py-xl-9 py-5">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-cue="slideInLeft">
+                    <div class="section-title">
+                        <h2 class="h1 mb-3">L'Origine du Projet</h2>
+                    </div>
+                    <p class="mb-4">
+                        Atreyiu Hub est né d'une passion dévorante pour la technologie sous toutes ses formes. Ce qui a commencé comme un simple blog de développeur s'est transformé en un véritable carrefour d'innovation et de partage.
+                    </p>
+                    <p class="mb-4">
+                        Ici, je documente mon voyage au cœur des technologies modernes. Que ce soit pour résoudre un bug complexe en Python, explorer les dernières avancées en Intelligence Artificielle, ou concevoir des pièces en 3D pour mes projets électroniques, chaque article est une brique de plus dans cet édifice.
+                    </p>
+                    <div class="d-flex gap-3">
+                        <div class="text-primary fs-4"><i class="bi bi-check-circle-fill"></i></div>
+                        <div>
+                            <h5 class="mb-1">Passion pluridisciplinaire</h5>
+                            <p class="text-body-secondary">Code, IA, Hardware et Création 3D.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 mt-3">
+                        <div class="text-primary fs-4"><i class="bi bi-check-circle-fill"></i></div>
+                        <div>
+                            <h5 class="mb-1">Partage de connaissances</h5>
+                            <p class="text-body-secondary">Des tutoriels et retours d'expérience pour tous.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-cue="slideInRight">
+                    <div class="position-relative">
+                        <div class="glass-card float-animation">
+                            <img loading="lazy" src="{% static 'assets/images/about-img/about-img-1.jpg' %}" alt="Innovation" class="img-fluid rounded-4 shadow-lg">
+                        </div>
+                        <!-- Absolute decorative elements -->
+                        <div class="position-absolute top-100 start-0 translate-middle mt-n5 ms-n5 d-none d-lg-block">
+                             <img src="{% static 'assets/images/pattern/pattern-square.svg' %}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="py-xl-9 py-5 bg-light-subtle">
+        <div class="container">
+            <div class="row mb-5 text-center">
+                <div class="col-lg-6 mx-auto" data-cue="fadeIn">
+                    <h2 class="h1">Nos Valeurs</h2>
+                    <p class="text-body-secondary">Ce qui nous guide au quotidien dans chaque ligne de code et chaque projet.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 col-sm-6" data-cue="zoomIn">
+                    <div class="glass-card text-center h-100">
+                        <div class="mb-3 text-primary fs-1"><i class="bi bi-lightning-charge"></i></div>
+                        <h4 class="h5">Innovation</h4>
+                        <p class="small mb-0 text-body-secondary">Toujours à la pointe des nouvelles technos.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-cue="zoomIn" data-delay="100">
+                    <div class="glass-card text-center h-100">
+                        <div class="mb-3 text-primary fs-1"><i class="bi bi-share"></i></div>
+                        <h4 class="h5">Partage</h4>
+                        <p class="small mb-0 text-body-secondary">Le savoir n'a de valeur que s'il est partagé.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-cue="zoomIn" data-delay="200">
+                    <div class="glass-card text-center h-100">
+                        <div class="mb-3 text-primary fs-1"><i class="bi bi-gem"></i></div>
+                        <h4 class="h5">Qualité</h4>
+                        <p class="small mb-0 text-body-secondary">Un code propre et un contenu soigné.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6" data-cue="zoomIn" data-delay="300">
+                    <div class="glass-card text-center h-100">
+                        <div class="mb-3 text-primary fs-1"><i class="bi bi-search"></i></div>
+                        <h4 class="h5">Curiosité</h4>
+                        <p class="small mb-0 text-body-secondary">Explorer l'inconnu pour mieux comprendre le présent.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section class="about-content-section py-xl-9 py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-6" data-cue="slideInLeft">
+                    <h2 class="h1">Ma Stack Technologique</h2>
+                    <p class="text-body-secondary">Les outils que j'utilise pour donner vie à mes idées.</p>
+                </div>
+            </div>
+            <div class="row row-cols-2 row-cols-md-4 row-cols-lg-6 g-4" data-cue="fadeIn">
+                <div class="col">
+                    <div class="tech-icon-box">
+                        <i class="bi bi-code-slash text-primary"></i>
+                        <span>Python</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="tech-icon-box">
+                        <i class="bi bi-window-sidebar text-primary"></i>
+                        <span>Django</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="tech-icon-box">
+                        <i class="bi bi-brush text-primary"></i>
+                        <span>JS / Bootstrap</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="tech-icon-box">
+                        <i class="bi bi-cpu text-primary"></i>
+                        <span>Arduino / ESP</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="tech-icon-box">
+                        <i class="bi bi-box text-primary"></i>
+                        <span>3D Printing</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="tech-icon-box">
+                        <i class="bi bi-robot text-primary"></i>
+                        <span>IA / ML</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-7 bg-primary bg-opacity-10">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8" data-cue="slideInLeft">
+                    <h2 class="mb-2">Prêt à explorer davantage ?</h2>
+                    <p class="mb-0 text-body-secondary">Découvrez mes derniers articles ou explorez mes portfolios de projets.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0" data-cue="slideInRight">
+                    <a href="{% url 'articles:index' %}" class="btn btn-primary btn-lg px-4 me-2">Voir les Articles</a>
+                    <a href="{% url 'homepage:contact' %}" class="btn btn-outline-primary btn-lg px-4">Me Contacter</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

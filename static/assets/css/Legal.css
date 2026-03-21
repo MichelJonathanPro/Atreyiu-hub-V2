@@ -1,0 +1,49 @@
+/* Legal Pages Styles (CGU, Cookies, etc.) */
+
+.legal-container {
+    padding-bottom: 80px;
+}
+
+.legal-header {
+    background: linear-gradient(135deg, rgba(139, 61, 255, 0.05) 0%, rgba(255, 107, 107, 0.05) 100%);
+    padding: 60px 0;
+    margin-bottom: 40px;
+    border-radius: 20px;
+}
+
+.legal-content {
+    color: #2d3436;
+    line-height: 1.8;
+}
+
+.legal-content h2 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    color: #8b3dff;
+    font-weight: 700;
+}
+
+.legal-content h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.legal-content p, .legal-content li {
+    font-size: 1.1rem;
+    color: #636e72;
+}
+
+.legal-content ul {
+    margin-bottom: 20px;
+}
+
+.legal-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}

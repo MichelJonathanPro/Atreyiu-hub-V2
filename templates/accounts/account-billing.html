@@ -1,0 +1,574 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+
+{% block content %}
+<div class="pattern-square"></div>
+
+
+<!--Billing start-->
+<section class="py-lg-7 py-5 bg-light-subtle">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="d-flex align-items-center mb-4 justify-content-center justify-content-md-start">
+                    <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar"
+                        class="avatar avatar-lg rounded-circle" />
+                    <div class="ms-3">
+                        <h5 class="mb-0">Jitu Chauhan</h5>
+                        <small>Compte personnel</small>
+                    </div>
+                </div>
+                <!-- Navbar -->
+                <div class="mb-4 text-center text-md-start">
+                    <a href="#" class="text-reset">
+                        <span>
+                            <span>Voir le site / profil</span>
+                        </span>
+                        <span class="ms-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                                <path fill-rule="evenodd"
+                                    d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+                <div class="d-md-none text-center d-grid">
+                    <button class="btn btn-light mb-3 d-flex align-items-center justify-content-between" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseAccountMenu" aria-expanded="false"
+                        aria-controls="collapseAccountMenu">
+                        Menu du compte
+                        <i class="bi bi-chevron-down ms-2"></i>
+                    </button>
+                </div>
+                <div class="collapse d-md-block" id="collapseAccountMenu">
+                    <ul class="nav flex-column nav-account">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_home' %}">
+                                <i class="align-bottom bx bx-home"></i>
+                                <span class="ms-2">Accueil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_profile' %}">
+                                <i class="align-bottom bx bx-user"></i>
+                                <span class="ms-2">Profil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'account_security' %}">
+                                <i class="align-bottom bx bx-lock-alt"></i>
+                                <span class="ms-2">Sécurité</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_billing' %}">
+                                <i class="align-bottom bx bx-credit-card-front"></i>
+                                <span class="ms-2">Facturation</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_team' %}">
+                                <i class="align-bottom bx bx-user-plus"></i>
+                                <span class="ms-2">Équipe</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_notification' %}">
+                                <i class="align-bottom bx bx-bell"></i>
+                                <span class="ms-2">Notifications</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_app_integration' %}">
+                                <i class="align-bottom bx bx-box"></i>
+                                <span class="ms-2">Intégration</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_device_session' %}">
+                                <i class="align-bottom bx bx-time"></i>
+                                <span class="ms-2">Session</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_social_links' %}">
+                                <i class="align-bottom bx bx-link"></i>
+                                <span class="ms-2">Réseaux Sociaux</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_appearance' %}">
+                                <i class="align-bottom bx bx-palette"></i>
+                                <span class="ms-2">Apparence</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">
+                                <i class="align-bottom bx bx-log-out"></i>
+                                <span class="ms-2">Se déconnecter</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="mb-4">
+                    <h1 class="mb-0 h3">Facturation</h1>
+                </div>
+
+                <div class="card glass-card mb-4">
+                    <div class="card-body p-lg-5">
+                        <div class="mb-6 d-lg-flex align-items-center justify-content-between">
+                            <h4 class="mb-0">Plan actuel</h4>
+                            <div class="mt-3 mt-lg-0 d-md-flex">
+                                <a href="#" class="btn btn-light me-2">Annuler le plan</a>
+                                <a href="#" class="btn btn-outline-primary">
+                                    Mettre à jour le plan
+                                    <span class="ms-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            fill="currentColor" class="bi bi-arrow-up-right-circle-fill"
+                                            viewBox="0 0 16 16">
+                                            <path
+                                                d="M0 8a8 8 0 1 0 16 0A8 8 0 0 0 0 8zm5.904 2.803a.5.5 0 1 1-.707-.707L9.293 6H6.525a.5.5 0 1 1 0-1H10.5a.5.5 0 0 1 .5.5v3.975a.5.5 0 0 1-1 0V6.707l-4.096 4.096z" />
+                                        </svg>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row gx-4">
+                            <div class="col-lg-6">
+                                <div class="card border-0 mb-4 mb-lg-0 bg-light-subtle">
+                                    <div class="card-body py-lg-3 px-lg-4">
+                                        <div class="mb-5">
+                                            <h6>Facture mensuelle actuelle</h6>
+                                            <h4>19,00 $</h4>
+                                        </div>
+
+                                        <a href="#" class="icon-link icon-link-hover text-primary">
+                                            Passer à la facturation annuelle
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card border-0 mb-4 mb-lg-0 bg-light-subtle">
+                                    <div class="card-body py-lg-3 px-lg-4">
+                                        <div class="mb-5">
+                                            <h6>Prochaine échéance</h6>
+                                            <h4>30 janv. 2024</h4>
+                                        </div>
+
+                                        <a href="#" class="icon-link icon-link-hover text-primary">
+                                            Voir l'historique des paiements
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                <path fill-rule="evenodd"
+                                                    d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z">
+                                                </path>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card glass-card mb-4">
+                    <div class="card-body p-lg-5">
+                        <div class="mb-5">
+                            <h4 class="mb-1">Modes de paiement</h4>
+                            <p class="fs-6 mb-0">Le système de notification de Block vous informe des événements importants tels que les réponses, les mentions, les mises à jour, etc.</p>
+                        </div>
+                        <div class="border py-3 px-4 rounded-3 mb-3">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex">
+                                    <img src="{% static 'assets/images/landings/account/visa.svg' %}" alt="card" class="me-3" />
+                                    <div>
+                                        <h6 class="mb-0">Visa se terminant par 1234</h6>
+                                        <small>Expire en 03/2025</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <span class="dropdown dropstart">
+                                        <a class="text-reset" href="#" role="button" id="paymentDropdown1"
+                                            data-bs-toggle="dropdown" data-bs-offset="-20,20" aria-expanded="false">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-three-dots-vertical"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                            </svg>
+                                        </a>
+                                        <span class="dropdown-menu" aria-labelledby="paymentDropdown1">
+                                            <span class="dropdown-header">Paramètres</span>
+                                            <a class="dropdown-item" href="#">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                    fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                    <path fill-rule="evenodd"
+                                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                </svg>
+                                                <span class="ms-2">Modifier</span>
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                    fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                                                    <path
+                                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                                                </svg>
+                                                <span class="ms-2">Supprimer</span>
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                    fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />
+                                                    <path
+                                                        d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
+                                                </svg>
+                                                <span class="ms-2">Définir par défaut</span>
+                                            </a>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border py-3 px-4 rounded-3">
+                            <div class="d-flex justify-content-between">
+                                <div class="d-flex">
+                                    <img src="{% static 'assets/images/landings/account/mastercard.svg' %}" alt="card"
+                                        class="me-3" />
+                                    <div>
+                                        <h6 class="mb-0">Master se terminant par 1234</h6>
+                                        <small>Expire en 03/2026</small>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <span class="dropdown dropstart">
+                                        <a class="text-reset" href="#" role="button" id="paymentDropdown2"
+                                            data-bs-toggle="dropdown" data-bs-offset="-20,20" aria-expanded="false">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-three-dots-vertical"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                                            </svg>
+                                        </a>
+                                        <span class="dropdown-menu" aria-labelledby="paymentDropdown2">
+                                            <span class="dropdown-header">Paramètres</span>
+                                            <a class="dropdown-item" href="#">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                    fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                    <path fill-rule="evenodd"
+                                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                                </svg>
+                                                <span class="ms-2">Modifier</span>
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                    fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
+                                                    <path
+                                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
+                                                </svg>
+                                                <span class="ms-2">Supprimer</span>
+                                            </a>
+                                            <a class="dropdown-item" href="#">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                    fill="currentColor" class="bi bi-credit-card" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v1h14V4a1 1 0 0 0-1-1H2zm13 4H1v5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V7z" />
+                                                    <path
+                                                        d="M2 10a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1z" />
+                                                </svg>
+                                                <span class="ms-2">Définir par défaut</span>
+                                            </a>
+                                        </span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-outline-primary mt-4" data-bs-toggle="modal"
+                            data-bs-target="#paymentModal">Ajouter un mode de paiement</a>
+                    </div>
+                </div>
+                <div class="card glass-card mb-4">
+                    <div class="card-body p-lg-5">
+                        <div class="mb-5">
+                            <h4 class="mb-1">Historique des factures</h4>
+                            <p class="fs-6 mb-0">Le rapport d'historique des factures est nécessaire pour justifier le solde d'une plage de factures donnée.</p>
+                        </div>
+
+                        <ul class="list-group list-group-flush mb-0">
+                            <li class="list-group-item px-0 py-3 border-top">
+                                <div class="d-flex justify-content-between text-dark fw-semibold fs-6">
+                                    <span>01 fév. 2023</span>
+                                    <span>26,96 $</span>
+                                    <a href="#">PDF</a>
+                                </div>
+                            </li>
+                            <li class="list-group-item px-0 py-3">
+                                <div class="d-flex justify-content-between text-dark fw-semibold fs-6">
+                                    <span>31 janv. 2023</span>
+                                    <span>34,30 $</span>
+                                    <a href="#">PDF</a>
+                                </div>
+                            </li>
+                            <li class="list-group-item px-0 py-3">
+                                <div class="d-flex justify-content-between text-dark fw-semibold fs-6">
+                                    <span>30 janv. 2023</span>
+                                    <span>93,10 $</span>
+                                    <a href="#">PDF</a>
+                                </div>
+                            </li>
+                            <li class="list-group-item px-0 py-3">
+                                <div class="d-flex justify-content-between text-dark fw-semibold fs-6">
+                                    <span>29 janv. 2023</span>
+                                    <span>44,39 $</span>
+                                    <a href="#">PDF</a>
+                                </div>
+                            </li>
+                            <li class="list-group-item px-0 py-3 border-bottom">
+                                <div class="d-flex justify-content-between text-dark fw-semibold fs-6">
+                                    <span>23 janv. 2023</span>
+                                    <span>26,96 $</span>
+                                    <a href="#">PDF</a>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="mt-4">
+                            <a href="#" class="icon-link icon-link-hover">
+                                Voir toutes les factures
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                    class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z">
+                                    </path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-primary mb-4 border-1 shadow-sm">
+                    <div class="card-header border-0 bg-primary bg-opacity-10 py-3">
+                        <h3 class="mb-1 text-primary-emphasis">Plan gratuit - Essai de 30 jours</h3>
+                        <p class="mb-0 fs-6 text-primary-emphasis">Pour les nouveaux développeurs web prêts à créer leur premier site.</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="mb-4 mb-lg-0">
+                                    <h6 class="mb-3">Inclus :</h6>
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-check-circle-fill text-success"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                            </svg>
+                                            <span class="ms-2">Naviguer sur le site avec des publicités</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-check-circle-fill text-success"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                            </svg>
+                                            <span class="ms-2">Créer des sites statiques</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-check-circle-fill text-success"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                            </svg>
+                                            <span class="ms-2">1 espace</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-check-circle-fill text-success"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                            </svg>
+                                            <span class="ms-2">10 Mo de stockage</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-check-circle-fill text-success"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                            </svg>
+                                            <span class="ms-2">75 Mo de données / mois</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-check-circle-fill text-success"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                            </svg>
+                                            <span class="ms-2">500 requêtes / mois</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-check-circle-fill text-success"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                            </svg>
+                                            <span class="ms-2">Sous-domaine</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-check-circle-fill text-success"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                            </svg>
+                                            <span class="ms-2">Certificat SSL</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="mb-4 mb-lg-0">
+                                    <h6 class="mb-3">Non inclus :</h6>
+                                    <ul class="list-unstyled mb-0">
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-x-circle text-danger"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                <path
+                                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                            </svg>
+                                            <span class="ms-2">Accès à la vidéo HTML</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-x-circle text-danger"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                <path
+                                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                            </svg>
+                                            <span class="ms-2">Support prioritaire</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-x-circle text-danger"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                <path
+                                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                            </svg>
+                                            <span class="ms-2">Sites statiques avancés</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-x-circle text-danger"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                <path
+                                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                            </svg>
+                                            <span class="ms-2">Analytique</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-x-circle text-danger"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                <path
+                                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                            </svg>
+                                            <span class="ms-2">SEO</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-x-circle text-danger"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                <path
+                                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                            </svg>
+                                            <span class="ms-2">Extensions d'intégration facile</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-x-circle text-danger"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                <path
+                                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                            </svg>
+                                            <span class="ms-2">Pages pour l'hébergement de sites statiques</span>
+                                        </li>
+                                        <li class="mb-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                fill="currentColor" class="bi bi-x-circle text-danger"
+                                                viewBox="0 0 16 16">
+                                                <path
+                                                    d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                                <path
+                                                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                                            </svg>
+                                            <span class="ms-2">Support en ligne</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="mt-4">
+                                    <a href="#" class="icon-link icon-link-hover">
+                                        Voir toutes les fonctionnalités et comparer les plans
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                            fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z">
+                                            </path>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Billing end-->
+
+
+{% endblock %}

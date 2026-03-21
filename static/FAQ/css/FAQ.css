@@ -1,22 +1,140 @@
-/* Contact Page Specific Styles */
-
-/* Contact Page Specific Styles */
+/* FAQ Page Styles */
 
 .pattern-square {
     margin-top: 30px;
-    /* Mobile base */
 }
 
 @media (min-width: 768px) {
     .pattern-square {
         margin-top: 50px;
-        /* Tablet */
     }
 }
 
 @media (min-width: 992px) {
     .pattern-square {
         margin-top: 130px;
-        /* Desktop (clears navbar) */
     }
+}
+
+.faq-hero {
+    background: linear-gradient(135deg, rgba(139, 61, 255, 0.05) 0%, rgba(255, 107, 107, 0.05) 100%);
+    padding: 60px 0 60px; /* Reverted */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 30px auto 0;
+}
+
+.search-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-input-wrapper i {
+    position: absolute;
+    left: 20px;
+    color: #8b3dff;
+    font-size: 1.2rem;
+}
+
+.search-input-wrapper input {
+    padding: 15px 20px 15px 50px;
+    border-radius: 50px;
+    border: 1px solid rgba(139, 61, 255, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.search-input-wrapper input:focus {
+    border-color: #8b3dff;
+    box-shadow: 0 10px 30px rgba(139, 61, 255, 0.15);
+    outline: none;
+}
+
+.faq-accordion-item {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px !important;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.faq-accordion-item:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.accordion-button {
+    padding: 20px 25px;
+    font-weight: 600;
+    color: #2d3436;
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #8b3dff;
+}
+
+.accordion-button::after {
+    background-image: none;
+    font-family: "bootstrap-icons";
+    content: "\f282"; /* chevron-down */
+    transition: transform 0.3s ease;
+    width: auto;
+    height: auto;
+    font-size: 1.2rem;
+}
+
+.accordion-button:not(.collapsed)::after {
+    transform: rotate(-180deg);
+}
+
+.accordion-body {
+    padding: 0 25px 25px;
+    color: #636e72;
+    line-height: 1.7;
+}
+
+.no-results {
+    display: none;
+    padding: 40px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+/* Admin floating action buttons */
+.admin-actions {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.admin-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.admin-btn:hover {
+    transform: scale(1.1);
 }

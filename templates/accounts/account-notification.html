@@ -1,0 +1,229 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="pattern-square"></div>
+
+<!--Account notification start-->
+<section class="py-lg-7 py-5 bg-light-subtle">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="d-flex align-items-center mb-4 justify-content-center justify-content-md-start">
+                    <img src="{% static 'assets/images/avatar/avatar-1.jpg' %}" alt="avatar"
+                        class="avatar avatar-lg rounded-circle" />
+                    <div class="ms-3">
+                        <h5 class="mb-0">Jitu Chauhan</h5>
+                        <small>Compte personnel</small>
+                    </div>
+                </div>
+
+                <!-- Navbar -->
+                <div class="mb-4 text-center text-md-start">
+                    <a href="#" class="text-reset">
+                        <span>
+                            <span>Voir le site / profil</span>
+                        </span>
+                        <span class="ms-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                                class="bi bi-box-arrow-up-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8.636 3.5a.5.5 0 0 0-.5-.5H1.5A1.5 1.5 0 0 0 0 4.5v10A1.5 1.5 0 0 0 1.5 16h10a1.5 1.5 0 0 0 1.5-1.5V7.864a.5.5 0 0 0-1 0V14.5a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5h6.636a.5.5 0 0 0 .5-.5z" />
+                                <path fill-rule="evenodd"
+                                    d="M16 .5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h3.793L6.146 9.146a.5.5 0 1 0 .708.708L15 1.707V5.5a.5.5 0 0 0 1 0v-5z" />
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+                <div class="d-md-none text-center d-grid">
+                    <button class="btn btn-light mb-3 d-flex align-items-center justify-content-between" type="button"
+                        data-bs-toggle="collapse" data-bs-target="#collapseAccountMenu" aria-expanded="false"
+                        aria-controls="collapseAccountMenu">
+                        Menu du compte
+                        <i class="bi bi-chevron-down ms-2"></i>
+                    </button>
+                </div>
+                <div class="collapse d-md-block" id="collapseAccountMenu">
+                    <ul class="nav flex-column nav-account">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_home' %}">
+                                <i class="align-bottom bx bx-home"></i>
+                                <span class="ms-2">Accueil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_profile' %}">
+                                <i class="align-bottom bx bx-user"></i>
+                                <span class="ms-2">Profil</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'account_security' %}">
+                                <i class="align-bottom bx bx-lock-alt"></i>
+                                <span class="ms-2">Sécurité</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_billing' %}">
+                                <i class="align-bottom bx bx-credit-card-front"></i>
+                                <span class="ms-2">Facturation</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_team' %}">
+                                <i class="align-bottom bx bx-user-plus"></i>
+                                <span class="ms-2">Équipe</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_notification' %}">
+                                <i class="align-bottom bx bx-bell"></i>
+                                <span class="ms-2">Notifications</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_app_integration' %}">
+                                <i class="align-bottom bx bx-box"></i>
+                                <span class="ms-2">Intégration</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_device_session' %}">
+                                <i class="align-bottom bx bx-time"></i>
+                                <span class="ms-2">Session</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_social_links' %}">
+                                <i class="align-bottom bx bx-link"></i>
+                                <span class="ms-2">Réseaux Sociaux</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_appearance' %}">
+                                <i class="align-bottom bx bx-palette"></i>
+                                <span class="ms-2">Apparence</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">
+                                <i class="align-bottom bx bx-log-out"></i>
+                                <span class="ms-2">Se déconnecter</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div class="mb-4">
+                    <div class="mb-4 d-flex align-items-center justify-content-between">
+                        <h1 class="mb-0 h3">Notifications</h1>
+                        <a href="#" class="btn btn-outline-primary">
+                            <span class="me-2">
+                                Suspendre
+                                <span class="d-none d-md-inline-flex">toutes les notifications</span>
+                            </span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-bell-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="card glass-card mb-4">
+                    <div class="card-body p-lg-5">
+                        <div class="mb-4">
+                            <h4 class="mb-1">E-mail de notifications par défaut</h4>
+                            <p class="mb-0 fs-5">Choisissez où vous souhaitez que les e-mails soient envoyés. Vous pouvez ajouter d'autres adresses e-mail.</p>
+                        </div>
+                        <form class="row align-items-center g-lg-3 g-2">
+                            <div class="col-lg-6">
+                                <label for="chooseEmail" class="form-label visually-hidden">Choisir l'e-mail</label>
+                                <select class="form-select" id="chooseEmail">
+                                    <option selected disabled value="">Choisir...</option>
+                                    <option selected value="blocktheme@example.com">blocktheme@example.com</option>
+                                    <option value="block_theme@example.com">block_theme@example.com</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-6">
+                                <a href="#" class="text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-plus" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+                                    </svg>
+                                    <span class="ms-2">Ajouter un nouvel e-mail</span>
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card glass-card mb-4">
+                    <div class="card-body p-lg-5">
+                        <div class="mb-5">
+                            <h4 class="mb-1">Notifications par e-mail</h4>
+                            <p class="fs-6 mb-0">Recevez des notifications par e-mail pour ne jamais manquer une mention, une réponse, un vote positif ou un commentaire sur Block.</p>
+                        </div>
+
+                        <h6 class="mb-3">Envoyez-moi des e-mails pour :</h6>
+                        <form>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchNewActivity" />
+                                <label class="form-check-label ms-2" for="flexSwitchNewActivity">Notifications de nouvelle activité (mentions, réponses, etc.)</label>
+                            </div>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckUpdates" checked />
+                                <label class="form-check-label ms-2" for="flexSwitchCheckUpdates">Nouvelles et mises à jour</label>
+                            </div>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckMarket" />
+                                <label class="form-check-label ms-2" for="flexSwitchCheckMarket">Mises à jour marketing</label>
+                            </div>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckEmail" />
+                                <label class="form-check-label ms-2" for="flexSwitchCheckEmail">M'envoyer des notifications système par e-mail (liées à la sécurité, toujours activées)</label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card glass-card mb-4">
+                    <div class="card-body p-lg-5">
+                        <div class="mb-5">
+                            <h4 class="mb-1">Notifications push</h4>
+                            <p class="fs-6 mb-0">Le système de notification de Block vous informe des événements importants tels que les réponses, les mentions, les mises à jour, etc.</p>
+                        </div>
+
+                        <h6 class="mb-3">Envoyez-moi des notifications pour :</h6>
+                        <form>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    id="flexSwitchCheckActivity" />
+                                <label class="form-check-label ms-2" for="flexSwitchCheckActivity">
+                                    <span class="fs-6 fw-semibold text-dark">Commentaires</span>
+                                    <small>Le système de notification de Block vous informe des événements importants tels que les réponses, les mentions, les mises à jour, etc.</small>
+                                </label>
+                            </div>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckNews"
+                                    checked />
+                                <label class="form-check-label ms-2" for="flexSwitchCheckNews">
+                                    <span class="fs-6 fw-semibold text-dark">Rappels</span>
+                                    <small>Le système de notification de Block vous informe des événements importants tels que les réponses, les mentions, les mises à jour, etc.</small>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Account notification end-->
+
+{% endblock %}
