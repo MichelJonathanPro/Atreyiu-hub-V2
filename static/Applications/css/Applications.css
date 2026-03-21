@@ -1,20 +1,59 @@
 /* Applications Page Specific Styles */
 
-.pattern-square {
-    margin-top: 30px;
-    /* Mobile base */
+.app-card {
+    border: none;
+    transition: all 0.3s ease;
 }
 
-@media (min-width: 768px) {
-    .pattern-square {
-        margin-top: 50px;
-        /* Tablet */
-    }
+.app-icon-container {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--bs-primary) 0%, #8b3dff 100%);
+    color: white;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(139, 61, 255, 0.3);
 }
 
-@media (min-width: 992px) {
-    .pattern-square {
-        margin-top: 130px;
-        /* Desktop (clears navbar) */
-    }
+.tech-badge {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 50px;
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+    color: var(--bs-primary);
+    border: 1px solid rgba(var(--bs-primary-rgb), 0.2);
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.app-status-badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    padding: 0.35rem 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.7rem;
+}
+
+.applications-hero {
+    background: radial-gradient(circle at 50% 50%, rgba(var(--bs-primary-rgb), 0.05) 0%, transparent 70%);
+}
+
+.app-version {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--bs-gray-500);
+}
+
+[data-bs-theme="dark"] .tech-badge {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--bs-gray-300);
+    border-color: rgba(255, 255, 255, 0.1);
 }

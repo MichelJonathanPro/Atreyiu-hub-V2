@@ -1,0 +1,117 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} | Applications{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'Applications/css/Applications.css' %}">
+<style>
+    .spec-item {
+        padding: 1rem;
+        background: rgba(var(--bs-primary-rgb), 0.03);
+        border-radius: 12px;
+        margin-bottom: 1rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="pattern-square"></div>
+
+<!--Application detail start-->
+<div class="py-xl-9 py-4">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-4">
+                        <li class="breadcrumb-item"><a href="{% url 'applications:index' %}">Applications</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+                    </ol>
+                </nav>
+
+                <div class="d-flex align-items-center mb-4">
+                    <div class="app-icon-container mb-0 me-3">
+                        <i class="bi bi-app-indicator"></i>
+                    </div>
+                    <div>
+                        <h1 class="display-5 fw-bold mb-1">{{ title }}</h1>
+                        <div class="d-flex align-items-center">
+                            <span class="badge {{ status_class }} me-2">{{ status }}</span>
+                            <span class="text-muted fw-mono fs-6">{{ version }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <figure class="my-6">
+                    <img loading="lazy" src="{% static image %}" alt="{{ title }}" class="rounded-4 img-fluid w-100 shadow-lg" />
+                </figure>
+                
+                <div class="card glass-card p-5 border-0">
+                    <h2 class="h3 mb-4">À propos de cette application</h2>
+                    <p class="fs-5 text-muted leading-relaxed">
+                        {{ description }}
+                    </p>
+                    
+                    <div class="mt-5">
+                        <h3 class="h4 mb-4">Fonctionnalités avancées</h3>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="d-flex">
+                                    <i class="bi bi-check-circle-fill text-primary mt-1"></i>
+                                    <div class="ms-3">
+                                        <h5 class="mb-1">Performance Native</h5>
+                                        <p class="small text-muted">Optimisée pour une exécution fluide même sur les matériels modestes.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex">
+                                    <i class="bi bi-shield-lock-fill text-primary mt-1"></i>
+                                    <div class="ms-3">
+                                        <h5 class="mb-1">Sécurité Bancaire</h5>
+                                        <p class="small text-muted">Chiffrement AES-256 pour toutes les données sensibles transmises.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="sticky-top" style="top: 2rem;">
+                    <div class="card glass-card p-4 border-0 mb-4">
+                        <h4 class="mb-4">Détails techniques</h4>
+                        
+                        <div class="spec-item">
+                            <label class="small text-uppercase ls-md text-muted fw-bold d-block mb-1">Technologies</label>
+                            <div>
+                                {% for tech in techs %}
+                                    <span class="tech-badge me-1">{{ tech }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="spec-item">
+                            <label class="small text-uppercase ls-md text-muted fw-bold d-block mb-1">Plateformes</label>
+                            <span class="text-dark fw-semibold">Web, iOS, Android, Desktop</span>
+                        </div>
+
+                        <div class="spec-item">
+                            <label class="small text-uppercase ls-md text-muted fw-bold d-block mb-1">Dernière Mise à jour</label>
+                            <span class="text-dark fw-semibold">21 Mars 2026</span>
+                        </div>
+
+                        <div class="d-grid gap-2 mt-4">
+                            <button class="btn btn-primary py-3 fw-bold rounded-3">Accéder à l'application <i class="bi bi-box-arrow-up-right ms-2"></i></button>
+                            <button class="btn btn-outline-light py-3 fw-bold rounded-3">Consulter la Doc <i class="bi bi-book ms-2"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Application detail end-->
+{% endblock %}

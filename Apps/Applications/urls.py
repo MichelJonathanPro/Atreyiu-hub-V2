@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import ApplicationsIndexView
+from . import views
 
 app_name = 'applications'
 
 urlpatterns = [
-    path('', ApplicationsIndexView.as_view(), name='index'),
+    path('', views.index, name='index'),
+    path('detail/', views.detail, name='detail'), # Temporary detail URL
 ]

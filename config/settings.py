@@ -49,10 +49,11 @@ INSTALLED_APPS = [
     'Apps.FAQ',
     'Apps.Articles',
     'Apps.Portfolios',
-    'Apps.Applications',
+    'Apps.Services',
     'Apps.Tutoriels',
     'Apps.Jeux',
     'Apps.Boutique',
+    'Apps.Applications',
     
     # Allauth
     'django.contrib.sites',

@@ -18,29 +18,31 @@
                                     <i class="bi bi-chevron-down"></i>
                                 </a>
                             </div>
-                            <div class="d-lg-block collapse show" id="collapseLanding" data-bs-parent="#ft-links"
-                                style="">
+                            <div class="d-lg-block collapse show" id="collapseLanding" data-bs-parent="#ft-links">
                                 <ul class="list-unstyled mb-0 py-3 py-lg-0">
                                     <li class="mb-2">
-                                        <a href="./index.html" class="text-decoration-none text-reset">Accueil</a>
+                                        <a href="{% url 'homepage:index' %}" class="text-decoration-none text-reset">Accueil</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">Articles</a>
+                                        <a href="{% url 'articles:index' %}" class="text-decoration-none text-reset">Articles</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">Portfolios</a>
+                                        <a href="{% url 'portfolios:index' %}" class="text-decoration-none text-reset">Portfolios</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">Applications</a>
+                                        <a href="{% url 'applications:index' %}" class="text-decoration-none text-reset">Applications</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">Tutoriels</a>
+                                        <a href="{% url 'services:index' %}" class="text-decoration-none text-reset">Services</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">Jeux</a>
+                                        <a href="{% url 'tutoriels:index' %}" class="text-decoration-none text-reset">Tutoriels</a>
                                     </li>
                                     <li class="mb-2">
-                                        <a href="#!" class="text-decoration-none text-reset">Boutique</a>
+                                        <a href="{% url 'jeux:index' %}" class="text-decoration-none text-reset">Jeux</a>
+                                    </li>
+                                    <li class="mb-2">
+                                        <a href="{% url 'boutique:index' %}" class="text-decoration-none text-reset">Boutique</a>
                                     </li>
                                 </ul>
                             </div>
@@ -102,19 +104,19 @@
                         <div class="collapse d-lg-block" id="collapseResources" data-bs-parent="#ft-links">
                             <ul class="list-unstyled mb-0 py-3 py-lg-0">
                                 <li class="mb-2">
-                                    <a href="./docs/index.html" class="text-decoration-none text-reset">Next.js</a>
+                                    <a href="#" class="text-decoration-none text-reset">Next.js</a>
                                 </li>
                                 <li class="mb-2">
-                                    <a href="#!" class="text-decoration-none text-reset">Sanity</a>
+                                    <a href="#" class="text-decoration-none text-reset">Sanity</a>
                                 </li>
                                 <li class="mb-2">
-                                    <a href="./changelog.html" class="text-decoration-none text-reset">Content ful</a>
+                                    <a href="#" class="text-decoration-none text-reset">Contentful</a>
                                 </li>
                                 <li class="mb-2">
-                                    <a href="#!" class="text-decoration-none text-reset">Vercel</a>
+                                    <a href="#" class="text-decoration-none text-reset">Vercel</a>
                                 </li>
                                 <li class="mb-2">
-                                    <a href="#!" class="text-decoration-none text-reset">Netlify</a>
+                                    <a href="#" class="text-decoration-none text-reset">Netlify</a>
                                 </li>
                             </ul>
                         </div>
@@ -132,16 +134,7 @@
                         <div class="collapse d-lg-block" id="collapseLocations" data-bs-parent="#ft-links">
                             <ul class="list-unstyled mb-0 py-3 py-lg-0">
                                 <li class="mb-2">
-                                    <a href="./docs/index.html" class="text-decoration-none text-reset">India</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#!" class="text-decoration-none text-reset">Australia</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="./changelog.html" class="text-decoration-none text-reset">Brazil</a>
-                                </li>
-                                <li class="mb-2">
-                                    <a href="#!" class="text-decoration-none text-reset">Canada</a>
+                                    <a href="#" class="text-decoration-none text-reset">Rejoindre la newsletter</a>
                                 </li>
                             </ul>
                         </div>
@@ -161,14 +154,14 @@
     <div class="container mt-7 pt-lg-7 pb-4">
         <div class="row align-items-center">
             <div class="col-md-3">
-                <a class="mb-4 mb-lg-0 d-block text-inverse" href="../index.html"><img loading="lazy"
+                <a class="mb-4 mb-lg-0 d-block text-inverse" href="{% url 'homepage:index' %}"><img loading="lazy"
                         src="{% static 'assets/images/logo/logo.svg' %}" alt="" /></a>
             </div>
             <div class="col-md-9 col-lg-6">
                 <div class="small mb-3 mb-lg-0 text-lg-center">
                     Copyright © 2026
 
-                    <span class="text-primary"><a href="/">Atreyiu-Hub.com</a></span>
+                    <span class="text-primary"><a href="{% url 'homepage:index' %}">Atreyiu-Hub.com</a></span>
 
                 </div>
             </div>
